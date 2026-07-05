@@ -9,7 +9,7 @@ type: software
 version: "1.0.0"
 date-released: "2026-07-05"
 license: MIT
-url: "https://github.com/USERNAME/hyperkagome-lgf"   # <-- update USERNAME after creating the repo
+url: "https://github.com/bryannasr4-gif/hyperkagome-lgf"
 keywords:
   - lattice Green's function
   - hyperkagome
