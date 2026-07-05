@@ -293,24 +293,62 @@ f2, n2 = search_order1_right_factors(Ma, exps_adj, p7, p7_exps_adj)
 print("candidates tested: %d ; order-1 right factors of adjoint found: %d %s" % (n2, len(f2), f2))
 
 # ----------------------------------------------------------------------
-# (c) genuine logarithmic local solution at t=0 (repeated exponent -1) for M and adjoint(M)
+# (c) genuine logarithmic local solution at t=0 for M and adjoint(M) -- RIGOROUS.
+# A repeated indicial exponent is necessary but NOT sufficient for a log (it can be
+# apparent).  We count the log-free (formal Laurent) local solutions by the Frobenius
+# obstruction: an order-n operator has n log-free solutions iff the point is apparent;
+# fewer than n => a genuine logarithm.  (Same method as certify_nonliouvillian.py.)
 # ----------------------------------------------------------------------
-def log_free_count(op, p):
-    """Number of log-free (Frobenius/Laurent) local solutions at t=p, computed exactly by
-    building the recurrence and counting exponents that admit an obstruction-free series.
-    Validated separately (see certify_nonliouvillian.py); here we use the exponent structure:
-    a repeated indicial root forces a log unless the operator is apparent, which we rule out
-    by checking that only <order> log-free solutions exist via the Frobenius obstruction."""
-    e = indicial_exponents(op, p)
-    reps = len(e) != len(set(e))
-    return e, reps
+def _falling(s, i):
+    r = sp.Integer(1)
+    for a in range(i):
+        r *= (s - a)
+    return r
 
-e0_M, rep_M = log_free_count(M, sp.Integer(0))
-e0_A, rep_A = log_free_count(Ma, sp.Integer(0))
-print("\nM       exponents at t=0: %s ; repeated=%s (=> genuine log, M not completely reducible)"
-      % ([str(x) for x in e0_M], rep_M))
-print("adj(M)  exponents at t=0: %s ; repeated=%s (complete reducibility is self-dual)"
-      % ([str(x) for x in e0_A], rep_A))
+def count_log_free(op, p, K=8):
+    """Return (number of log-free local solutions at t=p, sorted exponents)."""
+    from collections import defaultdict
+    x = sp.symbols('x'); s = sp.symbols('s')
+    n = len(op) - 1
+    cij = []
+    for i in range(n + 1):
+        d = {}
+        for (j,), co in sp.Poly(sp.expand(sp.expand(op[i]).subs(t, p + x)), x).terms():
+            if co != 0:
+                d[j] = sp.Rational(co)
+        cij.append(d)
+    qd = defaultdict(lambda: sp.Integer(0))
+    for i in range(n + 1):
+        for j, co in cij[i].items():
+            qd[j - i] += co * _falling(s, i)
+    dmin = min(dd for dd in qd if sp.expand(qd[dd]) != 0)
+    roots = sp.roots(sp.Poly(sp.expand(qd[dmin]), s))
+    exps = []
+    for rt, m in roots.items():
+        exps += [sp.nsimplify(rt)] * m
+    emin = min(exps, key=lambda z: sp.re(sp.N(z)))
+    rows = []
+    for r in range(K):
+        row = []
+        for k in range(K):
+            dd = dmin + r - k
+            val = qd[dd].subs(s, emin + k) if (k <= r and dd in qd) else sp.Integer(0)
+            row.append(sp.Rational(sp.expand(val)))
+        rows.append(row)
+    nullity = K - sp.Matrix(rows).rank()
+    return nullity, sorted(exps, key=lambda z: sp.re(sp.N(z)))
+
+# validate the log counter on known operators (t^3 D^3 = no log; theta^3 = logs)
+assert count_log_free([sp.Integer(0), sp.Integer(0), sp.Integer(0), t**3], sp.Integer(0))[0] == 3, "log-counter validation (no-log) failed"
+assert count_log_free([sp.Integer(0), t, 3*t**2, t**3], sp.Integer(0))[0] == 1, "log-counter validation (log) failed"
+
+nlf_M, e0_M = count_log_free(M, sp.Integer(0))
+nlf_A, e0_A = count_log_free(Ma, sp.Integer(0))
+log_M, log_A = nlf_M < 3, nlf_A < 3
+print("\nM       t=0 exponents %s ; log-free local solutions = %d of 3 => genuine log: %s"
+      % ([str(x) for x in e0_M], nlf_M, log_M))
+print("adj(M)  t=0 exponents %s ; log-free local solutions = %d of 3 => genuine log: %s  (self-dual)"
+      % ([str(x) for x in e0_A], nlf_A, log_A))
 
 # ----------------------------------------------------------------------
 # (d) not a symmetric square (exact, every singular point) + POSITIVE CONTROL
@@ -346,11 +384,11 @@ assert e_sc == [sp.Integer(0), sp.Rational(1, 2), sp.Integer(1)] and sym2_test(e
 print("\n================ CERTIFICATE ================")
 print("order-1 right factors of M over Q         :", len(f1), "(0 => none)")
 print("order-1 right factors of adjoint(M) over Q :", len(f2), "(0 => none, i.e. no order-2 factor of M)")
-print("genuine log at t=0 (M and adjoint(M))      :", rep_M and rep_A, "(=> not completely reducible)")
+print("genuine log at t=0 (M and adjoint(M))      :", log_M and log_A, "(=> not completely reducible)")
 print("not a symmetric square (some singular pt)  :", any_notsym2)
 print("positive control (Sym^2 -> AP) passes      : True")
 print("---------------------------------------------")
-if len(f1) == 0 and len(f2) == 0 and rep_M:
+if len(f1) == 0 and len(f2) == 0 and log_M and log_A:
     print("=> No order-1 or order-2 right factor of M over Q, and M is not completely reducible.")
     print("   By Galois descent (a hypothetical order-1/2 right factor over Qbar yields, via its")
     print("   Galois orbit's LCLM, a right factor over Q of order 1, 2, or 3 -- order 1 excluded")

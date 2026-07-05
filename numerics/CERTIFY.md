@@ -1,101 +1,61 @@
-# Two rigor fixes before submission — exact commands
+# Optional independent cross-checks of the operator M
 
-> **STATUS (done):** Both fixes have been executed *exactly in pure Python* — see
-> `numerics/certify_factor.py` and its saved output `numerics/CERTIFICATE.txt`. That script enumerates the
-> complete finite set of Fuchs-admissible order-1 right factors of M and of adjoint(M), tests each exactly over
-> ℚ (0 found), and confirms a guaranteed logarithmic solution at t=0 (repeated exponent −1) ⇒ **M is irreducible
-> over Q̄ and is not a symmetric square** ⇒ no closed form in complete elliptic integrals. The Maple/Magma
-> recipes below are now **optional independent cross-checks**, not blockers. (A full creative-telescoping proof
-> and a Liouvillian-exclusion test remain as further strengthenings, not required for the paper's stated claims.)
+The repository's certification is **already complete in pure Python** (no SageMath required):
 
-These are the two things a referee (very possibly Maillard, Guttmann, or Koutschan themselves) will poke
-first. All three toolchains below use the **same operator M**, emitted by
-`python numerics/certify_ops.py` into `M_maple.txt`, `M_magma.txt`, `M_sage.py`.
+- `numerics/certify_factor.py` → `CERTIFICATE.txt` enumerates the complete finite set of Fuchs-admissible
+  order-1 right factors of M and of adjoint(M) and tests each **exactly over ℚ** (0 found), computes the exact
+  local exponents (including the degree-7 locus `{0,1,3}` by reduction mod p₇, and `t=∞` `{−3,−2,−3/2}`),
+  proves a **genuine logarithmic solution at t=0** (exactly one log-free local solution of three), and hence
+  concludes — by a Galois-descent argument — that **M is irreducible over ℚ̄(t)** and **not a symmetric square**.
+- `numerics/certify_nonliouvillian.py` → `CERTIFICATE_nonliouvillian.txt` uses the same t=0 log to exclude finite
+  and imprimitive Galois groups, i.e. **M is non-Liouvillian** (no algebraic/elementary closed form). The elliptic
+  exclusion comes separately from *not-Sym²*.
 
-- **Fix 1 — Certified irreducibility.** The paper currently argues irreducibility from a hand-rolled
-  hyperexponential search. Replace that with a *certified factorization*: if the tool factors M into a single
-  order-3 piece, M is irreducible over ℚ(t). This is routine and independent of the Sage build bug that blocked us.
-- **Fix 2 — No Liouvillian / elliptic closed form (the differential-Galois step).** "Not a symmetric square"
-  (already solid, via the exponent test) rules out an *elliptic* K-form. To make the blunt "no closed form"
-  airtight you must also exclude a finite or imprimitive differential-Galois group (which would give algebraic /
-  Liouvillian solutions). The community-standard way (Boukraa–Hassani–Maillard) is to probe the symmetric and
-  exterior squares for rational/exponential solutions and confirm a logarithmic solution exists (⇒ infinite
-  Galois group).
+None of the below is required. They are **independent cross-checks in other computer-algebra systems**, useful if
+a referee wants confirmation from a certified decision procedure. All use the **same operator M**, provided in
+`M_maple.txt`, `M_magma.txt`, and `M_sage.py` (each defines `c0..c3` and `L = c3·D³ + c2·D² + c1·D + c0`).
 
-Interpretation feeds back into the paper: if Fix 1 confirms irreducible and Fix 2 finds *no* rational solutions
-of the exterior/symmetric square and a genuine log solution, you may keep "irreducible, not a symmetric square,
-Calabi–Yau-type period, no closed form in complete elliptic integrals" as *proved* (not just verified).
-
----
-
-## Route A — Maple (recommended; `DFactor` handles order ≤ 4 well)
+## Route A — Maple (`DFactor` handles order ≤ 4 well)
 
 ```maple
 with(DEtools):
-# paste the four lines of numerics/M_maple.txt here (defines c0,c1,c2,c3 and L):
-#   L := c3*Dt^3 + c2*Dt^2 + c1*Dt + c0:
-
-# --- FIX 1: certified irreducibility ---
-F := DFactor(L, [Dt, t]);         # a single factor (= L) means IRREDUCIBLE over Q(t)
+# paste numerics/M_maple.txt (defines c0,c1,c2,c3 and L):
+F := DFactor(L, [Dt, t]);         # a single factor (= L) => IRREDUCIBLE over Q(t)
 nops([F]);                        # 1  => irreducible ; >1 => reducible, print the factors
 eigenring(L, [Dt, t]);            # cross-check: eigenring = scalars (dim 1) <=> irreducible
-
-# --- FIX 2: differential-Galois / not-Liouvillian ---
-S2 := symmetric_power(L, 2, [Dt, t]):   # order 6 if L is NOT a symmetric square
-E2 := exterior_power(L, 2, [Dt, t]):    # order 3 (the "adjoint-like" square)
-ratsols(S2, t);                          # expect [] : no rational solution of Sym^2
-ratsols(E2, t);                          # expect [] : L not self-dual via a rational kernel
-expsols(S2, t);  expsols(E2, t);         # expect [] : no exponential (Liouvillian) building block
-# a log solution => infinite Galois group => not finite/algebraic:
-formal_sol(L, [Dt, t], t = 1);           # look for a ln(t-1) term in the local solutions at t=1
+# symmetric square: order 6 (not 3) confirms L is NOT a symmetric square:
+S2 := symmetric_power(L, 2, [Dt, t]):  ratsols(S2, t);   # expect [] : no rational solution of Sym^2
+formal_sol(L, [Dt, t], t = 0);         # expect a ln(t) term: the genuine logarithmic solution at t=0
 ```
 
-**Read-off:** `DFactor` returns one operator ⇒ **irreducible** (Fix 1 done). `ratsols`/`expsols` all empty and a
-genuine log at t=1 ⇒ Galois group is not finite/imprimitive ⇒ **no Liouvillian (hence no elliptic) closed form**
-(Fix 2 done). Report the exact `DFactor` output in the paper's certification paragraph.
+Read-off: `DFactor` returns one operator ⇒ irreducible over ℚ(t) (and, with the exact enumeration over ℚ̄ plus
+the t=0 log already in `certify_factor.py`, over ℚ̄(t)). A `ln(t)` term at t=0 confirms the logarithm.
 
----
-
-## Route B — Magma (if you have access; `Factorisation`)
+## Route B — Magma (`Factorisation`, a certified decision procedure)
 
 ```magma
 // paste numerics/M_magma.txt (defines F,R,D, c0..c3, L):
-//   L := c3*D^3 + c2*D^2 + c1*D + c0;
 fac := Factorisation(L);
-#fac;                 // 1 => irreducible order-3 operator
+#fac;                          // 1 => irreducible order-3 operator
 [Order(f[1]) : f in fac];
 ```
 
-Magma's differential-operator factorisation is a certified decision procedure and is the cleanest single
-irreducibility certificate for a referee.
-
----
-
-## Route C — Sage + ore_algebra (free; use a FRESH conda env, not the broken build)
-
-The project's Sage `.factor()` was broken by a `passagemath-flint`/`_small_primes_table` build bug. A clean
-environment fixes it:
+## Route C — Sage + ore_algebra (free; use a fresh conda env)
 
 ```bash
-# fresh miniforge env, no sudo
 conda create -n sage2 -c conda-forge sage python=3.11 -y
-conda activate sage2
-sage -pip install ore_algebra
-sage numerics/M_sage.py      # runs L.factor(); prints "irreducible iff 1 and order 3: True/False"
+conda activate sage2 && sage -pip install ore_algebra
+sage numerics/M_sage.py        # builds the same L and calls L.factor(); one order-3 factor => irreducible
 ```
 
-`M_sage.py` builds the same M and calls `L.factor()`. One factor of order 3 ⇒ irreducible. (For Fix 2 in Sage:
-`L.symmetric_power(2)` and `.rational_solutions()` mirror the Maple recipe.)
+## Interpretation
 
----
+- A single order-3 factor from `DFactor` / `Factorisation` / `factor()` **independently confirms** the
+  irreducibility already certified in pure Python.
+- If any tool instead returns a lower-order factor, or if `ratsols`/`expsols` of the symmetric/exterior square are
+  non-empty, that would contradict the pure-Python certificate and must be reconciled before any strong claim
+  (this is exactly why the cross-check is offered).
 
-## If a check comes back the "wrong" way
-
-- **DFactor finds a factor** ⇒ M is reducible; the "irreducible order-3 / not elliptic" story changes and the
-  paper must be re-derived. (Very unlikely given the exponent structure and the independent rebuild, but this is
-  exactly why the certified check matters.)
-- **ratsols/expsols non-empty** ⇒ a Liouvillian building block exists; soften to "no *elliptic* closed form"
-  and drop the unqualified "no closed form / Calabi–Yau" wording, or characterize the Liouvillian solution.
-
-Once both fixes pass, update `paper/main.tex` (the "$M$ has no low-order right factor" and "No elliptic closed
-form" paragraphs) to cite the certified factorization and the Galois computation, then proceed to outreach.
+Note: even with all cross-checks passing, the no-closed-form conclusion remains **conditional on M being the
+minimal annihilator of the LGF** — established here to the guess-and-verify standard (annihilation margin 55), not
+by an unconditional creative-telescoping proof. See `CT_SETUP.md` for that remaining step.

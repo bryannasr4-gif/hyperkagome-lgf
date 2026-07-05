@@ -188,12 +188,18 @@ reduction modulo $p_7$. This candidate set is finite, and each candidate is test
 divisibility criterion $c_3(u''+3uu'+u^3)+c_2(u'+u^2)+c_1u+c_0=0$. No first-order right factor of $M$ exists over
 $\mathbb{Q}(t)$, and none of $\mathrm{adjoint}(M)$---which for a third-order operator excludes an order-two right
 factor of $M$ as well---so $M$ has no right factor of order one or two over $\mathbb{Q}(t)$. We now descend to
-$\overline{\mathbb{Q}}(t)$: a hypothetical right factor of order one or two over $\overline{\mathbb{Q}}(t)$ has a
-finite Galois orbit of right factors of $M$, whose least common left multiple is a right factor \emph{defined over
-$\mathbb{Q}(t)$}, of order one, two, or three. Order one and order two are excluded above; order three would make
-$M$ the LCLM of lower-order operators, hence completely reducible, forcing \emph{semisimple} local monodromy and
-therefore no logarithmic solution---but $M$ has a genuine logarithm at $t=0$ (repeated indicial exponent $-1$, one
-log-free local solution of three, verified directly). Hence $M$ is irreducible over $\overline{\mathbb{Q}}(t)$.
+$\overline{\mathbb{Q}}(t)$ in two steps. \emph{First}, $M$ has no order-one right factor there: a hyperexponential
+solution $\mathrm{d}/\mathrm{d}t-u$ with $u\in\overline{\mathbb{Q}}(t)$ has a finite Galois orbit
+$\{\mathrm{d}/\mathrm{d}t-u^\sigma\}$ of right factors of $M$, whose least common left multiple is a right factor
+\emph{defined over $\mathbb{Q}(t)$} of order $k\in\{1,2,3\}$; $k=1$ gives $u\in\mathbb{Q}(t)$ and $k=2$ an
+order-two right factor over $\mathbb{Q}$, both excluded above, while $k=3$ would make $M$ the LCLM of order-one
+operators, hence completely reducible, forcing \emph{semisimple} local monodromy and no logarithm---contradicting
+the genuine logarithm at $t=0$ (repeated indicial exponent $-1$, exactly one log-free local solution of three,
+verified directly). \emph{Second}, $M$ has no order-two right factor over $\overline{\mathbb{Q}}(t)$: such a factor
+is equivalent to an order-one right factor of $\mathrm{adjoint}(M)$ over $\overline{\mathbb{Q}}(t)$, excluded by the
+identical descent applied to $\mathrm{adjoint}(M)$ (no order-one factor over $\mathbb{Q}$ by the adjoint search, no
+order-two by the $M$ search, and $\mathrm{adjoint}(M)$ is not completely reducible, since complete reducibility is
+self-dual and $M$ is not). Hence $M$ is irreducible over $\overline{\mathbb{Q}}(t)$.
 (This exact enumeration replaces the floating-point candidate search of earlier drafts; the computation is provided
 in the Supplemental Material and is independently reproducible with a certified factorizer such as Maple's
 \texttt{DFactor} or Magma.)

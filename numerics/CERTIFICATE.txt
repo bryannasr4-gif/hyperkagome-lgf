@@ -18,8 +18,8 @@ candidates tested: 486 ; order-1 right factors found: 0 []
   adjoint(M) p7 exponents (EXACT): ['-2', '0', '1']
 candidates tested: 486 ; order-1 right factors of adjoint found: 0 []
 
-M       exponents at t=0: ['-1', '-1', '0'] ; repeated=True (=> genuine log, M not completely reducible)
-adj(M)  exponents at t=0: ['0', '1', '1'] ; repeated=True (complete reducibility is self-dual)
+M       t=0 exponents ['-1', '-1', '0'] ; log-free local solutions = 1 of 3 => genuine log: True
+adj(M)  t=0 exponents ['0', '1', '1'] ; log-free local solutions = 1 of 3 => genuine log: True  (self-dual)
 
 === (d): symmetric-square test at every singular point of M ===
   t=0 exps=['-1', '-1', '0'] : NOT Sym^2 (not an AP)
