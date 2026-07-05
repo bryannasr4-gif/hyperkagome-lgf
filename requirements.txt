@@ -1,0 +1,6 @@
+# Reproduce every certification with CPython 3.10+ (no SageMath required).
+# Verified working with the versions in parentheses.
+numpy>=1.24      # (tested 2.5.0)
+scipy>=1.10      # (tested 1.18.0)
+sympy>=1.12      # (tested 1.14.0)  -- uses Poly.invert, ff, as_leading_term
+mpmath>=1.3      # (tested 1.3.0)

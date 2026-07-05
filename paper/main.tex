@@ -1,0 +1,304 @@
+\documentclass[aps,pre,twocolumn,superscriptaddress,nofootinbib,longbibliography]{revtex4-2}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\hk}{\theta}
+
+\begin{document}
+
+\title{Lattice Green's function of the hyperkagome lattice:\\
+an irreducible third-order Picard--Fuchs operator and the absence of an elliptic closed form}
+
+\author{Bryan Nasr}
+\affiliation{Independent researcher\\ \texttt{bryannasr4@gmail.com}}
+\date{\today}
+
+\begin{abstract}
+The lattice Green's functions (LGFs) of the simple-cubic, body- and face-centred cubic lattices are classical:
+each is the symmetric square of a second-order (elliptic) operator and admits a closed form in complete elliptic
+integrals. The three-dimensional \emph{hyperkagome} lattice---the network of corner-sharing triangles realised
+by the Ir sublattice of the spin-liquid candidate Na$_4$Ir$_3$O$_8$---has resisted such a treatment: Varma and
+Monien [Phys.\ Rev.\ E \textbf{87}, 032109 (2013)] reduced its density of states to a threefold integral they
+``found no way to exactly solve.'' We determine its analytic status. Working from exact lattice moments, we show that the
+hyperkagome LGF $G(z)$ (after removing the trivial flat-band pole and exploiting an exact spectral symmetry) is
+annihilated by a \emph{third-order} Picard--Fuchs operator $M$ of polynomial degree fifteen, which we determine by
+differential approximants and certify to the guess-and-verify standard of this field---by massive overdetermination
+(exact annihilation over $\mathbb{Q}$ through order $t^{111}$: $112$ relations against the $57$ free coefficients of
+$M$, an overdetermination margin of $55$) and an independent from-scratch reconstruction (an unconditional
+creative-telescoping proof that $M$ is the minimal annihilator remains open). The operator $M$ shows no first- or
+second-order right factor over $\mathbb{Q}(t)$, and---by a Galois-descent argument---is irreducible over
+$\overline{\mathbb{Q}}(t)$; and it is \emph{not} a symmetric square of a second-order operator---its Frobenius
+exponents $\{-\tfrac12,0,1\}$ at the band edge and $\{-1,-\tfrac12,\tfrac12\}$ at the principal van Hove point
+$t=1$ ($E=0,2$) are not the arithmetic progressions a symmetric-square structure would force. By the
+differential-Galois classification of third-order operators, an irreducible operator that is not a symmetric square
+has no basis of complete elliptic integrals---this is what excludes an elliptic closed form; separately, a genuine
+logarithmic solution (from the repeated exponent $-1$ at $t=0$) excludes finite and imprimitive Galois groups, so
+$M$ is also non-Liouvillian, which excludes any algebraic or elementary closed form. Consequently, in sharp
+contrast to the cubic lattices, the hyperkagome LGF has \emph{no closed form in algebraic, elementary, or elliptic
+functions}: it is a genuine order-three Fuchsian period (Calabi--Yau type in the broad sense), not an elliptic one.
+We give the operator, its complete Riemann scheme, the band-edge van Hove exponents, and the exact value
+$\mathrm{Re}\,G(1)=1/9$.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+The lattice Green's function (LGF)
+\begin{equation}
+G(z)=\int_{\mathrm{BZ}}\frac{\rmd^3k}{(2\pi)^3}\,\frac{1}{z-\varepsilon(\bm k)}
+=\int\frac{\rho(E)\,\rmd E}{z-E},
+\label{eq:lgf}
+\end{equation}
+the resolvent of a tight-binding band $\varepsilon(\bm k)$ averaged over the Brillouin zone, is a central object
+of lattice statistics: it controls random-walk return probabilities, defect and impurity states, and the local
+density of states $\rho(E)=-\pi^{-1}\,\mathrm{Im}\,G(E+i0^+)$~\cite{Economou,Guttmann2010}. For the
+three-dimensional cubic lattices the LGF is a celebrated closed form. Watson's triple
+integral for the simple-cubic (SC) lattice~\cite{Watson1939}, and the body- and face-centred analogues, are all
+expressible through products of complete elliptic integrals $K$~\cite{Joyce1973,GlasserZucker1977,Joyce1998}; structurally,
+each of these order-three operators is the \emph{symmetric square} of a second-order (elliptic) operator, which
+is precisely why an elliptic closed form exists.
+
+Not every lattice is so fortunate. As the local geometry becomes more intricate---decorated, frustrated, or
+multi-band lattices---the LGF can fail to reduce to elliptic integrals and instead becomes a period of a
+higher-order or irreducible differential operator (the diamond lattice already signals this
+trend~\cite{Guttmann2010,Joyce1998}). The natural three-dimensional frustrated network is the
+\emph{hyperkagome} lattice: a chiral arrangement of corner-sharing triangles, obtained by removing one quarter
+of the sites of the pyrochlore lattice in an ordered (space group $P4_132$) fashion. It is realised by the Ir$^{4+}$
+moments of Na$_4$Ir$_3$O$_8$, a leading three-dimensional quantum-spin-liquid candidate~\cite{Okamoto2007,
+Hopkinson2007,Lawler2008}, which has made its single-particle spectral functions of independent interest.
+
+Varma and Monien~\cite{VarmaMonien2013} computed the hyperkagome density of states and reduced it to a single
+threefold integral of a rational function of $\cos k_x,\cos k_y,\cos k_z$, remarking that ``it seems highly
+suggestive that a closed form expression can be obtained if a particular complicated yet highly symmetrical
+integral can be solved,'' but that ``we have currently found no way to exactly solve'' it. That integral has
+remained open.
+
+We settle the question. The hyperkagome LGF is governed by an \emph{irreducible third-order} Picard--Fuchs
+operator that is \emph{not} a symmetric square; therefore, unlike the cubic lattices, it has \emph{no} closed
+form in complete elliptic integrals. We obtain the operator explicitly, certify it, and read off its analytic
+structure---thereby explaining \emph{why} an elliptic closed form was never found, and replacing it with the
+exact object that does control the LGF.
+
+\section{Hyperkagome lattice and its Green's function}
+The hyperkagome lattice has twelve sites per cubic cell, each with coordination number four; its nearest-neighbour
+tight-binding Bloch Hamiltonian $H(\bm k)$ is a $12\times12$ Hermitian matrix. We fix the hopping $t=1$ and the
+energy origin at the band centre. Diagonalising $H(\bm k)$ over the Brillouin zone yields the spectrum shown in
+Fig.~\ref{fig:dos}. Three exact features organise everything that follows.
+
+\emph{(i) A flat band, and the line-graph structure.} The hyperkagome lattice is the line graph of a three-regular
+``premedial'' net $\Gamma$ (eight vertices per cell, twelve edges): its sites are the edges of $\Gamma$ and its
+triangles are the vertices of $\Gamma$. For the line graph $L(\Gamma)$ of a $d$-regular graph one has
+$A(L(\Gamma))=B^{\!\top}B-2I$ with $B$ the incidence matrix, so the spectrum is $\{\mu_i+d-2\}$ together with the
+eigenvalue $-2$ of multiplicity $(\text{edges})-(\text{vertices})$. Here $d=3$, giving four flat bands at $E=-2$
+(spectral weight exactly $1/3$, i.e.\ $\tfrac{12-8}{12}$); this contributes a pole $\tfrac13(z+2)^{-1}$ to $G(z)$
+and is the flat-band pole written $1/(t_{\rm VM}{+}1)$ in Ref.~\cite{VarmaMonien2013}, whose energy variable is
+$t_{\rm VM}=E/2$ (the correspondence, including this pole and its weight, is reproduced in their variable in the
+Supplemental Material). The eight dispersive bands are $E=\mu_i+1$ and fill $[-2,4]$, since the adjacency
+eigenvalues $\mu_i$ of a three-regular graph lie in $[-3,3]$.
+
+\emph{(ii) An exact reflection symmetry, from bipartiteness.} A graph has an adjacency spectrum symmetric about
+$0$ if and only if it is bipartite; we verify that the premedial net $\Gamma$ is bipartite (it admits a
+translation-consistent two-colouring, checked on finite blocks up to $5^3$ cells, and its cycles are of even
+length). Through the line-graph shift $E=\mu+1$ this makes the dispersive density of states \emph{exactly}
+symmetric about $E=1$; independently, all odd central moments
+$\int\rho_{\rm disp}(E)(E-1)^{2m+1}\rmd E$ vanish in exact arithmetic to order $239$. Hence the dispersive part of
+$G$ is odd in $\zeta\equiv z-1$, and is a function of $t\equiv\zeta^{-2}$.
+
+\emph{(iii) Integer moments.} The per-site spectral moments $m_n=\frac{1}{12}\Tr H^n$ are exact integers,
+$m_{0..10}=1,0,4,4,28,60,260,756,2828,9292,33384$; we computed them to $m_{230}$ by closed-walk enumeration.
+Among the ordered quarter-depletions of the pyrochlore lattice, the chiral hyperkagome enantiomorphs are the ones
+reproducing this sequence (hexagon-containing depletions already differ at $m_6=264\neq260$); this selection is
+checked separately and is not needed for what follows.
+
+\begin{figure}[t]
+\includegraphics[width=\columnwidth]{figs/dos.pdf}
+\caption{Density of states of the hyperkagome tight-binding model ($t=1$). Four flat bands at $E=-2$ carry weight
+$1/3$; the eight dispersive bands fill $[-2,4]$ and are \emph{exactly} symmetric about $E=1$, with principal van
+Hove singularities at $E=0,2$ (dashed) and weaker interior features at $E=-1,3$ and $E=1\pm\sqrt5$ (see text).}
+\label{fig:dos}
+\end{figure}
+
+\section{The Picard--Fuchs operator}
+Because $G(z)$ is the diagonal of a rational function over the torus, it is holonomic (D-finite): it satisfies a
+linear differential equation with polynomial coefficients~\cite{Lipshitz1988}. We determine that equation from
+the moments. Removing the flat band, $d_n=m_n-\tfrac13(-2)^n$, and forming the even central moments
+$\nu_m=\int\rho_{\rm disp}(E-1)^{2m}\rmd E$, the generating function $\Phi(t)=\sum_m\nu_m t^m$ (with
+$t=\zeta^{-2}$) is the essential object. Guessing a minimal annihilator from the exact $\nu$ sequence by the
+method of differential approximants~\cite{Guttmann2010,orealgebra} returns an operator $L$ of order four and
+degree fifteen.
+
+This $L$ is reducible in a trivial way: it admits the constant solution, so $L=M\,\rmd/\rmd t$ exactly, with
+$M$ of order \emph{three} and degree fifteen,
+\begin{equation}
+M=\sum_{i=0}^{3}c_i(t)\,\Big(\frac{\rmd}{\rmd t}\Big)^{i},\quad \deg c_i\le 15,
+\label{eq:M}
+\end{equation}
+the minimal operator annihilating $\Phi'$. Its leading coefficient factorises as
+\begin{equation}
+c_3(t)\propto t^2\,(t-\tfrac19)(t-\tfrac15)(t-\tfrac14)(t-1)^3\,p_7(t),
+\label{eq:lc}
+\end{equation}
+with $p_7$ an irreducible degree-seven polynomial. The finite singular points are images of the band structure
+under $t=(E-1)^{-2}$: the band edge $E=4$ (equivalently $E=-2$) maps to $t=\tfrac19$, the principal van Hove
+energies $E=0,2$ to $t=1$, and the interior van Hove features $E=-1,3$ and $E=1\pm\sqrt5$ to $t=\tfrac14$ and
+$t=\tfrac15$; the half-integer exponent in \eqref{eq:riemann} confirms a square-root singularity at each. The
+remaining singular points ($t=0$, $t=\infty$, and the degree-seven locus $p_7$) all appear in the complete Riemann
+scheme \eqref{eq:riemann} below.
+
+\emph{Certification.} The operator $M$ was reconstructed exactly over $\mathbb{Q}$ and shown to annihilate the
+series $\Phi'(t)$ \emph{exactly over $\mathbb{Q}$} through order $t^{111}$---$112$ independent relations against
+the $57$ free coefficients of $M$, an overdetermination margin of $55$ with zero residuals---a verification we
+confirmed modulo three independent large primes. It was
+furthermore re-derived from an entirely independent rebuild of the lattice (an independent quarter-depletion
+construction, independent closed-walk moment enumeration to $m_{240}$, and an independent guess): the moment
+sequence and all four coefficient polynomials of $M$ are bit-identical. As a further independent check, the
+integer moments were reproduced by direct diagonalisation of the $12\times12$ Bloch Hamiltonian on a
+Brillouin-zone grid---a method disjoint from the closed-walk enumeration. This is the standard
+``conjectured-then-verified'' certification of the lattice-statistics literature~\cite{Guttmann2010}. An
+unconditional derivation by creative telescoping~\cite{Koutschan2013,Bostan2013} from the rational integrand of
+the resolvent---which would upgrade this verification to a formal proof---is a natural next step, well suited to
+a dedicated holonomic-functions implementation.
+
+\section{Riemann scheme and the absence of a closed form}
+The analytic nature of the LGF is decided by the local structure of $M$. Computing the Frobenius indicial
+exponents at each regular singular point gives the Riemann scheme
+\begin{equation}
+\begin{array}{c|cccccc}
+ & t=0 & t=\tfrac19 & t=\tfrac15 & t=\tfrac14 & t=1 & t=\infty \\\hline
+\text{exp.} & \{-1,-1,0\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-1,-\tfrac12,\tfrac12\} & \{-3,-2,-\tfrac32\}
+\end{array}
+\label{eq:riemann}
+\end{equation}
+together with the degree-seven locus $p_7$, whose (Galois-conjugate) roots carry the integer exponents
+$\{0,1,3\}$ (apparent-type). The repeated exponent $-1$ at $t=0$ is the source of the logarithmic solution used
+below. The half-integer exponent $-\tfrac12$ at the band edge $t=\tfrac19$ is the square-root van Hove singularity
+of a three-dimensional band edge, $\rho(E)\sim\sqrt{E_{\rm edge}-E}$.
+
+Three facts now determine the answer.
+
+\emph{$M$ is irreducible over $\overline{\mathbb{Q}}(t)$.} $M$ is Fuchsian---regular singular at every point,
+including $t=\infty$ (exponents $\{-3,-2,-\tfrac32\}$)---so any first-order right factor $\mathrm{d}/\mathrm{d}t-u$
+has $u=\sum_s e_s/(t-s)$ with $e_s$ a local exponent at each singular point $s$ and \emph{no} polynomial part. At
+the rational singular points the $e_s$ are the exponents of \eqref{eq:riemann}; at the irreducible degree-seven
+locus $p_7$ the common (Galois-invariant) residue ranges over its exponents $\{0,1,3\}$, computed exactly by
+reduction modulo $p_7$. This candidate set is finite, and each candidate is tested exactly over $\mathbb{Q}$ by the
+divisibility criterion $c_3(u''+3uu'+u^3)+c_2(u'+u^2)+c_1u+c_0=0$. No first-order right factor of $M$ exists over
+$\mathbb{Q}(t)$, and none of $\mathrm{adjoint}(M)$---which for a third-order operator excludes an order-two right
+factor of $M$ as well---so $M$ has no right factor of order one or two over $\mathbb{Q}(t)$. We now descend to
+$\overline{\mathbb{Q}}(t)$: a hypothetical right factor of order one or two over $\overline{\mathbb{Q}}(t)$ has a
+finite Galois orbit of right factors of $M$, whose least common left multiple is a right factor \emph{defined over
+$\mathbb{Q}(t)$}, of order one, two, or three. Order one and order two are excluded above; order three would make
+$M$ the LCLM of lower-order operators, hence completely reducible, forcing \emph{semisimple} local monodromy and
+therefore no logarithmic solution---but $M$ has a genuine logarithm at $t=0$ (repeated indicial exponent $-1$, one
+log-free local solution of three, verified directly). Hence $M$ is irreducible over $\overline{\mathbb{Q}}(t)$.
+(This exact enumeration replaces the floating-point candidate search of earlier drafts; the computation is provided
+in the Supplemental Material and is independently reproducible with a certified factorizer such as Maple's
+\texttt{DFactor} or Magma.)
+
+\emph{$M$ is not a symmetric square.} If $M$ were the symmetric square of a second-order operator with local
+exponents $\{a,b\}$, its three exponents would be $\{2a,a+b,2b\}$, an arithmetic progression whose middle term is
+the mean of the outer two. No triple in \eqref{eq:riemann} is of this form: at $t=\tfrac19$ the exponents
+$\{-\tfrac12,0,1\}$ have mean of outer terms $\tfrac14\neq0$, and at $t=1$ the exponents $\{-1,-\tfrac12,\tfrac12\}$
+have mean of outer terms $-\tfrac14\neq-\tfrac12$; a single such point already suffices. Because a gauge
+transformation shifts all local exponents by a common constant and an algebraic pullback multiplies them by the
+local ramification index---both operations preserving arithmetic progressions, which a symmetric square has at
+\emph{every} point---this excludes not only a symmetric square but every gauge- or pullback-equivalent of one. As a
+positive control, the same analysis applied to the simple-cubic LGF returns the symmetric-square-compatible
+exponents $\{0,\tfrac12,1\}=\{2a,a+b,2b\}$ with $\{a,b\}=\{0,\tfrac12\}$, correctly reflecting its closed form in
+$K$.
+
+\emph{No elliptic closed form.} By the differential-Galois classification of third-order linear operators, an
+irreducible operator whose solutions are expressible through complete elliptic integrals (equivalently, through
+periods of a single second-order/elliptic operator) must be the symmetric square of that second-order
+operator~\cite{SingerUlmer,vdPutSinger}; irreducibility already rules out a single $K$ and products of $K$ at
+different moduli (whose operator would be reducible or of order four). Since $M$ is irreducible and not a
+symmetric square, it has no such basis. This mirrors the contrast with the cubic lattices, whose order-three
+LGF operators are precisely symmetric squares of elliptic operators~\cite{BoukraaHassaniMaillard2014}.
+
+\emph{No algebraic or elementary closed form.} On a separate axis from the elliptic question, $M$ has no
+\emph{Liouvillian} solutions, hence no closed form in algebraic or elementary functions. By the Singer--Ulmer
+classification, an irreducible third-order operator has Liouvillian solutions only if its differential Galois group
+is finite or imprimitive. A finite group makes every solution algebraic, and an imprimitive group permutes three
+lines, so that every element---in particular every local monodromy---is a monomial matrix and therefore
+semisimple; in either case there can be \emph{no logarithmic solution}. But $M$ has a genuine logarithmic solution:
+at $t=0$ the indicial exponent $-1$ is repeated and only one log-free (Laurent) local solution exists (of three),
+so the local monodromy is non-semisimple. This excludes both the finite and the imprimitive cases, so the Galois
+group acts irreducibly and non-solvably and $M$ is non-Liouvillian. Being non-Liouvillian does \emph{not} by itself
+preclude an elliptic form---the complete elliptic integral $K$ is itself non-Liouvillian, and the simple-cubic LGF
+operator is irreducible and non-Liouvillian yet closed-form in $K$; the elliptic exclusion for the hyperkagome
+comes solely from the not-symmetric-square property established above. The two independent legs together give the
+result.
+
+\emph{Conclusion.} The hyperkagome LGF is a period of an irreducible third-order Picard--Fuchs operator that is
+not a symmetric square and is non-Liouvillian; it therefore has \emph{no closed form in algebraic, elementary, or
+elliptic functions}, in contrast to the SC, BCC and FCC lattices. It is instead a genuine order-three Fuchsian
+period with six singular points ($t=0,\tfrac19,\tfrac15,\tfrac14,1,\infty$), of Calabi--Yau type in the broad
+sense~\cite{AESZ}. (It is not a $\,_3F_2$ operator, which would have only three singular points; we do not claim it
+is inexpressible in every higher special-function class.) This is the exact sense in which the Varma--Monien
+integral cannot be ``solved'': the obstruction is structural. The statement is conditional on $M$ being the minimal
+annihilator of the LGF---established here to the guess-and-verify standard of the field, with an unconditional
+creative-telescoping proof the natural next step---so we phrase it as settling the analytic status of the
+hyperkagome LGF rather than as exhibiting a closed form.
+
+\section{Exact results}
+Although no elliptic closed form exists, the operator yields exact data. At the symmetric centre $E=1$ the LGF
+takes the exact value
+\begin{equation}
+\mathrm{Re}\,G(1)=\tfrac19,
+\end{equation}
+the flat-band contribution $\tfrac13/(1+2)=\tfrac19$ plus a dispersive principal value that vanishes by the
+$E=1$ symmetry. (The value at $E=2$ is a singular boundary value: $E=2$ is the van Hove point $t=1$ of
+\eqref{eq:riemann}, where $\mathrm{Im}\,G$ diverges logarithmically.) From the exponent $-\tfrac12$ at
+$t=\tfrac19$ the band-edge density of states behaves as $\rho(E)\sim\sqrt{E_{\rm edge}-E}$, and the flat band
+contributes the delta function $\tfrac13\,\delta(E+2)$.
+
+\section{Discussion}
+We have given the exact differential equation that controls the hyperkagome lattice Green's function and shown,
+constructively, that it is governed by an irreducible third-order Picard--Fuchs operator with no symmetric-square
+factorisation. This settles the analytic status of the integral left open by Varma and Monien: a closed form in
+complete elliptic integrals does not exist, because the operator that the cubic lattices share---a symmetric
+square of an elliptic operator---is replaced for the hyperkagome by an irreducible operator whose Riemann scheme
+\eqref{eq:riemann} structurally forbids it. The hyperkagome thus joins the family of frustrated and decorated
+lattices whose Green's functions are genuine higher-period objects rather than elliptic ones.
+
+The result is directly relevant to the modelling of Na$_4$Ir$_3$O$_8$ and related hyperkagome magnets, where the
+single-particle LGF enters impurity, disorder, and dynamical-mean-field treatments; it provides the exact
+band-edge and special-point data and a certified equation for high-precision evaluation. More broadly, it adds an
+explicit three-dimensional frustrated lattice to the catalogue of Picard--Fuchs operators arising in lattice
+statistics. An unconditional creative-telescoping proof, the explicit identification of $M$ within the
+Calabi--Yau operator database, and the analogous Heisenberg/transport Green's functions are natural next steps.
+
+All lattice constructions, exact moments, the certified operator, and the verification scripts are provided in
+the Supplemental Material and a public repository.
+
+\begin{acknowledgments}
+The operator determination and all certifications were carried out with computer algebra---an AI coding assistant
+(Claude Code) together with SymPy---under the author's direction; every reported result is reproduced by the exact,
+publicly available scripts in the accompanying repository.
+\end{acknowledgments}
+
+\begin{thebibliography}{99}
+\bibitem{Economou} E.~N.~Economou, \emph{Green's Functions in Quantum Physics}, 3rd ed.\ (Springer, 2006).
+\bibitem{Guttmann2010} A.~J.~Guttmann, J.\ Phys.\ A \textbf{43}, 305205 (2010).
+\bibitem{Watson1939} G.~N.~Watson, Q.\ J.\ Math.\ \textbf{10}, 266 (1939).
+\bibitem{Joyce1973} G.~S.~Joyce, Philos.\ Trans.\ R.\ Soc.\ A \textbf{273}, 583 (1973).
+\bibitem{GlasserZucker1977} M.~L.~Glasser and I.~J.~Zucker, Proc.\ Natl.\ Acad.\ Sci.\ USA \textbf{74}, 1800 (1977).
+\bibitem{Joyce1998} G.~S.~Joyce, J.\ Phys.\ A \textbf{31}, 5105 (1998).
+\bibitem{Okamoto2007} Y.~Okamoto, M.~Nohara, H.~Aruga-Katori, and H.~Takagi, Phys.\ Rev.\ Lett.\ \textbf{99}, 137207 (2007).
+\bibitem{Hopkinson2007} J.~M.~Hopkinson, S.~V.~Isakov, H.-Y.~Kee, and Y.~B.~Kim, Phys.\ Rev.\ Lett.\ \textbf{99}, 037201 (2007).
+\bibitem{Lawler2008} M.~J.~Lawler, H.-Y.~Kee, Y.~B.~Kim, and A.~Vishwanath, Phys.\ Rev.\ Lett.\ \textbf{100}, 227201 (2008).
+\bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Phys.\ Rev.\ E \textbf{87}, 032109 (2013).
+\bibitem{Lipshitz1988} L.~Lipshitz, J.\ Algebra \textbf{113}, 373 (1988).
+\bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, ``Ore Polynomials in Sage,'' in \emph{Computer Algebra and Polynomials}, LNCS \textbf{8942} (Springer, 2015), pp.~105--125.
+\bibitem{AESZ} G.~Almkvist, C.~van Enckevort, D.~van Straten, and W.~Zudilin, arXiv:math/0507430.
+\bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, J.\ Symb.\ Comput.\ \textbf{16}, 9 (1993).
+\bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \emph{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328} (Springer, 2003).
+\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 095203 (2014); arXiv:1311.2470.
+\bibitem{Koutschan2013} C.~Koutschan, J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 125005 (2013).
+\bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, in \emph{Proc.\ 38th Int.\ Symp.\ Symbolic and Algebraic Computation (ISSAC '13)} (ACM, 2013); arXiv:1301.4313.
+\end{thebibliography}
+
+\end{document}

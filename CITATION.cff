@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this operator, data, or code, please cite it as below."
+title: "Hyperkagome lattice Green's function: an irreducible order-3 Picard-Fuchs operator and the absence of an elliptic closed form"
+authors:
+  - family-names: Nasr
+    given-names: Bryan
+    email: bryannasr4@gmail.com
+type: software
+version: "1.0.0"
+date-released: "2026-07-05"
+license: MIT
+url: "https://github.com/USERNAME/hyperkagome-lgf"   # <-- update USERNAME after creating the repo
+keywords:
+  - lattice Green's function
+  - hyperkagome
+  - Na4Ir3O8
+  - Picard-Fuchs operator
+  - differential Galois theory
+  - Calabi-Yau operator
+references:
+  - type: article
+    title: "Lattice Green's functions for kagome, diced and hyperkagome lattices"
+    authors:
+      - family-names: Varma
+        given-names: "Vipin Kerala"
+      - family-names: Monien
+        given-names: Hartmut
+    journal: "Physical Review E"
+    volume: 87
+    start: 032109
+    year: 2013
+    doi: "10.1103/PhysRevE.87.032109"

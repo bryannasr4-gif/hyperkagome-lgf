@@ -1,0 +1,46 @@
+validating Ore-algebra primitives on synthetic operators...
+  [validate] Ore multiply / right-divide / quotient / adjoint / sym2: PASS
+leading coeff c3 factorization: t**2*(t - 1)**3*(4*t - 1)*(5*t - 1)*(9*t - 1)*(101025*t**7 - 369600*t**6 + 455798*t**5 - 290956*t**4 + 93657*t**3 - 17580*t**2 + 1800*t - 64)
+rational singular points: ['0', '1/9', '1/5', '1/4', '1']
+p7 present (irreducible deg-7 locus): True
+  exponents at t=0 : ['-1', '-1', '0']
+  exponents at t=1/9 : ['-1/2', '0', '1']
+  exponents at t=1/5 : ['-1/2', '0', '1']
+  exponents at t=1/4 : ['-1/2', '0', '1']
+  exponents at t=1 : ['-1', '-1/2', '1/2']
+  exponents at the p7 locus (EXACT, mod p7): ['0', '1', '3']
+  exponents at t=infinity : ['-3', '-2', '-3/2']  (finite & rational => regular singular)
+
+=== (a): order-1 right factors of M (exact, complete over Q) ===
+candidates tested: 486 ; order-1 right factors found: 0 []
+
+=== (b): order-2 right factors of M  =  order-1 right factors of adjoint(M) ===
+  adjoint(M) p7 exponents (EXACT): ['-2', '0', '1']
+candidates tested: 486 ; order-1 right factors of adjoint found: 0 []
+
+M       exponents at t=0: ['-1', '-1', '0'] ; repeated=True (=> genuine log, M not completely reducible)
+adj(M)  exponents at t=0: ['0', '1', '1'] ; repeated=True (complete reducibility is self-dual)
+
+=== (d): symmetric-square test at every singular point of M ===
+  t=0 exps=['-1', '-1', '0'] : NOT Sym^2 (not an AP)
+  t=1/9 exps=['-1/2', '0', '1'] : NOT Sym^2 (not an AP)
+  t=1/5 exps=['-1/2', '0', '1'] : NOT Sym^2 (not an AP)
+  t=1/4 exps=['-1/2', '0', '1'] : NOT Sym^2 (not an AP)
+  t=1 exps=['-1', '-1/2', '1/2'] : NOT Sym^2 (not an AP)
+  [positive control] Sym^2 of a {0,1/2}-operator has t=0 exps ['0', '1/2', '1'] : Sym^2-compatible (AP)
+
+================ CERTIFICATE ================
+order-1 right factors of M over Q         : 0 (0 => none)
+order-1 right factors of adjoint(M) over Q : 0 (0 => none, i.e. no order-2 factor of M)
+genuine log at t=0 (M and adjoint(M))      : True (=> not completely reducible)
+not a symmetric square (some singular pt)  : True
+positive control (Sym^2 -> AP) passes      : True
+---------------------------------------------
+=> No order-1 or order-2 right factor of M over Q, and M is not completely reducible.
+   By Galois descent (a hypothetical order-1/2 right factor over Qbar yields, via its
+   Galois orbit's LCLM, a right factor over Q of order 1, 2, or 3 -- order 1 excluded
+   by (a), order 2 by (b), order 3 excluded because it forces complete reducibility
+   hence semisimple monodromy hence NO log, contradicting the genuine t=0 log):
+   ==> M is IRREDUCIBLE over Qbar(t).
+=> M is irreducible and NOT a symmetric square ==> NO closed form in complete elliptic
+   integrals (no basis of periods of a single 2nd-order/elliptic operator).

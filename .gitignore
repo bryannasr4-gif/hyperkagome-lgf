@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# OS / archive cruft
+.DS_Store
+__MACOSX/
+Thumbs.db
+
+# Logs
+*.log
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.bbl
+paper/*.blg
+paper/*.nav
+paper/*.snm
+
+# Private — outreach drafts and working notes, NOT for publication
+OUTREACH.md
+_private/
