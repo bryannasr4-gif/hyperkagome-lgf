@@ -78,10 +78,9 @@ numerics/
 ## Methodology
 
 The operator was obtained by differential approximants (the Guttmann-style "guess from exact moments,
-then verify" method) and all certifications were carried out with computer algebra — an AI coding
-assistant (Claude Code) together with SymPy — under the author's direction. Because the certification
-is by exact verification, it does not depend on how `M` was originally guessed. Every reported result
-is reproduced by the scripts above.
+then verify" method), and all certifications were carried out by computer algebra in exact rational
+arithmetic with SymPy. Because the certification is by exact verification, it does not depend on how
+`M` was originally guessed. Every reported result is reproduced by the scripts above.
 
 ## License
 
