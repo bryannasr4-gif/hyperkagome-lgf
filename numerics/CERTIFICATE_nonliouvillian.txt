@@ -9,14 +9,17 @@ M at t=0 : number of log-free (Laurent) local solutions = 1  (order is 3)
 
 ================ NON-LIOUVILLIAN CERTIFICATE ================
 1. M is irreducible over Qbar(t)                 : YES (certify_factor.py)
-2. M is NOT a symmetric square (excludes SO_3)   : YES (certify_factor.py)
-3. M has a genuine logarithmic solution (t=0)    : True
+2. M has a genuine logarithmic solution (t=0)    : True
    -> excludes FINITE Galois group (all-algebraic has no logs)
    -> excludes IMPRIMITIVE Galois group (monomial local monodromy is semisimple,
       so an imprimitive operator has no logarithmic solutions)
 -------------------------------------------------------------
 => By Singer-Ulmer, G is neither finite nor imprimitive; G acts irreducibly and
    non-solvably, so M is NON-LIOUVILLIAN => NO algebraic or elementary closed form.
-   Combined with the SEPARATE not-Sym^2 result (=> no elliptic/K closed form), the
-   hyperkagome LGF has no closed form in algebraic, elementary, OR elliptic functions.
+   (Sharper, same conclusion: Sym^2(M) has a rational solution => G^0 = SO(3,C) is
+   simple hence non-solvable; certify_orthogonal.py.)
+   NOTE: this excludes ALGEBRAIC and ELEMENTARY forms only.  It does NOT exclude an
+   elliptic form -- the earlier 'not-Sym^2 => no elliptic / SL3-type' claim is RETRACTED:
+   M is orthogonally/projectively a symmetric square, so an elliptic/modular closed form
+   is EXPECTED (see certify_orthogonal.py / CERTIFICATE_orthogonal.txt).
    (Conditional on M being the minimal annihilator of the LGF; see the module docstring.)

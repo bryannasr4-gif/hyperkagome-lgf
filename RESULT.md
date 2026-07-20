@@ -3,6 +3,13 @@
 **Addresses Varma–Monien, Phys. Rev. E 87, 032109 (2013)** ("we have currently found no way to
 exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 
+> **Correction (July 2026).** The earlier headline — *not-a-symmetric-square ⇒ no elliptic closed form;
+> SL₃-type Galois group* — is **retracted**. `Sym²(M)` has a rational solution, so `M`'s differential
+> Galois group is **orthogonal** (`O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`) and `M` **is** projectively a
+> symmetric square; an elliptic/modular closed form is *expected*. Non-Liouvillianity survives. The
+> Sym²/adjoint/intertwiner facts are due to **J.-M. Maillard (private communication, July 2026)**,
+> re-verified here in exact arithmetic (`numerics/certify_orthogonal.py`, `CERTIFICATE_orthogonal.txt`).
+
 ## Main result
 The local lattice Green's function G(z) of the 3D hyperkagome lattice (Na₄Ir₃O₈), after removing the
 flat-band pole (1/3)/(z+2) and using the exact dispersive symmetry about E=1, has a generating
@@ -17,33 +24,48 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   adjoint/order-2 search, and the fact that an order-3 LCLM would force complete reducibility and hence
   no log). The enumeration uses the **exact** degree-7 exponents {0,1,3} (computed by reduction mod p₇),
   correcting an earlier floating-point read; infinity is confirmed regular singular ({−3,−2,−3/2}).
-- **M is not a symmetric square** of a 2nd-order operator (exponent triples are not arithmetic
+- **M is not a *literal* symmetric square** of a 2nd-order operator (exponent triples are not arithmetic
   progressions), certified at every singular point, with a runnable Sym² positive control returning the
-  expected {0,1/2,1}. By the differential-Galois classification (Singer–Ulmer; van der Put–Singer),
-  **⇒ no closed form in complete elliptic integrals** — in contrast to the SC/BCC/FCC lattices, which
-  are Sym²(elliptic).
-- **Non-Liouvillian (a separate exclusion): no algebraic or elementary closed form.** A genuine log
-  at t=0 (repeated indicial exponent −1; exactly one log-free local solution of three,
-  `numerics/certify_nonliouvillian.py`) excludes finite and imprimitive differential-Galois groups, so
-  M is non-Liouvillian. NOTE this does **not** exclude the elliptic case (K itself is non-Liouvillian;
-  the SC operator is irreducible + non-Liouvillian yet closed-form in K) — the elliptic exclusion comes
-  solely from not-Sym². The two legs together: **no closed form in algebraic, elementary, OR elliptic
-  functions.**
+  expected {0,1/2,1}. **But this does *not* exclude an elliptic form:** the AP test sees only
+  function-multiplier and pullback equivalences, not operator homomorphisms.
+- **Orthogonal differential Galois group (the correction).** `Sym²(M)` has an explicit rational solution
+  `R(t) = −(1/272)(15t²+17t−8)² / (t²(t−1)²(4t−1)(5t−1)(9t−1))`; equivalently `M` is homomorphic to its
+  adjoint by an order-2 intertwiner `T`. So the solution space carries a monodromy-invariant nondegenerate
+  symmetric form ⇒ `G = O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`, and **M *is* projectively equivalent to the
+  symmetric square of a 2nd-order operator** `V₂` on the genus-one curve `u² = (1−4t)(1−5t)(1−9t)` (the det
+  character of the monodromy = the quadratic character of that curve; det = −1 at {1/9,1/5,1/4,∞}). ⇒ an
+  **elliptic/modular closed form is expected** (a ₂F₁ with algebraic pullback, à la Assis–van Hoeij–Maillard
+  J. Phys. A 49 (2016) 214002); the explicit form is left open. Certified exactly in
+  `numerics/certify_orthogonal.py` (Sym² membership margin 194 at t₀ = 1/2 and −1/3, made a proof by a
+  Fuchs-relation budget with cap 109; exact intertwiner remainder identity; n = 2 Jordan; det character).
+- **Non-Liouvillian: no algebraic or elementary closed form.** A genuine log at t=0 (repeated indicial
+  exponent −1; exactly one log-free local solution of three, `numerics/certify_nonliouvillian.py`) excludes
+  finite and imprimitive differential-Galois groups; equivalently `G° = SO(3,ℂ)` is simple hence
+  non-solvable, so M is non-Liouvillian. This excludes only the algebraic/elementary cases — **not** the
+  elliptic one (K itself is non-Liouvillian).
+- **The Watson reduction (concrete realization; exactly verified).** `Φ(t) = 2/3 − (t/3) d/dt CT_θ log D₊`,
+  `D₊ = (1−6t+3t²) − 2t²Σcos2θᵢ − 8t^{3/2}cosθ₁cosθ₂cosθ₃`: the hyperkagome LGF **is** the classical two-parameter
+  generalized Watson integral (bcc lattice, 1st-neighbour weight `t^{3/2}` + 2nd-neighbour sc-shell weight `t²`) at
+  spectral parameter `1−6t+3t²`. The `√t` cover = the `u²=(1−4t)(1−5t)(1−9t)` twist; `{1/9,1/5,1/4,1}` = band-map
+  critical values (re-confirms the Riemann scheme). ⇒ the elliptic closed form is a specialization of classical
+  second-neighbour cubic-LGF results (Morita–Horiguchi 1971; Glasser; Joyce 1998). Verified in this repository
+  (`numerics/verify_watson_reduction.py` → `CERTIFICATE_watson.txt`); explicit ₂F₁ evaluation still open.
 - **The E=1 reflection symmetry is structural:** hyperkagome is the line graph of a 3-regular
   *bipartite* premedial net Γ (8 vertices, 12 edges per cell); bipartite ⇒ adjacency spectrum symmetric
   about 0 ⇒ dispersive DOS symmetric about E=1 (line-graph shift d−2=1). Verified by a
   translation-consistent 2-colouring on finite blocks and by all odd central moments vanishing.
 
-**Conditional-on-M note.** The no-closed-form conclusion is a rigorous consequence *of M*, but M is
-established to the guess-and-verify standard (annihilation to margin 55, independent rebuild), not by an
-unconditional creative-telescoping proof — which remains the open item. This is stated in the paper and
-the emails.
+**Conditional-on-M note.** The structure theorem (irreducible; orthogonal Galois group; non-Liouvillian)
+is a rigorous consequence *of M*, but M is established to the guess-and-verify standard (annihilation to
+margin 55, independent rebuild), not by an unconditional creative-telescoping proof — which remains an
+open item. (The orthogonality certificates themselves are exact, given M.) This is stated in the paper.
 
 ## Riemann scheme of M (Frobenius exponents)
-- t=0            : {−1, −1, 0}   (repeated −1 ⇒ the genuine logarithmic solution)
+- t=0            : {−1, −1, 0}   (repeated −1 ⇒ genuine log; all integers ⇒ single 3×3 Jordan block, n=2)
 - t=1/9, 1/5, 1/4 : {−1/2, 0, 1}  (the −1/2 ⇒ √ van Hove DOS singularity at the band edge)
 - t=1           : {−1, −1/2, 1/2} (principal van Hove point, E=0,2)
-- t=∞           : {−3, −2, −3/2}
+- t=∞           : {3/2, 2, 3} in the paper's convention (a solution of exponent ρ behaves as t^{−ρ});
+                  equivalently {−3, −2, −3/2} as powers of t
 - p₇ locus (irreducible deg-7): {0, 1, 3}  (integer, apparent-type)
 
 ## Exact data (all verified)
@@ -64,14 +86,26 @@ the emails.
 - Independent from-scratch rebuild of the lattice, moments (to m₂₄₀), and operator: bit-identical.
 - Independent Bloch-Hamiltonian diagonalization reproduces the exact integer moments (a method disjoint
   from closed-walk enumeration).
-- Not-Sym² verdict from exact Frobenius exponents; SC positive control validates the test is non-vacuous.
+- Not-*literal*-Sym² verdict from exact Frobenius exponents; SC positive control validates the test is
+  non-vacuous.
+- **Orthogonal structure (`numerics/certify_orthogonal.py`):** Sym²(M) rational solution R verified by
+  exact series to margin ≥ 180 at t₀ = 1/2 and −1/3 (Gram matrix nondegenerate, rank 3, det ≠ 0);
+  intertwiner remainder identity `rightremainder(M·T, adjoint(M)) = 0` exact over ℚ(t); indicial
+  −64ρ(ρ+1)², log-free dim 1 ⇒ n = 2; Wronskian residues ⇒ det character −1 at {1/9,1/5,1/4,∞} ⇒ O(3,ℂ).
+  All machinery validated on positive/negative controls (D³−4D self-dual, θ³ Jordan, etc.).
 
 ## Independent verification — status
 - Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.
-- Irreducibility (over Q by complete exact enumeration; over Q̄ by Galois descent) and not-Sym²:
-  reproduced. An independent Maple `DFactor` / Magma factorization over Q̄ (operator provided in
-  `numerics/M_maple.txt`, `M_magma.txt`, `M_sage.py`) is a recommended external cross-check.
+- Irreducibility (over Q by complete exact enumeration; over Q̄ by Galois descent) and not-*literal*-Sym²:
+  reproduced. Maillard independently re-derived the operator and found the Sym²/adjoint homomorphism
+  (private communication, July 2026); re-verified here in exact arithmetic. An independent Maple `DFactor`
+  / Magma factorization over Q̄ (operator provided in `numerics/M_maple.txt`, `M_magma.txt`, `M_sage.py`)
+  and a `Homomorphisms`/`symmetric_power`+`ratsols` check are recommended external cross-checks.
 - G(2) sign/exactness corrected: E=2 is singular; only Re G(1)=1/9 is exact.
 
-Verdict: headline result (irreducible order-3, not-Sym², non-Liouvillian ⇒ no algebraic/elementary/
-elliptic closed form) is sound and reproducible, conditional on M being the minimal annihilator.
+Verdict: the structure theorem (irreducible order-3; not a *literal* symmetric square; Sym²(M) has a
+rational solution ⇒ orthogonal Galois group G = O(3,ℂ), G° = SO(3,ℂ) ≅ PSL(2,ℂ) ⇒ projectively a symmetric
+square ⇒ elliptic/modular closed form expected; non-Liouvillian ⇒ no algebraic/elementary form) is sound
+and reproducible, conditional on M being the minimal annihilator. The LGF is now further **identified exactly
+as the classical generalized bcc(1,2) Watson integral** (`_agents/watson_reduction.md`); the **explicit**
+₂F₁/elliptic evaluation (specializing the classical second-neighbour cubic-LGF literature) is the open next step.

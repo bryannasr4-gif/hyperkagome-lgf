@@ -9,10 +9,16 @@ The repository's certification is **already complete in pure Python** (no SageMa
   where an exponent ρ at ∞ means `y ~ t^−ρ`, the same three solutions are written `{3/2,2,3}` — that is the
   convention under which the Fuchs relation `Σ exponents = n(n−1)/2·(s−2) = 33` holds),
   proves a **genuine logarithmic solution at t=0** (exactly one log-free local solution of three), and hence
-  concludes — by a Galois-descent argument — that **M is irreducible over ℚ̄(t)** and **not a symmetric square**.
+  concludes — by a Galois-descent argument — that **M is irreducible over ℚ̄(t)** and **not a *literal* symmetric
+  square**.
+- `numerics/certify_orthogonal.py` → `CERTIFICATE_orthogonal.txt` shows that **Sym²(M) has a rational solution**
+  and that **M is homomorphic to its adjoint** (order-2 intertwiner), so the differential Galois group is
+  **orthogonal**: `G = O(3,C)`, `G⁰ = SO(3,C) ≅ PSL(2,C)`, and **M IS projectively a symmetric square** ⇒ an
+  elliptic/modular closed form is *expected*. (These facts are due to J.-M. Maillard, private communication,
+  July 2026; re-verified here in exact arithmetic.)
 - `numerics/certify_nonliouvillian.py` → `CERTIFICATE_nonliouvillian.txt` uses the same t=0 log to exclude finite
-  and imprimitive Galois groups, i.e. **M is non-Liouvillian** (no algebraic/elementary closed form). The elliptic
-  exclusion comes separately from *not-Sym²*.
+  and imprimitive Galois groups, i.e. **M is non-Liouvillian** (no algebraic/elementary closed form). This does
+  **not** exclude an elliptic form — the earlier "not-Sym² ⇒ no elliptic" claim is **retracted**.
 
 None of the below is required. They are **independent cross-checks in other computer-algebra systems**, useful if
 a referee wants confirmation from a certified decision procedure. All use the **same operator M**, provided in
@@ -26,8 +32,11 @@ with(DEtools):
 F := DFactor(L, [Dt, t]);         # a single factor (= L) => IRREDUCIBLE over Q(t)
 nops([F]);                        # 1  => irreducible ; >1 => reducible, print the factors
 eigenring(L, [Dt, t]);            # cross-check: eigenring = scalars (dim 1) <=> irreducible
-# symmetric square: order 6 (not 3) confirms L is NOT a symmetric square:
-S2 := symmetric_power(L, 2, [Dt, t]):  ratsols(S2, t);   # expect [] : no rational solution of Sym^2
+# L is not a LITERAL symmetric square, but it is homomorphic to its adjoint (orthogonal Galois group):
+Homomorphisms(adjoint(L), L, [Dt, t]);   # expect a NONZERO order-2 intertwiner T
+S2 := symmetric_power(L, 2, [Dt, t]):  ratsols(S2, t);
+    # expect a NONZERO rational solution R = -(1/272)(15t^2+17t-8)^2/(t^2(t-1)^2(4t-1)(5t-1)(9t-1))
+    # (=> Galois group in O(3,C); confirms certify_orthogonal.py)
 formal_sol(L, [Dt, t], t = 0);         # expect a ln(t) term: the genuine logarithmic solution at t=0
 ```
 
@@ -55,10 +64,11 @@ sage numerics/M_sage.py        # builds the same L and calls L.factor(); one ord
 
 - A single order-3 factor from `DFactor` / `Factorisation` / `factor()` **independently confirms** the
   irreducibility already certified in pure Python.
-- If any tool instead returns a lower-order factor, or if `ratsols`/`expsols` of the symmetric/exterior square are
-  non-empty, that would contradict the pure-Python certificate and must be reconciled before any strong claim
-  (this is exactly why the cross-check is offered).
+- `Homomorphisms(adjoint(L), L)` should return a **nonzero** order-2 intertwiner, and `ratsols(symmetric_power(L,2))`
+  a **nonzero** rational solution — both **expected** (they establish the orthogonal Galois group). If instead they
+  came back empty, *that* would contradict the pure-Python `certify_orthogonal.py` certificate and must be
+  reconciled. If any factorizer returns a lower-order factor, that would contradict the irreducibility certificate.
 
-Note: even with all cross-checks passing, the no-closed-form conclusion remains **conditional on M being the
-minimal annihilator of the LGF** — established here to the guess-and-verify standard (annihilation margin 55), not
-by an unconditional creative-telescoping proof. See `CT_SETUP.md` for that remaining step.
+Note: even with all cross-checks passing, the structure theorem remains **conditional on M being the minimal
+annihilator of the LGF** — established here to the guess-and-verify standard (annihilation margin 55), not by an
+unconditional creative-telescoping proof. See `CT_SETUP.md` for that remaining step.

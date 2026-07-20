@@ -1,0 +1,89 @@
+validating operator/series primitives on known operators...
+  [validate] adjoint / sym2 / right-division / log-counter: PASS
+
+==============================================================================
+(A) Sym^2 MEMBERSHIP  (R is a rational solution of Sym^2(M))
+    R(t) = -(1/272)*(15t^2+17t-8)^2 / ( t^2 (t-1)^2 (4t-1)(5t-1)(9t-1) )
+==============================================================================
+  base point t0 = 1/2   : margin = 194 exact relations, residuals bad = none
+       c=(c11,c12,c13,c22,c23,c33) = ['-17/84', '-460/441', '44927/3087', '-1925200/157437', '83066560/1102059', '-712021969/7714413']
+       Gram det(C) = 3437476900/7714413   rank = 3   =>  nondegenerate symmetric form (monodromy in O(3,C))
+       matches Maillard/BRIEF reference values at t0=1/2: YES
+  base point t0 = -1/3  : margin = 194 exact relations, residuals bad = none
+       c=(c11,c12,c13,c22,c23,c33) = ['6561/60928', '4472415/3411968', '3013936047/764280832', '4110630525/764280832', '3661051067325/85599453184', '3554989653554109/38348555026432']
+       Gram det(C) = -3759232058267427225/3705703830302752768   rank = 3   =>  nondegenerate symmetric form (monodromy in O(3,C))
+  Fuchs-relation budget: if F = R - sum c_ij y_i y_j were nonzero, the order-7 minimal
+  operator of span{y_i y_j, R} would violate the Fuchs relation unless the vanishing
+  order V of F at the (M-ordinary) base point obeyed V <= 109.
+  Verified vanishing order >= 200 > 109  =>  F == 0 identically: the margin is a PROOF.
+  => R is a rational solution of Sym^2(M); the invariant form C is symmetric,
+     nondegenerate (rank 3) at BOTH base points.   (A): PASS
+
+==============================================================================
+(B) INTERTWINER  Homomorphisms(adjoint(M), M) != 0  (M is self-dual)
+==============================================================================
+  [validate] D^3-4D self-dual, T0=1 is an intertwiner (rem=0): PASS
+  order(M o T) = 5, order(adjoint(M)) = 3, remainder order <= 0
+  rightremainder(M o T, adjoint(M)) == 0 exactly over Q(t): PASS
+  [control] perturbed T (a0+1) gives NONZERO remainder: PASS
+  => T: solutions(adjoint(M)) -> solutions(M) is a nonzero homomorphism; M irreducible
+     => it is an isomorphism => M is self-dual => invariant bilinear form on Sol(M).
+     ODD order + irreducible => the form is SYMMETRIC & nondegenerate => G in O(3,C).
+
+==============================================================================
+(C) JORDAN STRUCTURE at t=0  (t=0 <=> z=infinity; MUM -- single maximal unipotent block)
+==============================================================================
+  indicial polynomial at t=0 : -64*rho*(rho + 1)**2  (= -64*rho*(rho+1)^2)
+  exponents {-1,-1,0} : ['-1', '-1', '0']  all integers => unipotent local monodromy
+  log-free local solutions = 1 of 3  => number of Jordan blocks = 1
+  [control] theta^3 (single 3x3 block, n=2) log-free = 1 of 3
+  => a single 3x3 Jordan block => maximal power of log is n = 2 (log^2 present).
+     Even n = 2 is consistent with the ORTHOGONAL case of arXiv:2502.05543.   (C): PASS
+
+==============================================================================
+(D) DETERMINANT CHARACTER  (Wronskian residues => det of monodromy => G = O(3,C))
+==============================================================================
+  point      res(-c2/c3)   sum(exponents)-3   det(monodromy)
+  t=0        -5            -5                 +1
+  t=1/9      -5/2          -5/2               -1
+  t=1/5      -5/2          -5/2               -1
+  t=1/4      -5/2          -5/2               -1
+  t=1        -4            -4                 +1
+  p7 locus   (exps {0,1,3}) sum-3 = 1 (integer)         +1   (apparent)
+  t=inf      (exps ['-3', '-2', '-3/2']) sum = -13/2  => det = -1
+  [cross-check] residue at infinity of (-c2/c3)dt = 19/2 (half-integer: True)
+  det(monodromy) = -1 exactly at ['1/4', '1/5', '1/9', 'oo'] (4 points, EVEN)
+  => G is NOT inside SO(3,C); G = O(3,C) in full.  The determinant character is the
+     quadratic character of the genus-one curve  u^2 = (1-4t)(1-5t)(1-9t)
+     (branch set {1/4,1/5,1/9,infinity} = the det=-1 set).   (D): PASS
+
+==============================================================================
+(E) INPUTS to the Clifford/Lie-Kolchin pin-down of G^0 = SO(3,C) (proof in the paper)
+==============================================================================
+  irreducible over Qbar(t)                 : certify_factor.py / CERTIFICATE.txt
+  genuine logarithm at t=0 (=> G infinite, : certify_nonliouvillian.py; re-counted in
+     non-semisimple, so G^0 non-solvable)     (C) above (log-free dim 1 of 3)
+  invariant form symmetric & nondegenerate : (A),(B) above (Schur: unique up to scale;
+                                              odd dim => symmetric, not symplectic)
+  => the only non-solvable connected subgroup of O(3,C) is SO(3,C), so G^0 = SO(3,C)
+     (~= PSL(2,C) via Sym^2 of the standard rep).  Non-Liouvillian now follows from
+     G^0 = SO(3,C) simple => non-solvable (sharper than the old not-Sym^2 route).
+
+================ ORTHOGONAL / SO(3) CERTIFICATE ================
+(A) Sym^2(M) has the rational solution R (margin >=194, 2 base points, C nondeg): PASS
+(B) M homomorphic to adjoint(M) via order-2 T (rightremainder = 0, exact)     : PASS
+(C) t=0 Jordan: single 3x3 block, maximal log power n = 2 (even)              : PASS
+(D) det character -1 at {1/9,1/5,1/4,inf} => G = O(3,C); twist u^2=(1-4t)(1-5t)(1-9t): PASS
+---------------------------------------------------------------
+=> The solution space of the IRREDUCIBLE order-3 operator M carries a monodromy-
+   invariant nondegenerate SYMMETRIC bilinear form; the differential Galois group is
+   G = O(3,C), with identity component G^0 = SO(3,C) ~= PSL(2,C).  Hence M IS
+   projectively equivalent to the symmetric square of a second-order operator
+   (defined over Q(t,u), u^2 = (1-4t)(1-5t)(1-9t)), even though M is NOT a LITERAL
+   symmetric square.  The paper's 'excludes every gauge/pullback-equivalent of a
+   symmetric square' and 'SL3-type Galois group / no elliptic closed form' claims
+   are REFUTED: an elliptic/2F1 closed form is EXPECTED, via a 2nd-order operator on
+   that genus-one curve.  Non-Liouvillian (no algebraic/elementary form) still holds,
+   now because G^0 = SO(3,C) is simple hence non-solvable.
+   [Facts (i)-(iii) due to J.-M. Maillard, private communication, July 2026;
+    independently re-verified here in exact arithmetic.]

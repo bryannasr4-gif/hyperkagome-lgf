@@ -1,0 +1,12 @@
+(A) F1 - (13/30)*y0 == f1 on all communicated terms: PASS
+(B) message-3 series == -(4/15) * message-1 series, all terms: PASS
+(C) M(y0*log t + f1) == 0: non-log part vanishes for all orders t^-2..t^9: PASS
+
+================ MUM NORMAL-FORM CERTIFICATE ================
+The point t=0 is a MUM point of M (maximally unipotent local monodromy, single 3x3
+Jordan block -- certify_orthogonal.py (C)), and the Frobenius basis takes the
+canonical MUM normal form  {y0,  y0*log t + f1,  y0*log^2(t)/2 + f1*log t + f2}
+after the integer recombination yy2 = y2 - (13/30)*y1
+[J.-M. Maillard, private communication, July 2026; verified here exactly].
+The exponents are {-1,-1,0} (not {0,0,0}): MUM in the monodromy sense, with 1/t
+Laurent heads on the log partners -- t=0 is E=infinity in the energy variable.

@@ -42,5 +42,8 @@ positive control (Sym^2 -> AP) passes      : True
    by (a), order 2 by (b), order 3 excluded because it forces complete reducibility
    hence semisimple monodromy hence NO log, contradicting the genuine t=0 log):
    ==> M is IRREDUCIBLE over Qbar(t).
-=> M is irreducible and NOT a symmetric square ==> NO closed form in complete elliptic
-   integrals (no basis of periods of a single 2nd-order/elliptic operator).
+=> M is irreducible and NOT a *literal* symmetric square (no arithmetic-progression
+   exponent triple).  This does NOT exclude an elliptic closed form: Sym^2(M) has a
+   rational solution => Galois group O(3,C), G^0 = SO(3,C), so M IS projectively a
+   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED.
+   (The old 'not-Sym^2 => no elliptic' claim is RETRACTED; see certify_orthogonal.py.)

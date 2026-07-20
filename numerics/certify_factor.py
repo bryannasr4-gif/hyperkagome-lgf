@@ -9,8 +9,12 @@ What this script certifies, by EXACT computation (no floating point in the decis
   (c) M has a genuine LOGARITHMIC local solution at t=0 (repeated indicial exponent -1,
       exactly one log-free local solution of three) => M is NOT completely reducible.
   ==> M is IRREDUCIBLE over Qbar(t), by the Galois-descent argument stated below.
-  (d) M is NOT a symmetric square of a 2nd-order operator (exponent triples are not
-      arithmetic progressions at every singular point) => no elliptic (K) closed form.
+  (d) M is NOT a *literal* symmetric square of a 2nd-order operator (exponent triples are not
+      arithmetic progressions at every singular point).  NOTE: this does NOT exclude an elliptic
+      closed form.  The earlier inference "not-Sym^2 => no elliptic (K) closed form" is RETRACTED:
+      Sym^2(M) has a rational solution, so M's Galois group is orthogonal (O(3,C), G^0 = SO(3,C))
+      and M IS projectively equivalent to a symmetric square via an order-2 differential intertwiner
+      -- an equivalence the local-exponent AP test cannot see.  See certify_orthogonal.py.
 
 IRREDUCIBILITY OVER Qbar(t) -- the descent argument (this replaces the earlier, incorrect
 "has a log => not a direct sum => irreducible" step, which only gives INDECOMPOSABLE):
@@ -396,8 +400,11 @@ if len(f1) == 0 and len(f2) == 0 and log_M and log_A:
     print("   hence semisimple monodromy hence NO log, contradicting the genuine t=0 log):")
     print("   ==> M is IRREDUCIBLE over Qbar(t).")
 if any_notsym2:
-    print("=> M is irreducible and NOT a symmetric square ==> NO closed form in complete elliptic")
-    print("   integrals (no basis of periods of a single 2nd-order/elliptic operator).")
+    print("=> M is irreducible and NOT a *literal* symmetric square (no arithmetic-progression")
+    print("   exponent triple).  This does NOT exclude an elliptic closed form: Sym^2(M) has a")
+    print("   rational solution => Galois group O(3,C), G^0 = SO(3,C), so M IS projectively a")
+    print("   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED.")
+    print("   (The old 'not-Sym^2 => no elliptic' claim is RETRACTED; see certify_orthogonal.py.)")
 
 if __name__ == "__main__":
     pass

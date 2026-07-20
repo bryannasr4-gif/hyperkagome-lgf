@@ -7,8 +7,8 @@ Checks, in order:
   3. confirm the certified operator M has order 3;
   4. EXACT: confirm M annihilates the symmetry-reduced series Psi = Phi'(t) over Q through
      t^111 (112 relations against 57 free coefficients -- overdetermination margin 55).
-For the full irreducibility / not-Sym^2 / non-Liouvillian certificates run, respectively,
-certify_factor.py and certify_nonliouvillian.py.
+For the full irreducibility / not-literal-Sym^2 / orthogonal-Galois-group / non-Liouvillian
+certificates run certify_factor.py, certify_orthogonal.py, and certify_nonliouvillian.py.
 """
 import pickle, json, os
 from collections import defaultdict
@@ -66,8 +66,10 @@ print("\nM annihilates Phi'(t) exactly over Q: relations t^0..t^%d = %d ; free c
 
 ok = (mom == fp and m230[:11] == fp and Mc["order"] == 3 and nnz == 0)
 print("\nRESULT:", "ALL CHECKS PASS." if ok else "*** A CHECK FAILED ***")
-print("  The hyperkagome LGF is annihilated by an irreducible order-3 Picard-Fuchs operator")
-print("  that is NOT a symmetric square => no closed form in complete elliptic integrals.")
-print("  It is an order-3 Fuchsian period with six singular points (t=0,1/9,1/5,1/4,1,inf),")
-print("  of Calabi-Yau type in the broad sense -- NOT a 3F2 (a 3F2 has only 3 singular points).")
+print("  The hyperkagome LGF is annihilated by an irreducible order-3 Picard-Fuchs operator M")
+print("  that is not a *literal* symmetric square but whose Sym^2(M) has a rational solution, so")
+print("  its differential Galois group is orthogonal (O(3,C), G^0 = SO(3,C)) and M IS projectively")
+print("  a symmetric square => an elliptic/modular closed form is EXPECTED (certify_orthogonal.py).")
+print("  It is non-Liouvillian (no algebraic/elementary form) and an order-3 Fuchsian period with")
+print("  six singular points (t=0,1/9,1/5,1/4,1,inf) -- NOT a 3F2 (a 3F2 has only 3 singular points).")
 print("  Addresses the hyperkagome integral of Varma & Monien, Phys. Rev. E 87, 032109 (2013).")

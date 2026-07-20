@@ -1,13 +1,23 @@
 """
-STRENGTHENING #2: show that the hyperkagome operator M has NO Liouvillian solutions, i.e. no
-ALGEBRAIC or ELEMENTARY closed form.  This is a SEPARATE exclusion from "no elliptic closed
-form" (which comes from not-being-a-symmetric-square, in certify_factor.py).  Combining the
-two legs gives: the hyperkagome LGF has no closed form in algebraic, elementary, OR elliptic
-functions.  NOTE: non-Liouvillian does NOT by itself exclude an elliptic form -- the complete
-elliptic integral K is itself non-Liouvillian, and the simple-cubic LGF operator is
-irreducible AND non-Liouvillian yet has a closed form in K.  So the elliptic exclusion must
-come from the independent not-Sym^2 argument, and only the two together give the full result.
-This whole conclusion is conditional on M being the minimal annihilator of the LGF (the
+Show that the hyperkagome operator M has NO Liouvillian solutions, i.e. no ALGEBRAIC or
+ELEMENTARY closed form.
+
+  CORRECTION (July 2026).  An earlier version paired this with a claim that M, being not a
+  symmetric square, has "no closed form in complete elliptic integrals" and an "SL3-type"
+  Galois group.  THAT ELLIPTIC-EXCLUSION CLAIM IS RETRACTED.  Sym^2(M) has a rational
+  solution (certify_orthogonal.py), so M's differential Galois group is ORTHOGONAL --
+  G = O(3,C) with identity component G^0 = SO(3,C) ~= PSL(2,C) -- and M IS projectively
+  equivalent to the symmetric square of a second-order operator; an elliptic/modular closed
+  form is EXPECTED, not excluded.  Non-Liouvillianity, however, STILL HOLDS and is what this
+  script certifies: it excludes only the ALGEBRAIC and ELEMENTARY cases (K itself is
+  non-Liouvillian, so non-Liouvillian never excluded the elliptic case).
+
+  The non-Liouvillian result now has a SHARPER proof too: G^0 = SO(3,C) is simple, hence
+  non-solvable, and an irreducible operator has Liouvillian solutions iff G^0 is solvable.
+  The self-contained log-based argument below (Singer-Ulmer) is retained and does not rely on
+  the symmetric-square question at all.
+
+This conclusion is conditional on M being the minimal annihilator of the LGF (the
 guess-and-verify standard; an unconditional creative-telescoping proof remains open).
 
 Argument (all pieces exact):
@@ -115,8 +125,7 @@ print("=> logarithmic solution at t=0 present:", haslog)
 
 print("\n================ NON-LIOUVILLIAN CERTIFICATE ================")
 print("1. M is irreducible over Qbar(t)                 : YES (certify_factor.py)")
-print("2. M is NOT a symmetric square (excludes SO_3)   : YES (certify_factor.py)")
-print("3. M has a genuine logarithmic solution (t=0)    :", haslog)
+print("2. M has a genuine logarithmic solution (t=0)    :", haslog)
 print("   -> excludes FINITE Galois group (all-algebraic has no logs)")
 print("   -> excludes IMPRIMITIVE Galois group (monomial local monodromy is semisimple,")
 print("      so an imprimitive operator has no logarithmic solutions)")
@@ -124,6 +133,10 @@ print("-------------------------------------------------------------")
 if haslog:
     print("=> By Singer-Ulmer, G is neither finite nor imprimitive; G acts irreducibly and")
     print("   non-solvably, so M is NON-LIOUVILLIAN => NO algebraic or elementary closed form.")
-    print("   Combined with the SEPARATE not-Sym^2 result (=> no elliptic/K closed form), the")
-    print("   hyperkagome LGF has no closed form in algebraic, elementary, OR elliptic functions.")
+    print("   (Sharper, same conclusion: Sym^2(M) has a rational solution => G^0 = SO(3,C) is")
+    print("   simple hence non-solvable; certify_orthogonal.py.)")
+    print("   NOTE: this excludes ALGEBRAIC and ELEMENTARY forms only.  It does NOT exclude an")
+    print("   elliptic form -- the earlier 'not-Sym^2 => no elliptic / SL3-type' claim is RETRACTED:")
+    print("   M is orthogonally/projectively a symmetric square, so an elliptic/modular closed form")
+    print("   is EXPECTED (see certify_orthogonal.py / CERTIFICATE_orthogonal.txt).")
     print("   (Conditional on M being the minimal annihilator of the LGF; see the module docstring.)")

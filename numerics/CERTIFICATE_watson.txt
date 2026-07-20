@@ -1,0 +1,15 @@
+(1) det(I - t S^2) == (1-6t+(3-Lam)t^2)^2 - t^3 Xi^2 : PASS
+    S Hermitian on the torus: PASS
+(2) det B = 4 (4:1 measure-preserving covering)
+    Lam(B theta) == 2 Sum cos 2th_i : PASS
+    Xi (B theta) == 8 Prod cos th_i : PASS
+(3) all half-integer t-powers of CT log D+ vanish: PASS
+(4) Phi(t) = 2/3 - (t/3) d/dt CT log D+  matches nu.json through m=8 : PASS
+    predicted: ['2/3', '2', '10', '58', '362', '2382', '16362', '116454', '853386']
+    nu.json  : ['2/3', '2', '10', '58', '362', '2382', '16362', '116454', '853386']
+
+ALL PASS => the hyperkagome LGF is EXACTLY the generalized Watson integral of the
+bcc lattice with 1st- (weight t^{3/2}) and 2nd- (sc, weight t^2) neighbour hopping
+at spectral parameter 1-6t+3t^2:
+   Phi(t) = 2/3 - (t/3) d/dt CT_theta log[ (1-6t+3t^2) - 2t^2 Sum_i cos 2th_i
+                                            - 8 t^{3/2} cos th1 cos th2 cos th3 ]
