@@ -51,6 +51,7 @@ pip install -r requirements.txt
 python numerics/verify.py                    # moment fingerprint + exact annihilation of M (margin 55)
 python numerics/certify_factor.py            # no order-1/2 factor over Q; not-Sym^2; irreducibility
 python numerics/certify_nonliouvillian.py    # genuine log at t=0 => non-Liouvillian
+python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 local solutions log-free)
 python numerics/strengthen_certification.py  # overdetermination margin + independent Bloch moments
 python numerics/verify_specialvalues.py      # Re G(1) = 1/9 by symmetric BZ quadrature
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
@@ -67,8 +68,9 @@ numerics/
   lattice.pkl                                       — hyperkagome unit cell (12 sites, directed NN bonds)
   moments230.json, nu.json                          — exact integer moments m0..m230; symmetry-reduced nu
   M_coeffs.json                                      — the certified order-3 operator M (integer coeffs)
-  verify.py, certify_factor.py, certify_nonliouvillian.py, strengthen_certification.py,
-  verify_specialvalues.py, vm_crosscheck.py          — reproduction / certification scripts
+  verify.py, certify_factor.py, certify_nonliouvillian.py, certify_p7_apparent.py,
+  strengthen_certification.py, verify_specialvalues.py, vm_crosscheck.py
+                                                     — reproduction / certification scripts
   extend_moments.py                                  — closed-walk moment generator (provenance)
   CERTIFICATE*.txt                                   — generated certificates
   CT_SETUP.md, CERTIFY.md                            — creative-telescoping route; DFactor/Magma cross-check

@@ -1,0 +1,25 @@
+Validating the mod-p log-free counter on operators with known structure:
+  t^3 D^3 : log-free = 3 of 3  (expect 3, apparent)
+  theta^3 : log-free = 1 of 3  (expect 1, genuine log)
+
+Testing every root of p7 available at each of several primes:
+  prime p = 10007: p7 has 1 root(s) mod p
+     root      105: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+  prime p = 10037: p7 has 3 root(s) mod p
+     root     1931: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     5637: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     9313: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+  prime p = 10039: p7 has 3 root(s) mod p
+     root     6211: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     7428: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     8964: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+  prime p = 10061: p7 has 3 root(s) mod p
+     root     1647: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     4547: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+     root     7391: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+  prime p = 10067: p7 has 1 root(s) mod p
+     root      453: log-free = 3 of 3, exponents [0, 1, 3]  -> APPARENT
+
+RESULT: PASS. All 11 tested roots of p7 (over 5 primes) have
+  3 log-free local solutions of 3 => p7 is a locus of APPARENT singularities of M,
+  with exponents {0,1,3}. (Integer exponents alone would not establish this.)

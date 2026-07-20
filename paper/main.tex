@@ -165,26 +165,42 @@ a dedicated holonomic-functions implementation.
 \section{Riemann scheme and the absence of a closed form}
 The analytic nature of the LGF is decided by the local structure of $M$. Computing the Frobenius indicial
 exponents at each regular singular point gives the Riemann scheme
+\begin{widetext}
 \begin{equation}
-\begin{array}{c|cccccc}
- & t=0 & t=\tfrac19 & t=\tfrac15 & t=\tfrac14 & t=1 & t=\infty \\\hline
-\text{exp.} & \{-1,-1,0\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-1,-\tfrac12,\tfrac12\} & \{-3,-2,-\tfrac32\}
+\begin{array}{c|ccccccc}
+ & t=0 & t=\tfrac19 & t=\tfrac15 & t=\tfrac14 & t=1 & p_7 & t=\infty \\\hline
+\text{exp.} & \{-1,-1,0\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\}
+ & \{-1,-\tfrac12,\tfrac12\} & \{0,1,3\} & \{\tfrac32,2,3\}
 \end{array}
 \label{eq:riemann}
 \end{equation}
-together with the degree-seven locus $p_7$, whose (Galois-conjugate) roots carry the integer exponents
-$\{0,1,3\}$ (apparent-type). The repeated exponent $-1$ at $t=0$ is the source of the logarithmic solution used
+\end{widetext}
+Here $p_7$ denotes the irreducible degree-seven locus, whose seven Galois-conjugate roots all carry the same
+integer exponents $\{0,1,3\}$, computed exactly by reduction modulo $p_7$. These are \emph{apparent}
+singularities: integer exponents alone do not establish this, but all three local solutions there are log-free,
+which we verify from the Frobenius obstruction at each root of $p_7$ over several primes. We use the standard
+Riemann-scheme convention at infinity, in which an exponent $\rho$ at $t=\infty$ corresponds to a local solution
+$y\sim t^{-\rho}$; the three solutions there thus behave as $t^{-3/2}$, $t^{-2}$ and $t^{-3}$. As a check on
+\eqref{eq:riemann}, the operator has $s=13$ singular points---the five rational points above, the seven roots of
+$p_7$, and $t=\infty$; the relation counts the apparent singularities on $p_7$ along with the rest---and the
+exponents sum to
+\begin{equation}
+-2 + 3\cdot\tfrac12 - 1 + 7\cdot 4 + \tfrac{13}{2} \;=\; 33 \;=\; \tfrac{n(n-1)}{2}\,(s-2),\qquad n=3,
+\end{equation}
+so the Fuchs relation is satisfied exactly.
+
+The repeated exponent $-1$ at $t=0$ is the source of the logarithmic solution used
 below. The half-integer exponent $-\tfrac12$ at the band edge $t=\tfrac19$ is the square-root van Hove singularity
 of a three-dimensional band edge, $\rho(E)\sim\sqrt{E_{\rm edge}-E}$.
 
 Three facts now determine the answer.
 
 \emph{$M$ is irreducible over $\overline{\mathbb{Q}}(t)$.} $M$ is Fuchsian---regular singular at every point,
-including $t=\infty$ (exponents $\{-3,-2,-\tfrac32\}$)---so any first-order right factor $\mathrm{d}/\mathrm{d}t-u$
+including $t=\infty$ (exponents $\{\tfrac32,2,3\}$)---so any first-order right factor $\mathrm{d}/\mathrm{d}t-u$
 has $u=\sum_s e_s/(t-s)$ with $e_s$ a local exponent at each singular point $s$ and \emph{no} polynomial part. At
 the rational singular points the $e_s$ are the exponents of \eqref{eq:riemann}; at the irreducible degree-seven
-locus $p_7$ the common (Galois-invariant) residue ranges over its exponents $\{0,1,3\}$, computed exactly by
-reduction modulo $p_7$. This candidate set is finite, and each candidate is tested exactly over $\mathbb{Q}$ by the
+locus $p_7$ the common (Galois-invariant) residue ranges over its exponents $\{0,1,3\}$. This candidate set is
+finite, and each candidate is tested exactly over $\mathbb{Q}$ by the
 divisibility criterion $c_3(u''+3uu'+u^3)+c_2(u'+u^2)+c_1u+c_0=0$. No first-order right factor of $M$ exists over
 $\mathbb{Q}(t)$, and none of $\mathrm{adjoint}(M)$---which for a third-order operator excludes an order-two right
 factor of $M$ as well---so $M$ has no right factor of order one or two over $\mathbb{Q}(t)$. We now descend to
@@ -209,8 +225,9 @@ exponents $\{a,b\}$, its three exponents would be $\{2a,a+b,2b\}$, an arithmetic
 the mean of the outer two. No triple in \eqref{eq:riemann} is of this form: at $t=\tfrac19$ the exponents
 $\{-\tfrac12,0,1\}$ have mean of outer terms $\tfrac14\neq0$, and at $t=1$ the exponents $\{-1,-\tfrac12,\tfrac12\}$
 have mean of outer terms $-\tfrac14\neq-\tfrac12$; a single such point already suffices. Because a gauge
-transformation shifts all local exponents by a common constant and an algebraic pullback multiplies them by the
-local ramification index---both operations preserving arithmetic progressions, which a symmetric square has at
+transformation shifts the three exponents at each point by a constant depending only on that point, and an
+algebraic pullback multiplies them by the local ramification index---both operations preserving arithmetic
+progressions at each point, which a symmetric square must have at
 \emph{every} point---this excludes not only a symmetric square but every gauge- or pullback-equivalent of one. As a
 positive control, the same analysis applied to the simple-cubic LGF returns the symmetric-square-compatible
 exponents $\{0,\tfrac12,1\}=\{2a,a+b,2b\}$ with $\{a,b\}=\{0,\tfrac12\}$, correctly reflecting its closed form in
@@ -227,9 +244,12 @@ LGF operators are precisely symmetric squares of elliptic operators~\cite{Boukra
 \emph{No algebraic or elementary closed form.} On a separate axis from the elliptic question, $M$ has no
 \emph{Liouvillian} solutions, hence no closed form in algebraic or elementary functions. By the Singer--Ulmer
 classification, an irreducible third-order operator has Liouvillian solutions only if its differential Galois group
-is finite or imprimitive. A finite group makes every solution algebraic, and an imprimitive group permutes three
-lines, so that every element---in particular every local monodromy---is a monomial matrix and therefore
-semisimple; in either case there can be \emph{no logarithmic solution}. But $M$ has a genuine logarithmic solution:
+is finite or imprimitive. A finite group makes every solution algebraic, hence log-free. An imprimitive group
+permutes three lines, so in the corresponding basis every element---in particular every local monodromy, since for
+a Fuchsian operator the Galois group is the Zariski closure of the monodromy group---is a monomial matrix. Such a
+matrix is necessarily semisimple: if its permutation part has order $k$, its $k$-th power is diagonal and
+invertible, and an invertible matrix with a diagonalisable power is itself diagonalisable in characteristic zero.
+In either case there can be \emph{no logarithmic solution}. But $M$ has a genuine logarithmic solution:
 at $t=0$ the indicial exponent $-1$ is repeated and only one log-free (Laurent) local solution exists (of three),
 so the local monodromy is non-semisimple. This excludes both the finite and the imprimitive cases, so the Galois
 group acts irreducibly and non-solvably and $M$ is non-Liouvillian. Being non-Liouvillian does \emph{not} by itself
@@ -241,7 +261,8 @@ result.
 \emph{Conclusion.} The hyperkagome LGF is a period of an irreducible third-order Picard--Fuchs operator that is
 not a symmetric square and is non-Liouvillian; it therefore has \emph{no closed form in algebraic, elementary, or
 elliptic functions}, in contrast to the SC, BCC and FCC lattices. It is instead a genuine order-three Fuchsian
-period with six singular points ($t=0,\tfrac19,\tfrac15,\tfrac14,1,\infty$), of Calabi--Yau type in the broad
+period with six non-apparent singular points ($t=0,\tfrac19,\tfrac15,\tfrac14,1,\infty$), together with the seven
+apparent singularities on $p_7$, of Calabi--Yau type in the broad
 sense~\cite{AESZ}. (It is not a $\,_3F_2$ operator, which would have only three singular points; we do not claim it
 is inexpressible in every higher special-function class.) This is the exact sense in which the Varma--Monien
 integral cannot be ``solved'': the obstruction is structural. The statement is conditional on $M$ being the minimal

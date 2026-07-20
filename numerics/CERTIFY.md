@@ -4,7 +4,10 @@ The repository's certification is **already complete in pure Python** (no SageMa
 
 - `numerics/certify_factor.py` → `CERTIFICATE.txt` enumerates the complete finite set of Fuchs-admissible
   order-1 right factors of M and of adjoint(M) and tests each **exactly over ℚ** (0 found), computes the exact
-  local exponents (including the degree-7 locus `{0,1,3}` by reduction mod p₇, and `t=∞` `{−3,−2,−3/2}`),
+  local exponents (including the degree-7 locus `{0,1,3}` by reduction mod p₇, and `t=∞`, printed as the
+  *powers of t* `{−3,−2,−3/2}`, i.e. `y ~ t^−3, t^−2, t^−3/2`; in the Riemann-scheme convention of the paper,
+  where an exponent ρ at ∞ means `y ~ t^−ρ`, the same three solutions are written `{3/2,2,3}` — that is the
+  convention under which the Fuchs relation `Σ exponents = n(n−1)/2·(s−2) = 33` holds),
   proves a **genuine logarithmic solution at t=0** (exactly one log-free local solution of three), and hence
   concludes — by a Galois-descent argument — that **M is irreducible over ℚ̄(t)** and **not a symmetric square**.
 - `numerics/certify_nonliouvillian.py` → `CERTIFICATE_nonliouvillian.txt` uses the same t=0 log to exclude finite
