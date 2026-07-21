@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this operator, data, or code, please cite it as below."
-title: "Hyperkagome lattice Green's function: an irreducible order-3 Picard-Fuchs operator and the absence of an elliptic closed form"
+title: "Lattice Green's function of the hyperkagome lattice: modular uniformization at level 30 from an orthogonal differential Galois group"
 authors:
   - family-names: Nasr
     given-names: Bryan

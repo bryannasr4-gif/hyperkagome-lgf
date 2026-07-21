@@ -6,9 +6,22 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > **Correction (July 2026).** The earlier headline — *not-a-symmetric-square ⇒ no elliptic closed form;
 > SL₃-type Galois group* — is **retracted**. `Sym²(M)` has a rational solution, so `M`'s differential
 > Galois group is **orthogonal** (`O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`) and `M` **is** projectively a
-> symmetric square; an elliptic/modular closed form is *expected*. Non-Liouvillianity survives. The
-> Sym²/adjoint/intertwiner facts are due to **J.-M. Maillard (private communication, July 2026)**,
-> re-verified here in exact arithmetic (`numerics/certify_orthogonal.py`, `CERTIFICATE_orthogonal.txt`).
+> symmetric square. Non-Liouvillianity survives. The Sym²/adjoint/intertwiner facts are due to
+> **J.-M. Maillard (private communication, July 2026)**, re-verified here in exact arithmetic
+> (`numerics/certify_orthogonal.py`, `CERTIFICATE_orthogonal.txt`).
+>
+> **Resolution (July 2026, this repository).** The closed form is no longer merely *expected* — it is
+> **proven and modular at level 30**. The second-order operator `V₂` (to which `M` is projectively
+> `Sym²`-equivalent) is the **uniformizing ODE of the modular curve `X(Γ₀(30)⁺)`**: with the level-30
+> eta quotient `u = [η(τ)η(6τ)η(10τ)η(15τ) / (η(2τ)η(3τ)η(5τ)η(30τ))]³`, the variable
+> **`t = u/(u²+7u+1)`** (equivalently `1/t = u + 7 + 1/u`) is a **Hauptmodul of `Γ₀(30)⁺`**, and the
+> Schwarzian identity `{τ,t} = 2·Q_V(t)` holds exactly. So the hyperkagome LGF is **modular at level
+> `30 = 2·3·5`** — apparently the first lattice Green's function realised at a modular level with three
+> distinct prime factors. Proven exactly (Ligozat + Atkin–Lehner + a pole-degree bound turning a 96-order
+> series match into an identity) in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`; cross-vendor
+> audited. This resolves the closed-form existence Varma & Monien conjectured. (The explicit eta-quotient
+> for the weight-2 period `y₀ = Φ'/2` itself — a form carrying the quadratic twist character — is the one
+> remaining explicit item.)
 
 ## Main result
 The local lattice Green's function G(z) of the 3D hyperkagome lattice (Na₄Ir₃O₈), after removing the
@@ -28,16 +41,24 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   progressions), certified at every singular point, with a runnable Sym² positive control returning the
   expected {0,1/2,1}. **But this does *not* exclude an elliptic form:** the AP test sees only
   function-multiplier and pullback equivalences, not operator homomorphisms.
-- **Orthogonal differential Galois group (the correction).** `Sym²(M)` has an explicit rational solution
+- **Orthogonal differential Galois group.** `Sym²(M)` has an explicit rational solution
   `R(t) = −(1/272)(15t²+17t−8)² / (t²(t−1)²(4t−1)(5t−1)(9t−1))`; equivalently `M` is homomorphic to its
   adjoint by an order-2 intertwiner `T`. So the solution space carries a monodromy-invariant nondegenerate
   symmetric form ⇒ `G = O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`, and **M *is* projectively equivalent to the
-  symmetric square of a 2nd-order operator** `V₂` on the genus-one curve `u² = (1−4t)(1−5t)(1−9t)` (the det
-  character of the monodromy = the quadratic character of that curve; det = −1 at {1/9,1/5,1/4,∞}). ⇒ an
-  **elliptic/modular closed form is expected** (a ₂F₁ with algebraic pullback, à la Assis–van Hoeij–Maillard
-  J. Phys. A 49 (2016) 214002); the explicit form is left open. Certified exactly in
-  `numerics/certify_orthogonal.py` (Sym² membership margin 194 at t₀ = 1/2 and −1/3, made a proof by a
-  Fuchs-relation budget with cap 109; exact intertwiner remainder identity; n = 2 Jordan; det character).
+  symmetric square of a 2nd-order operator** `V₂`; the det character of the monodromy = the quadratic
+  character of the genus-one twist curve `v² = (1−4t)(1−5t)(1−9t)` (det = −1 at {1/9,1/5,1/4,∞}). Certified
+  exactly in `numerics/certify_orthogonal.py` (Sym² membership margin 194 at t₀ = 1/2 and −1/3, made a proof
+  by a Fuchs-relation budget with cap 109; exact intertwiner remainder identity; n = 2 Jordan; det character).
+- **Modular parametrization — the closed form (proven).** `V₂` uniformizes `X(Γ₀(30)⁺)`:
+  `t = u/(u²+7u+1)` with `u` the level-30 eta quotient above is a **Hauptmodul of `Γ₀(30)⁺`**
+  (`1/t = u+7+1/u`), and `{τ,t} = 2·Q_V(t)` holds identically, where
+  `Q_V = N(t)/[4t²(t−1)²(4t−1)²(5t−1)²(9t−1)²]`,
+  `N = 24300t⁸−58860t⁷+73437t⁶−44294t⁵+15111t⁴−3160t³+407t²−30t+1`. The projective monodromy of `M` is the
+  arithmetic lattice `Γ₀(30)⁺` (covolume `3π`, orbifold signature `(0;2,2,2,2,2;1 cusp)`, derived not
+  assumed). The five order-2 points map to `t ∈ {1/9,1/5,1/4,1,∞}` (`t=1/9↔u=1`, `t=1/5↔u=−1`, the branch
+  points of `u↦u+1/u`; `t=1/4,1,∞ ↔` roots of `u²+3u+1, u²+6u+1, u²+7u+1`) and the cusp to `t=0`. The twist
+  curve `v²=(1−4t)(1−5t)(1−9t)` is `X(Γ₀(30)+2,3,6)`. ⇒ **hyperkagome LGF modular at level 30 = 2·3·5**.
+  Proven exactly in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt` (all checks PASS).
 - **Non-Liouvillian: no algebraic or elementary closed form.** A genuine log at t=0 (repeated indicial
   exponent −1; exactly one log-free local solution of three, `numerics/certify_nonliouvillian.py`) excludes
   finite and imprimitive differential-Galois groups; equivalently `G° = SO(3,ℂ)` is simple hence
@@ -46,10 +67,10 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
 - **The Watson reduction (concrete realization; exactly verified).** `Φ(t) = 2/3 − (t/3) d/dt CT_θ log D₊`,
   `D₊ = (1−6t+3t²) − 2t²Σcos2θᵢ − 8t^{3/2}cosθ₁cosθ₂cosθ₃`: the hyperkagome LGF **is** the classical two-parameter
   generalized Watson integral (bcc lattice, 1st-neighbour weight `t^{3/2}` + 2nd-neighbour sc-shell weight `t²`) at
-  spectral parameter `1−6t+3t²`. The `√t` cover = the `u²=(1−4t)(1−5t)(1−9t)` twist; `{1/9,1/5,1/4,1}` = band-map
-  critical values (re-confirms the Riemann scheme). ⇒ the elliptic closed form is a specialization of classical
-  second-neighbour cubic-LGF results (Morita–Horiguchi 1971; Glasser; Joyce 1998). Verified in this repository
-  (`numerics/verify_watson_reduction.py` → `CERTIFICATE_watson.txt`); explicit ₂F₁ evaluation still open.
+  spectral parameter `1−6t+3t²`. The `√t` cover = the `v²=(1−4t)(1−5t)(1−9t)` twist; `{1/9,1/5,1/4,1}` = band-map
+  critical values (re-confirms the Riemann scheme). This anchors the level-30 modular parametrization above on the
+  lattice side (both describe the same object). Verified in this repository
+  (`numerics/verify_watson_reduction.py` → `CERTIFICATE_watson.txt`).
 - **The E=1 reflection symmetry is structural:** hyperkagome is the line graph of a 3-regular
   *bipartite* premedial net Γ (8 vertices, 12 edges per cell); bipartite ⇒ adjacency spectrum symmetric
   about 0 ⇒ dispersive DOS symmetric about E=1 (line-graph shift d−2=1). Verified by a
@@ -106,7 +127,9 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
 
 Verdict: the structure theorem (irreducible order-3; not a *literal* symmetric square; Sym²(M) has a
 rational solution ⇒ orthogonal Galois group G = O(3,ℂ), G° = SO(3,ℂ) ≅ PSL(2,ℂ) ⇒ projectively a symmetric
-square ⇒ elliptic/modular closed form expected; non-Liouvillian ⇒ no algebraic/elementary form) is sound
-and reproducible, conditional on M being the minimal annihilator. The LGF is now further **identified exactly
-as the classical generalized bcc(1,2) Watson integral** (`_agents/watson_reduction.md`); the **explicit**
-₂F₁/elliptic evaluation (specializing the classical second-neighbour cubic-LGF literature) is the open next step.
+square; non-Liouvillian ⇒ no algebraic/elementary form) is sound and reproducible, conditional on M being the
+minimal annihilator. The closed form is now **proven and modular**: `V₂` uniformizes `X(Γ₀(30)⁺)` with
+Hauptmodul `t = u/(u²+7u+1)` (`numerics/certify_modular.py`), so the hyperkagome LGF is **modular at level
+30 = 2·3·5**, and the LGF is equivalently **the classical generalized bcc(1,2) Watson integral**
+(`_agents/watson_reduction.md`). The one remaining explicit item is the eta-quotient expression for the
+weight-2 period `y₀ = Φ'/2` itself (a form carrying the quadratic twist character).
