@@ -51,7 +51,9 @@ lattice $\Gamma_0(30)^+$, of hyperbolic covolume $3\pi$, with orbifold signature
 $y_0=\Phi'/2$ itself is then obtained in explicit closed form,
 $y_0=[\rho_0(t)\,W+\rho_1(t)\,W']/\sqrt{(1-4t)(1-5t)(1-9t)}$ with $W=q\,\rmd t/\rmd q$ and explicit rational
 $\rho_0,\rho_1$: a weight-two, \emph{depth-one quasimodular} form on $\Gamma_0(30)^+$ twisted by the
-determinant character---the derivative term is essential, so the period is quasimodular rather than modular.
+determinant character---and the derivative term is provably essential: we show $y_0$ is not a (meromorphic
+modular form)$\times$(algebraic function) at any weight or level, in particular not an eta quotient, so the
+period is quasimodular rather than modular.
 The operator remains non-Liouvillian---$G^\circ=\mathrm{SO}(3,\mathbb{C})$ is simple, hence non-solvable---so no
 algebraic or elementary closed form exists; the closed form is modular and quasimodular (eta quotients and Eisenstein
 series; a $\,_2F_1$ representation follows in principle via an algebraic pullback), exactly as the orthogonal Galois group demands. We further reduce the LGF, exactly, to a classical two-parameter Watson
@@ -453,7 +455,7 @@ cusp), and the Schwarzian identity
 \quad{}'=\frac{\rmd}{\rmd t},
 \label{eq:schwarz}
 \end{equation}
-holds exactly. Equivalently: the ratio of two solutions of $w''+Q_Vw=0$ inverts the Hauptmodul, $V_2$ is the
+holds exactly~\cite{AbdelazizMaillard2016}. Equivalently: the ratio of two solutions of $w''+Q_Vw=0$ inverts the Hauptmodul, $V_2$ is the
 uniformizing operator of the orbifold $X(\Gamma_0(30)^+)$, and the mirror map of $V_2$ at its MUM point $t=0$
 is precisely \eqref{eq:hauptt}, with the modular $q$ as nome. (The identification was found by matching the
 mirror map against \eqref{eq:etaquot}--\eqref{eq:hauptt} to all $96$ computed orders; the proof below shows the
@@ -612,14 +614,108 @@ outright by local exponents: at the elliptic point $t=\tfrac19$ both $W$ and the
 vanish to order $\tfrac12$, while $y_0$ carries the exponent $-\tfrac12$ of $M$'s Riemann scheme
 there (the square-root van Hove singularity, $[t^m]\,y_0\sim9^m m^{-1/2}$), so $y_0v$ is regular
 at $t=\tfrac19$ whereas $R(t)\,W$ has half-integer order for every rational $R$; the exact scan
-of \eqref{eq:y0poly} through degree $40$ agrees. Whether $y_0$ admits a representation as a pure
-eta quotient or as (weight-two form)$\times$(algebraic function)---where an algebraic factor
-could itself carry the missing half-integer---is a stronger, global question; the structure of
-the intertwiner points against it, but we do not claim an all-degrees proof here. This refines
-consequence (ii) of Sec.~\ref{sec:modular}.
-% TODO: upgrade the eta-quotient / weight-two-times-algebraic exclusion to a theorem via the
-% lemma rho_1 != 0 => W'/W algebraic, contradicting the infinite monodromy orbit of the
-% log-derivative (needs only G^0 = SO(3)).
+of \eqref{eq:y0poly} through degree $40$ agrees. In fact the exclusion is categorical: no
+algebraic factor, at any weight and any level, can absorb the derivative term. This rests on
+one group-theoretic fact.
+
+\emph{Lemma.} The differential Galois group $\mathcal{G}$ of $w''+Q_Vw=0$ over
+$\mathbb{C}(t)$ is the full $\mathrm{SL}(2,\mathbb{C})$.
+
+\emph{Proof.} The Wronskian is constant, so $\mathcal{G}\subseteq\mathrm{SL}(2,\mathbb{C})$.
+The solution space of $\widetilde N$ is spanned by the products $w_iw_j$ of solutions of
+$w''+Q_Vw=0$~\cite{vdPutSinger}, and by the operator identity of step [IV] the order-one
+operator $T=\rho_0+\rho_1\,\rmd/\rmd t$ maps $\mathrm{Sol}(\widetilde N)$ into
+$\mathrm{Sol}(M_v)$. Any kernel element of $T$ is a constant multiple of
+$z=\exp(-\!\int\!\rho_0/\rho_1)$, and the exact rational computation (with
+$r=z'/z=-\rho_0/\rho_1$)
+\begin{widetext}
+\begin{equation}
+\frac{\widetilde N(z)}{z}=r''+3rr'+r^3+4Q_Vr+2Q_V'
+=\frac{-30\,p_7(t)}{t^2\,(t-1)(4t-1)(5t-1)(9t-1)(15t^2+17t-8)^3}
+\label{eq:Einj}
+\end{equation}
+\end{widetext}
+---the apparent-singularity polynomial once more, and manifestly nonzero---shows
+$z\notin\mathrm{Sol}(\widetilde N)$. Hence $T$ is a bijection
+$\mathrm{Sol}(\widetilde N)\to\mathrm{Sol}(M_v)$; being defined over $\mathbb{Q}(t)$, it is
+equivariant for the differential Galois action, computed in a Picard--Vessiot field containing
+both solution spaces (whose Galois group restricts \emph{onto} the Galois group of each
+operator~\cite{vdPutSinger}), so it identifies the Galois representation on
+$\mathrm{Sol}(M_v)$ with the symmetric square of the standard representation of $\mathcal{G}$.
+Now $\mathrm{Gal}(M_v)^\circ=\mathrm{Gal}(M)^\circ=\mathrm{SO}(3,\mathbb{C})$
+(Sec.~\ref{sec:orthogonal}): a finite extension of the base field replaces the Galois group by
+a closed subgroup of finite index, which shares its identity component~\cite{vdPutSinger}---
+applied once to $M$ and once to $M_v$ across $\mathbb{C}(t)\subset\mathbb{C}(t,v)$---and over
+$\mathbb{C}(t,v)$ multiplication by the base-field element $v$ identifies
+$\mathrm{Sol}(M_v)=v\,\mathrm{Sol}(M)$ equivariantly, with identical matrices. If $\mathcal{G}$ were a
+proper closed subgroup of $\mathrm{SL}(2,\mathbb{C})$, its identity component would be
+solvable (it lies in a Borel subgroup or in the normalizer of a torus, or is
+finite~\cite{Kovacic1986,vdPutSinger}), and then so would the identity component
+$\mathrm{Sym}^2(\mathcal{G})^\circ\cong\mathrm{Gal}(M_v)^\circ$ of its symmetric
+square---contradicting the non-solvability of the simple group $\mathrm{SO}(3,\mathbb{C})$.
+Hence $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$. (Independently, the theorem of
+Sec.~\ref{sec:modular} identifies the projective monodromy of $w''+Q_Vw=0$ with the lattice
+$\Gamma_0(30)^+$, which is Zariski-dense in $\mathrm{PSL}(2,\mathbb{C})$, and the Galois group
+of a Fuchsian operator is the Zariski closure of its monodromy; either route suffices.)
+
+\emph{Theorem (no modular-times-algebraic form at any weight).} Let $F\not\equiv0$ be a
+meromorphic modular form of any weight $k\in\tfrac12\mathbb{Z}$, with any finite-order
+multiplier system, on any subgroup $\Gamma'\subset\mathrm{PSL}(2,\mathbb{R})$ commensurable
+with $\Gamma_0(30)^+$, and let $a\neq0$ be any function algebraic over $\mathbb{C}(t)$. Then
+$y_0\neq F\,a$ (as functions of $\tau$ under the parametrization \eqref{eq:hauptt}). In
+particular $y_0$ is not a pure eta quotient, of any level, nor a (weight-two modular
+form)$\times$(algebraic function): every $\Gamma_0(N)$ and its Atkin--Lehner extensions are
+commensurable with $\Gamma_0(30)^+$, and the eta multiplier has finite order (dividing
+$24$)~\cite{DiamondShurman,Ligozat1975}.
+
+\emph{Proof.} Suppose $y_0=Fa$; multiplying by the algebraic twist unit $v$ gives
+$y_0v=F\tilde a$ with $\tilde a=av$ still algebraic and nonzero. Work in the Picard--Vessiot
+field $K$ of $w''+Q_Vw=0$ over $\mathbb{C}(t)$: by step [I], $W$ is a constant multiple of
+$w_1^2$, so $\mathcal{L}=W'/W=2w_1'/w_1\in K$ and the closed form \eqref{eq:y0closed} reads
+$y_0v=W(\rho_0+\rho_1\mathcal{L})$. Since $t$ is $\Gamma_0(30)^+$-invariant,
+$W\propto\rmd t/\rmd\tau$ is a weight-two meromorphic form with \emph{trivial} multiplier on
+all of $\Gamma_0(30)^+$; both $F$ and $W$ have meromorphic $q$-expansions at every cusp of the
+commensurability class. Pick a positive integer $n$ such that $nk\in2\mathbb{Z}$---making
+$(c\tau+d)^{nk}$ an honest integer-weight automorphy factor, free of the half-integer branch
+ambiguity, so that the $n$-th power of the multiplier system is a genuine finite-order
+character---and, enlarging $n$ by the order of that character, such that it is trivial. Then
+$\Psi=F^n/W^{nk/2}$ is a weight-zero modular function with trivial
+multiplier on the finite-index subgroup $\Gamma'\cap\Gamma_0(30)^+$, meromorphic at the cusps,
+hence a rational function on the compact curve $X(\Gamma'\cap\Gamma_0(30)^+)$---a finite cover
+of $X(\Gamma_0(30)^+)$---and therefore algebraic over
+$\mathbb{C}(X(\Gamma_0(30)^+))=\mathbb{C}(t)$. Raising $y_0v=F\tilde a$ to the $n$-th power,
+inserting $F^n=\Psi\,W^{nk/2}$, and dividing by $W^n$ gives
+\begin{equation}
+(\rho_0+\rho_1\mathcal{L})^n=\mathcal{A}\,W^{\,n(k-2)/2},\qquad
+\mathcal{A}=\Psi\,\tilde a^{\,n}\neq0.
+\label{eq:excl}
+\end{equation}
+Every member of \eqref{eq:excl} lies in $K$, so $\mathcal{A}\in K$ is algebraic over
+$\mathbb{C}(t)$; because $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$ is \emph{connected}, the
+algebraic closure of $\mathbb{C}(t)$ in $K$ is $\mathbb{C}(t)$ itself~\cite{vdPutSinger}, so
+$\mathcal{A}\in\mathbb{C}(t)$ is fixed by the Galois action. Now act with explicit elements
+of $\mathcal{G}$ in the basis $(w_1,w_2)$. The torus elements
+$\sigma_\lambda:(w_1,w_2)\mapsto(\lambda w_1,\lambda^{-1}w_2)$ fix $\mathcal{L}$ and scale
+$W\mapsto\lambda^2W$, so applying $\sigma_\lambda$ to \eqref{eq:excl} forces
+$\lambda^{n(k-2)}=1$ for every $\lambda\in\mathbb{C}^\times$: hence $k=2$. (In particular
+$k=0$ is impossible: $y_0v$ is not itself algebraic over $\mathbb{C}(t)$.) For $k=2$,
+\eqref{eq:excl} reads $(\rho_0+\rho_1\mathcal{L})^n=\mathcal{A}\in\mathbb{C}(t)$, and the
+unipotent elements $\sigma_\mu:(w_1,w_2)\mapsto(w_1+\mu w_2,\,w_2)$ give
+$(\rho_0+\rho_1\sigma_\mu(\mathcal{L}))^n=\mathcal{A}$ with
+$\sigma_\mu(\mathcal{L})=2(w_1+\mu w_2)'/(w_1+\mu w_2)$. These are pairwise distinct: equal
+logarithmic derivatives would force the ratio of $w_1+\mu w_2$ and $w_1+\mu'w_2$ to be a
+constant of $K$ (the constants of $K$ are $\mathbb{C}$), impossible for $\mu\neq\mu'$ since
+$w_1,w_2$ are linearly independent over $\mathbb{C}$. Since $\rho_1\neq0$, the field elements
+$\rho_0+\rho_1\sigma_\mu(\mathcal{L})$, $\mu\in\mathbb{C}$, are infinitely many distinct roots
+in $K$ of the polynomial $X^n-\mathcal{A}$---a contradiction. Hence no such $F$, $a$ exist.
+
+The quasimodular depth of $y_0$ is therefore intrinsic---no algebraic factor, at any weight or
+level, can absorb the $W'$ term, and $\rho_1\neq0$ is exactly the obstruction. This sharpens
+consequence (ii) of Sec.~\ref{sec:modular} to a categorical exclusion. Both
+computational inputs (the nonvanishing \eqref{eq:Einj}, and, as corroboration, a certified
+scan excluding any polynomial relation $P(t,\,tW'/W)=0$ through bidegree $(28,12)$) are
+certified in \texttt{numerics/certify\_y0\_lemma.py}
+(\texttt{CERTIFICATE\_y0\_lemma.txt}).
 \emph{(iii) Physical and arithmetic fingerprints.} The $-\tfrac12$ band-edge exponent above is
 the square-root van Hove singularity of the three-dimensional density of states. The
 half-integer residues $\tfrac12$ of $V_2$'s first-order coefficient $a_1$ at
@@ -695,7 +791,8 @@ realised at a modular level with three distinct prime factors, extending the lev
 classical lattice and sunrise literature~\cite{Broadhurst2016,BlochKerrVanhove2015}. The closed form whose
 existence Varma and Monien conjectured is thereby established, and the weight-two period $y_0$ itself is
 exhibited explicitly in Sec.~\ref{sec:y0closed}, as a depth-one quasimodular form on $\Gamma_0(30)^+$ twisted
-by the determinant character. Every structural statement here is a rigorous consequence of $M$ and of the
+by the determinant character---provably not a modular form times an algebraic function at any weight, in
+particular not an eta quotient. Every structural statement here is a rigorous consequence of $M$ and of the
 theorems of Secs.~\ref{sec:modular} and~\ref{sec:y0closed}; that $M$ is the minimal annihilator of the
 LGF is established to the guess-and-verify standard of the field, with an unconditional creative-telescoping
 proof the remaining step.
@@ -779,6 +876,7 @@ result is reproduced by the exact, publicly available scripts in the accompanyin
 % author list of arXiv:2502.05543 against its abstract before citing it as support for the n=2 remark.
 \bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, J.\ Symb.\ Comput.\ \textbf{16}, 9 (1993).
 \bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \emph{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328} (Springer, 2003).
+\bibitem{Kovacic1986} J.~J.~Kovacic, ``An algorithm for solving second order linear homogeneous differential equations,'' J.\ Symb.\ Comput.\ \textbf{2}, 3 (1986).
 \bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 095203 (2014); arXiv:1311.2470.
 \bibitem{Koutschan2013} C.~Koutschan, J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 125005 (2013).
 \bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, in \emph{Proc.\ 38th Int.\ Symp.\ Symbolic and Algebraic Computation (ISSAC '13)} (ACM, 2013); arXiv:1301.4313.
@@ -790,6 +888,7 @@ result is reproduced by the exact, publicly available scripts in the accompanyin
 \bibitem{Beukers1987} F.~Beukers, ``Irrationality proofs using modular forms,'' Ast\'erisque \textbf{147--148}, 271 (1987).
 \bibitem{Broadhurst2016} D.~Broadhurst, ``Feynman integrals, $L$-series and Kloosterman moments,'' Commun.\ Number Theory Phys.\ \textbf{10}, 527 (2016); arXiv:1604.03057.
 \bibitem{BlochKerrVanhove2015} S.~Bloch, M.~Kerr, and P.~Vanhove, ``A Feynman integral via higher normal functions,'' Compos.\ Math.\ \textbf{151}, 2329 (2015); arXiv:1406.2664.
+\bibitem{AbdelazizMaillard2016} Y.~Abdelaziz and J.-M.~Maillard, ``Modular forms, Schwarzian conditions, and symmetries of differential equations in physics,'' J.\ Phys.\ A: Math.\ Theor.\ \textbf{49}, 215203 (2016).
 \end{thebibliography}
 
 \end{document}

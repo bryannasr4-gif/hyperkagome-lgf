@@ -1,0 +1,8 @@
+PASS - E(t) = -30*p7 / [t^2(t-1)(4t-1)(5t-1)(9t-1)(15t^2+17t-8)^3] exactly 
+PASS - E(t) != 0  (kernel line of T does not solve Ntilde => T injective) | E(1/2) = -938080/2023
+PASS - t(q) heads = q - 4q^2 + 12q^3 - 34q^4 + 90q^5 (eta pipeline) 
+PASS - Ntilde(W) = 0 through q^553 (pole-free polynomial form) 
+PASS - Lambda = t*W'/W is a unit power series 
+PASS - no relation P(t, tW'/W) = 0 with deg_t <= 28, deg_X <= 12 | rank 377 / 377 unknowns, 480 equations
+
+RESULT: ALL CHECKS PASS

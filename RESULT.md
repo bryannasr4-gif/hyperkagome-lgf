@@ -19,9 +19,10 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > `30 = 2·3·5`** — apparently the first lattice Green's function realised at a modular level with three
 > distinct prime factors. Proven exactly (Ligozat + Atkin–Lehner + a pole-degree bound turning a 96-order
 > series match into an identity) in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`; cross-vendor
-> audited. This resolves the closed-form existence Varma & Monien conjectured. (The explicit eta-quotient
-> for the weight-2 period `y₀ = Φ'/2` itself — a form carrying the quadratic twist character — is the one
-> remaining explicit item.)
+> audited. This resolves the closed-form existence Varma & Monien conjectured. The weight-2 period
+> `y₀ = Φ'/2` itself is exhibited in explicit closed form below — a depth-one quasimodular form on `Γ₀(30)⁺`
+> twisted by the determinant character, **proven not** to be an eta quotient or (modular form)×(algebraic
+> function) at any weight.
 
 ## Main result
 The local lattice Green's function G(z) of the 3D hyperkagome lattice (Na₄Ir₃O₈), after removing the
@@ -59,6 +60,13 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   points of `u↦u+1/u`; `t=1/4,1,∞ ↔` roots of `u²+3u+1, u²+6u+1, u²+7u+1`) and the cusp to `t=0`. The twist
   curve `v²=(1−4t)(1−5t)(1−9t)` is `X(Γ₀(30)+2,3,6)`. ⇒ **hyperkagome LGF modular at level 30 = 2·3·5**.
   Proven exactly in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt` (all checks PASS).
+- **The weight-2 period `y₀ = Φ'/2` — explicit closed form.** `y₀ = [ρ₀(t)·W + ρ₁(t)·W'] / v` with
+  `v = √((1−4t)(1−5t)(1−9t))`, `W = q·dt/dq`, `ρ₁ = (15t²+17t−8)/(30t(t−1))` and explicit rational `ρ₀`: a
+  **weight-two, depth-one quasimodular** form on `Γ₀(30)⁺` twisted by the determinant character. The `W'` term
+  is **provably essential** — `y₀` is not a (meromorphic modular form)×(algebraic function) at any weight or
+  level, in particular **not an eta quotient** (proof: `G(V₂) = SL(2,ℂ)`, then a torus/unipotent argument in the
+  Picard–Vessiot field). Certified exactly in `numerics/certify_y0.py` and `numerics/certify_y0_lemma.py`
+  (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
 - **Non-Liouvillian: no algebraic or elementary closed form.** A genuine log at t=0 (repeated indicial
   exponent −1; exactly one log-free local solution of three, `numerics/certify_nonliouvillian.py`) excludes
   finite and imprimitive differential-Galois groups; equivalently `G° = SO(3,ℂ)` is simple hence
@@ -131,5 +139,7 @@ square; non-Liouvillian ⇒ no algebraic/elementary form) is sound and reproduci
 minimal annihilator. The closed form is now **proven and modular**: `V₂` uniformizes `X(Γ₀(30)⁺)` with
 Hauptmodul `t = u/(u²+7u+1)` (`numerics/certify_modular.py`), so the hyperkagome LGF is **modular at level
 30 = 2·3·5**, and the LGF is equivalently **the classical generalized bcc(1,2) Watson integral**
-(`_agents/watson_reduction.md`). The one remaining explicit item is the eta-quotient expression for the
-weight-2 period `y₀ = Φ'/2` itself (a form carrying the quadratic twist character).
+(`numerics/verify_watson_reduction.py`). The weight-2 period `y₀ = Φ'/2` is given in explicit depth-one
+quasimodular closed form (`numerics/certify_y0.py`), **proven not** to reduce to an eta quotient or a
+(modular form)×(algebraic function) at any weight (`numerics/certify_y0_lemma.py`). The one remaining open
+item is an unconditional creative-telescoping proof that `M` is the minimal annihilator of the LGF.
