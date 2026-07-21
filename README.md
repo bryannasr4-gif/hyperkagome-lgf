@@ -67,8 +67,8 @@ symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1
   (exponent triples are not arithmetic progressions); the Riemann scheme, including the exact degree-7
   exponents `{0,1,3}`.
 - **Orthogonal structure, certified exactly** (`numerics/certify_orthogonal.py`,
-  `CERTIFICATE_orthogonal.txt`): `Sym²(M)` has the rational solution `R(t)` (exact, margin ≥ 180 at two
-  base points, Gram matrix nondegenerate); `M` is homomorphic to its adjoint via an explicit order-2
+  `CERTIFICATE_orthogonal.txt`): `Sym²(M)` has the rational solution `R(t)` (194 exact relations at two
+  base points, made a proof by a Fuchs-relation budget with cap 109; Gram matrix nondegenerate); `M` is homomorphic to its adjoint via an explicit order-2
   intertwiner `T` (`rightremainder(M·T, adjoint(M)) = 0` exactly over ℚ(t)); the `t = 0` Jordan block is
   single/3×3 (`n = 2`); the determinant character is `−1` at `{1/9,1/5,1/4,∞}` ⇒ `G = O(3,ℂ)`, twist
   curve `u² = (1−4t)(1−5t)(1−9t)`. ⇒ `G° = SO(3,ℂ)`, projectively a symmetric square.

@@ -89,7 +89,8 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
 - Not-*literal*-Sym² verdict from exact Frobenius exponents; SC positive control validates the test is
   non-vacuous.
 - **Orthogonal structure (`numerics/certify_orthogonal.py`):** Sym²(M) rational solution R verified by
-  exact series to margin ≥ 180 at t₀ = 1/2 and −1/3 (Gram matrix nondegenerate, rank 3, det ≠ 0);
+  exact series (194 relations at t₀ = 1/2 and −1/3, made a proof by a Fuchs-relation budget with cap 109;
+  Gram matrix nondegenerate, rank 3, det ≠ 0);
   intertwiner remainder identity `rightremainder(M·T, adjoint(M)) = 0` exact over ℚ(t); indicial
   −64ρ(ρ+1)², log-free dim 1 ⇒ n = 2; Wronskian residues ⇒ det character −1 at {1/9,1/5,1/4,∞} ⇒ O(3,ℂ).
   All machinery validated on positive/negative controls (D³−4D self-dual, θ³ Jordan, etc.).
