@@ -51,6 +51,12 @@ solution `R(t)`**, so:
   the arithmetic lattice `Γ₀(30)⁺` (covolume `3π`, signature `(0;2,2,2,2,2;1 cusp)`); the five order-2
   points map to `t ∈ {1/9,1/5,1/4,1,∞}` and the cusp to `t=0`. ⇒ **hyperkagome LGF modular at level
   `30 = 2·3·5`**. Proven exactly in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`.
+- **The weight-2 period `y₀ = Φ'/2` in explicit closed form.** `y₀ = [ρ₀(t)·W + ρ₁(t)·W'] / √((1−4t)(1−5t)(1−9t))`
+  with `W = q·dt/dq` and explicit rational `ρ₀, ρ₁` — a **weight-two, depth-one quasimodular** form on `Γ₀(30)⁺`
+  twisted by the determinant character. The derivative term is **provably essential**: `y₀` is *not* a
+  (meromorphic modular form)×(algebraic function) at any weight or level, in particular **not an eta quotient**,
+  so the period is genuinely quasimodular rather than modular. Certified exactly in `numerics/certify_y0.py` and
+  `numerics/certify_y0_lemma.py` (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
 - **Still non-Liouvillian ⇒ no algebraic or elementary closed form** — `G° = SO(3,ℂ)` is simple, hence
   non-solvable (an irreducible operator has Liouvillian solutions iff `G°` is solvable). This excludes
   algebraic/elementary forms only, and is fully consistent with the modular closed form (eta quotients and
@@ -95,10 +101,10 @@ symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1
   series exactly over ℚ through `t^111` — **112 relations against 57 free coefficients, a margin of
   55, zero residuals** — plus an independent from-scratch reconstruction and an independent
   Bloch-Hamiltonian moment computation.
-- **Open (acknowledged):** (i) an unconditional creative-telescoping *proof* that `M` is the minimal
-  annihilator of the LGF (see [`numerics/CT_SETUP.md`](numerics/CT_SETUP.md)); (ii) the **explicit
-  eta-quotient expression for the weight-2 period `y₀ = Φ'/2`** itself (a form carrying the quadratic twist
-  character) — the modular curve and Hauptmodul are proven; only this explicit period form remains.
+- **Open (acknowledged):** an unconditional creative-telescoping *proof* that `M` is the minimal
+  annihilator of the LGF (see [`numerics/CT_SETUP.md`](numerics/CT_SETUP.md)). The weight-2 period `y₀`
+  is now given in explicit quasimodular closed form (above), and is **proven not** to be an eta quotient or a
+  (modular form)×(algebraic function) at any weight — so that is no longer an open item.
 
 ## Reproduce
 
