@@ -47,15 +47,20 @@ converts agreement of exact rational $q$-expansions through order $96$ into an i
 therefore modular at level $30=2\cdot3\cdot5$---to our knowledge the first lattice Green's function realised at
 a modular level with three distinct prime factors---and the projective monodromy of $M$ is the arithmetic
 lattice $\Gamma_0(30)^+$, of hyperbolic covolume $3\pi$, with orbifold signature $(0;2,2,2,2,2;\,1\
-\mathrm{cusp})$ derived, not assumed. This proves the closed form whose existence Varma and Monien conjectured.
+\mathrm{cusp})$ derived, not assumed. This proves the closed form whose existence Varma and Monien conjectured. The weight-two period
+$y_0=\Phi'/2$ itself is then obtained in explicit closed form,
+$y_0=[\rho_0(t)\,W+\rho_1(t)\,W']/\sqrt{(1-4t)(1-5t)(1-9t)}$ with $W=q\,\rmd t/\rmd q$ and explicit rational
+$\rho_0,\rho_1$: a weight-two, \emph{depth-one quasimodular} form on $\Gamma_0(30)^+$ twisted by the
+determinant character---the derivative term is essential, so the period is quasimodular rather than modular.
 The operator remains non-Liouvillian---$G^\circ=\mathrm{SO}(3,\mathbb{C})$ is simple, hence non-solvable---so no
-algebraic or elementary closed form exists; the closed form is modular (eta quotients and $\,_2F_1$'s), exactly
-as the orthogonal Galois group demands. We further reduce the LGF, exactly, to a classical two-parameter Watson
+algebraic or elementary closed form exists; the closed form is modular and quasimodular (eta quotients and Eisenstein
+series; a $\,_2F_1$ representation follows in principle via an algebraic pullback), exactly as the orthogonal Galois group demands. We further reduce the LGF, exactly, to a classical two-parameter Watson
 integral---the body-centred-cubic lattice with first- and second-neighbour hopping at spectral parameter
 $1-6t+3t^2$---identifying the object within the classical cubic-lattice Green's-function literature. We give
 the operator, its complete Riemann scheme, the invariant quadratic form and its Gram data, the single
 $3\times3$ Jordan block at $t=0$ (maximal log power $n=2$), the determinant character and its genus-one twist
-curve $X(\Gamma_0(30){+}2,3,6)$, the Watson reduction, and the exact value $\mathrm{Re}\,G(1)=1/9$.
+curve $X(\Gamma_0(30){+}2,3,6)$, the closed-form weight-two period, the Watson reduction, and the exact value
+$\mathrm{Re}\,G(1)=1/9$.
 \end{abstract}
 
 \maketitle
@@ -346,8 +351,8 @@ element semisimple---once more contradicting the logarithm. Hence $G^\circ$ is n
 non-solvable connected subgroup of $\mathrm{O}(3,\mathbb{C})$ is $\mathrm{SO}(3,\mathbb{C})$; therefore
 $G^\circ=\mathrm{SO}(3,\mathbb{C})$.
 
-\emph{(4) The determinant character: $G=\mathrm{O}(3,\mathbb{C})$ in full.} The Wronskian $W$ of $M$ satisfies
-$W'/W=-c_2/c_3$, whose residue at each singular point equals the local exponent sum there minus $3$. This is
+\emph{(4) The determinant character: $G=\mathrm{O}(3,\mathbb{C})$ in full.} The Wronskian $\mathrm{Wr}$ of $M$ satisfies
+$\mathrm{Wr}'/\mathrm{Wr}=-c_2/c_3$, whose residue at each singular point equals the local exponent sum there minus $3$. This is
 half-integral exactly at $t=\tfrac19,\tfrac15,\tfrac14$ and $\infty$ (for instance at $\tfrac19$,
 $(-\tfrac12+0+1)-3=-\tfrac52$) and integral at $t=0,1$ and on $p_7$; hence $\det(\text{monodromy})=-1$ at those
 four points and $+1$ elsewhere. Thus $G$ is \emph{not} contained in $\mathrm{SO}(3,\mathbb{C})$, i.e.\
@@ -464,11 +469,11 @@ structurally (the eta multipliers cancel because $\sum_dr_d=0$ and $\prod_d(30/d
 divisors and leading Fourier coefficients---two modular functions with equal divisors and equal leading
 coefficient are equal---shows likewise that $w_2,w_3,w_5$ each send $u\mapsto1/u$, whence the complementary
 products $w_6,w_{10},w_{15}$ fix $u$. Since $\{1,w_6,w_{10},w_{15}\}$ is an index-two subgroup of the
-Atkin--Lehner group $W\cong(\mathbb{Z}/2)^3$, $u$ descends to a function of degree $4/4=1$ on
+Atkin--Lehner group $\mathcal{W}\cong(\mathbb{Z}/2)^3$, $u$ descends to a function of degree $4/4=1$ on
 $X(\Gamma_0(30){+}6,10,15)$: it is a Hauptmodul there, and that curve has genus zero. Consequently
 $1/t=u+1/u+7$ is invariant under all of $\Gamma_0(30)^+$ and descends to degree one on the quotient: it is a
 Hauptmodul of $\Gamma_0(30)^+$, and $X(\Gamma_0(30)^+)$ has genus zero. It has a single cusp: $w_e$ maps the
-cusp of denominator $d$ to that of denominator $de/\gcd(d,e)^2$, a simply transitive action of $W$ on the
+cusp of denominator $d$ to that of denominator $de/\gcd(d,e)^2$, a simply transitive action of $\mathcal{W}$ on the
 eight cusps of $X_0(30)$. The normalization \eqref{eq:hauptt} puts the cusp at $t=0$, with $t=q+O(q^2)$ (cusp
 width one).
 
@@ -517,10 +522,10 @@ $\Gamma_0(30)^+$ trivial on $\Gamma_0(30)$; its kernel is the index-two subgroup
 the associated double cover of the $t$-line, branched at the four $\det=-1$ points
 $\{\tfrac19,\tfrac15,\tfrac14,\infty\}$, has genus one by Riemann--Hurwitz---it is precisely the twist curve
 $v^2=(1-4t)(1-5t)(1-9t)$ of Eq.~\eqref{eq:twist}, now identified as $X(\Gamma_0(30){+}2,3,6)$. In particular
-the analytic period $y_0=\Phi'/2$, pulled back by \eqref{eq:hauptt}, is a weight-two modular form carrying
-this quadratic twist character, in the manner familiar from the modular interpretation of the Ap\'ery
-numbers~\cite{Beukers1987}; exhibiting its explicit eta-quotient representation is deferred to the companion
-analysis. \emph{(iii) The Varma--Monien question is resolved.} Varma and Monien judged it ``highly
+the analytic period $y_0=\Phi'/2$, pulled back by \eqref{eq:hauptt}, is a weight-two object carrying this
+quadratic twist character, in the manner familiar from the modular interpretation of the Ap\'ery
+numbers~\cite{Beukers1987}---though, as Sec.~\ref{sec:y0closed} shows, a \emph{depth-one quasimodular} one
+rather than a modular form; its explicit closed form is derived there. \emph{(iii) The Varma--Monien question is resolved.} Varma and Monien judged it ``highly
 suggestive that a closed form expression can be obtained'' for their threefold integral~\cite{VarmaMonien2013};
 the theorem proves this in the strongest structural sense, with the closed form modular rather than elliptic:
 the hyperkagome LGF lives at level $30=2\cdot3\cdot5$. To our knowledge every lattice Green's function (and
@@ -532,17 +537,111 @@ Assis--van~Hoeij--Maillard-style $\,_2F_1$ representation~\cite{AVM2016} follows
 algebraic over $\mathbb{Q}(t)$ of bounded degree (an algebraic, not rational, pullback); but
 \eqref{eq:etaquot}--\eqref{eq:hauptt} is already the closed form in its most natural coordinates.
 
+\section{The weight-two period in closed form}
+\label{sec:y0closed}
+
+The weight-two period $y_0=\Phi'/2$ itself admits an explicit closed form in the modular data of
+Sec.~\ref{sec:modular}. Write $W=q\,\rmd t/\rmd q$ for the nome derivative of the Hauptmodul
+\eqref{eq:hauptt} (so that $W$ is a constant multiple of $w_1^2$, with $w_1=(\rmd t/\rmd\tau)^{1/2}$ a
+solution of the projective normal form $w''+Q_Vw=0$ of \eqref{eq:QV}), put $W'=\rmd W/\rmd t$, and let
+$v$ be the twist unit of Eq.~\eqref{eq:twist} in the branch $v(0)=+1$. Then
+\begin{equation}
+y_0=\frac{\rho_0(t)\,W+\rho_1(t)\,W'}{v},
+\label{eq:y0closed}
+\end{equation}
+\begin{widetext}
+\begin{equation}
+\rho_1(t)=\frac{15t^2+17t-8}{30\,t(t-1)},\qquad
+\rho_0(t)=-\,\frac{4050t^6+2445t^5-11436t^4+8000t^3-2130t^2+231t-8}
+{30\,t^2(t-1)^2(4t-1)(5t-1)(9t-1)}.
+\label{eq:y0rhos}
+\end{equation}
+\end{widetext}
+Equivalently, cleared of all denominators,
+\begin{equation}
+B(t)\,y_0\,v\,W=A_0(t)\,W^2+A_1(t)\,q\frac{\rmd W}{\rmd q},
+\label{eq:y0poly}
+\end{equation}
+with $B=-30\,t^2(t-1)^2(4t-1)(5t-1)(9t-1)$,
+$A_0=4050t^6+2445t^5-11436t^4+8000t^3-2130t^2+231t-8$, and
+$A_1=-\,t(t-1)(4t-1)(5t-1)(9t-1)(15t^2+17t-8)$, using $q\,\rmd W/\rmd q=WW'$. Every ingredient
+is an explicit level-30 modular or quasimodular object: with $u$ the eta quotient \eqref{eq:etaquot},
+$E_2(\tau)=1-24\sum_{n\ge1}\sigma_1(n)q^n$, and the Eisenstein form of the $\eta$-logarithmic
+derivative
+\begin{widetext}
+\begin{equation}
+\ell=q\frac{\rmd\log u}{\rmd q}=\tfrac18\big[E_2(\tau)+6E_2(6\tau)+10E_2(10\tau)+15E_2(15\tau)
+-2E_2(2\tau)-3E_2(3\tau)-5E_2(5\tau)-30E_2(30\tau)\big],
+\label{eq:ell}
+\end{equation}
+\end{widetext}
+one has $W=(1-u^2)\,u\,\ell/(u^2+7u+1)^2$ and $v=(u^2-1)\sqrt{u^2+3u+1}/(u^2+7u+1)^{3/2}$.
+
+\emph{Proof sketch.} The identity is proven, not fitted, in five steps.
+[I] By the Schwarzian identity \eqref{eq:schwarz}, $w_1=(\rmd t/\rmd\tau)^{1/2}$ solves
+$w''+Q_Vw=0$, so $W$ solves its symmetric square.
+[II] Elementarily, $y''=-Q_Vy$ forces $z=y^2$ to satisfy
+$\widetilde N(z):=z'''+4Q_Vz'+2Q_V'z=0$; hence $\widetilde N(W)=0$.
+[III] Conjugating the hyperkagome operator by the twist unit, $M_v=v\circ M\circ v^{-1}$ has
+coefficients in $\mathbb{Q}(t)$ (the logarithmic derivative $v'/v$ is rational) and annihilates
+$y_0v$.
+[IV] The first-order operator $T=\rho_0+\rho_1\,\rmd/\rmd t$ satisfies the exact operator identity
+$M_v\,T=X\,\widetilde N$ in the ring $\mathbb{Q}(t)\langle\rmd/\rmd t\rangle$ of linear differential
+operators over $\mathbb{Q}(t)$, with right remainder
+identically zero and $X$ of order one whose top-order coefficient carries the
+apparent-singularity polynomial $p_7$; therefore $T$ maps solutions of $\widetilde N$ to
+solutions of $M_v$, and $T(W)$ solves $M_v$.
+[V] $T(W)$ is single-valued near $t=0$ ($W$ and $W'$ are single-valued functions of $t$ there,
+since $t(q)=q+O(q^2)$ is invertible), and exactly one of the three local solutions of $M$ at the
+maximal-unipotent point $t=0$ is log-free (Sec.~\ref{sec:orthogonal}); since $v(0)=1\neq0$,
+conjugation by $v$ preserves this local structure, so the single-valued solution line of $M_v$
+at $t=0$ is one-dimensional and spanned by $y_0v$, and matching a single
+series coefficient gives $y_0v=T(W)$. As an independent check, \eqref{eq:y0closed} is verified as
+an exact $q$-series through order $q^{171}$, assembled entirely from the raw $\eta$ and $E_2$
+definitions above.
+
+Three structural remarks follow. \emph{(i) $y_0$ is quasimodular, not modular.} It is a
+weight-two \emph{depth-one} quasimodular form on $\Gamma_0(30)^+$ carrying the orthogonal
+determinant character of Sec.~\ref{sec:orthogonal}; equivalently it lives on the genus-one twist
+double cover $X(\Gamma_0(30){+}2,3,6)$ of Eq.~\eqref{eq:twist}. \emph{(ii) The derivative term is
+essential.} In the minimal-degree representation \eqref{eq:y0poly}---unique, as the fitting
+nullspace is one-dimensional---the coefficient $A_1$ is not identically zero: the term
+$\rho_1W'$ is exactly the quasimodular depth introduced by inverting the order-two intertwiner
+of Sec.~\ref{sec:orthogonal}. A depth-zero \emph{rational} form $y_0v=R(t)\,W$ is excluded
+outright by local exponents: at the elliptic point $t=\tfrac19$ both $W$ and the twist unit $v$
+vanish to order $\tfrac12$, while $y_0$ carries the exponent $-\tfrac12$ of $M$'s Riemann scheme
+there (the square-root van Hove singularity, $[t^m]\,y_0\sim9^m m^{-1/2}$), so $y_0v$ is regular
+at $t=\tfrac19$ whereas $R(t)\,W$ has half-integer order for every rational $R$; the exact scan
+of \eqref{eq:y0poly} through degree $40$ agrees. Whether $y_0$ admits a representation as a pure
+eta quotient or as (weight-two form)$\times$(algebraic function)---where an algebraic factor
+could itself carry the missing half-integer---is a stronger, global question; the structure of
+the intertwiner points against it, but we do not claim an all-degrees proof here. This refines
+consequence (ii) of Sec.~\ref{sec:modular}.
+% TODO: upgrade the eta-quotient / weight-two-times-algebraic exclusion to a theorem via the
+% lemma rho_1 != 0 => W'/W algebraic, contradicting the infinite monodromy orbit of the
+% log-derivative (needs only G^0 = SO(3)).
+\emph{(iii) Physical and arithmetic fingerprints.} The $-\tfrac12$ band-edge exponent above is
+the square-root van Hove singularity of the three-dimensional density of states. The
+half-integer residues $\tfrac12$ of $V_2$'s first-order coefficient $a_1$ at
+$t=\tfrac14,\tfrac15,\tfrac19$ are the twist multipliers that defeat every trivial-character
+ansatz, and the quadratic $15t^2+17t-8$ governing $\rho_1$ is the one already visible in the
+rational solution $R$ of Eq.~\eqref{eq:R}. The full
+symbolic-plus-series certification is the script \texttt{numerics/certify\_y0.py}
+(\texttt{CERTIFICATE\_y0.txt}).
+
 \section{The Watson reduction: a generalized body-centred-cubic integral}
 \label{sec:watson}
 The orthogonal structure of Sec.~\ref{sec:orthogonal} has a concrete origin, which can be exhibited directly.
 Writing $\mathrm{CT}_\theta$ for the constant term (torus average) over $\theta=(\theta_1,\theta_2,\theta_3)\in
 [0,2\pi)^3$, and eliminating the band index of the dispersive bands from the K$_4$ (srs) Bloch matrix by a
 resultant, the moment generating function collapses to a single three-dimensional torus integral,
+\begin{widetext}
 \begin{equation}
 \Phi(t)=\frac23-\frac t3\,\frac{\rmd}{\rmd t}\,\mathrm{CT}_\theta\,\log D_+(t,\theta),\qquad
 D_+=(1-6t+3t^2)-2t^2\!\sum_{i}\cos2\theta_i-8\,t^{3/2}\!\prod_i\cos\theta_i .
 \label{eq:Dplus}
 \end{equation}
+\end{widetext}
 The right-hand side of \eqref{eq:Dplus} is exactly the structure function of the \emph{body-centred-cubic lattice
 with first- and second-neighbour hopping}: $8\prod_i\cos\theta_i$ is the bcc nearest-neighbour structure function
 (weight $t^{3/2}$), $2\sum_i\cos2\theta_i$ is the simple-cubic second-neighbour shell (weight $t^2$), and the
@@ -569,8 +668,9 @@ transformations of Joyce~\cite{Joyce1998})---while the modular structure itself 
 Sec.~\ref{sec:modular}, independently of any particular literature evaluation. The remaining task is to specialise such an evaluation to the curve above, or to integrate
 $D_+$ termwise---it is quadratic in each $\cos\theta_i$, so one angular integration yields an inverse square root
 and the next an elliptic integral, leaving a one-dimensional algebraic period that the orthogonal structure forces
-into the $\mathrm{Sym}^2(V_2)$ form. We record the reduction here; matching it against the modular parametrization
-of Sec.~\ref{sec:modular}---an explicit weight-two eta quotient for the period---is left to a companion analysis.%
+into the $\mathrm{Sym}^2(V_2)$ form. We record the reduction here; matching such a classical evaluation, term by
+term, against the modular parametrization of Sec.~\ref{sec:modular} and the closed form \eqref{eq:y0closed} is
+left to a companion analysis.%
 \footnote{This reduction is a recent, fast-moving result of the accompanying closed-form analysis; it is
 independent of the differential-Galois certificate (and of the Maillard communication) and is re-verified in exact
 arithmetic in the repository. % TODO(Bryan): confirm the presentation, run down the classical bcc(1,2) second-neighbour
@@ -593,9 +693,10 @@ homomorphism rather than a function multiplier or an algebraic pullback---to our
 three-dimensional lattice Green's function shown to require one, and the first lattice Green's function
 realised at a modular level with three distinct prime factors, extending the level-$2,3,4,6$ landscape of the
 classical lattice and sunrise literature~\cite{Broadhurst2016,BlochKerrVanhove2015}. The closed form whose
-existence Varma and Monien conjectured is thereby established; what remains on the explicit side is the
-eta-quotient expression for the weight-two period $y_0$ itself. Every structural statement here is a rigorous
-consequence of $M$ and of the theorem of Sec.~\ref{sec:modular}; that $M$ is the minimal annihilator of the
+existence Varma and Monien conjectured is thereby established, and the weight-two period $y_0$ itself is
+exhibited explicitly in Sec.~\ref{sec:y0closed}, as a depth-one quasimodular form on $\Gamma_0(30)^+$ twisted
+by the determinant character. Every structural statement here is a rigorous consequence of $M$ and of the
+theorems of Secs.~\ref{sec:modular} and~\ref{sec:y0closed}; that $M$ is the minimal annihilator of the
 LGF is established to the guess-and-verify standard of the field, with an unconditional creative-telescoping
 proof the remaining step.
 
@@ -613,7 +714,8 @@ contributes the delta function $\tfrac13\,\delta(E+2)$.
 
 \section{Discussion}
 We have given the exact differential equation that controls the hyperkagome lattice Green's function,
-determined its differential-Galois structure, and proven its modularity. Constructively, $M$ is an irreducible
+determined its differential-Galois structure, proven its modularity, and obtained its weight-two period in
+explicit closed form. Constructively, $M$ is an irreducible
 third-order Picard--Fuchs operator that is not a \emph{literal} symmetric square, yet whose symmetric square
 carries a rational solution; its Galois group is therefore the full orthogonal group
 $\mathrm{O}(3,\mathbb{C})$, with identity component $\mathrm{SO}(3,\mathbb{C})$, and $M$ is
@@ -636,11 +738,10 @@ factorisation, and the first realised at a modular level with three distinct pri
 The result is directly relevant to the modelling of Na$_4$Ir$_3$O$_8$ and related hyperkagome magnets, where the
 single-particle LGF enters impurity, disorder, and dynamical-mean-field treatments; it provides the exact
 band-edge and special-point data and a certified equation for high-precision evaluation. More broadly, it adds an
-explicit three-dimensional frustrated lattice, with a nontrivial orthogonal Galois group and a level-30 modular
-parametrization, to the catalogue of Picard--Fuchs operators arising in lattice statistics. The explicit
-eta-quotient expression for the weight-two period $y_0$ (equivalently, the modular closed form of $\Phi$ itself),
-an unconditional creative-telescoping proof that $M$ is the minimal annihilator, and the analogous
-Heisenberg/transport Green's functions are natural next steps.
+explicit three-dimensional frustrated lattice, with a nontrivial orthogonal Galois group, a level-30 modular
+parametrization, and an explicit depth-one quasimodular closed form for its weight-two period, to the catalogue
+of Picard--Fuchs operators arising in lattice statistics. An unconditional creative-telescoping proof that $M$
+is the minimal annihilator and the analogous Heisenberg/transport Green's functions are natural next steps.
 
 All lattice constructions, exact moments, the certified operator, and the verification scripts are provided in
 the Supplemental Material and a public repository.
