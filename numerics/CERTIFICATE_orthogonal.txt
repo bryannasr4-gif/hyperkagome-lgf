@@ -8,7 +8,7 @@ validating operator/series primitives on known operators...
   base point t0 = 1/2   : margin = 194 exact relations, residuals bad = none
        c=(c11,c12,c13,c22,c23,c33) = ['-17/84', '-460/441', '44927/3087', '-1925200/157437', '83066560/1102059', '-712021969/7714413']
        Gram det(C) = 3437476900/7714413   rank = 3   =>  nondegenerate symmetric form (monodromy in O(3,C))
-       matches Maillard/BRIEF reference values at t0=1/2: YES
+       matches reference values at t0=1/2: YES
   base point t0 = -1/3  : margin = 194 exact relations, residuals bad = none
        c=(c11,c12,c13,c22,c23,c33) = ['6561/60928', '4472415/3411968', '3013936047/764280832', '4110630525/764280832', '3661051067325/85599453184', '3554989653554109/38348555026432']
        Gram det(C) = -3759232058267427225/3705703830302752768   rank = 3   =>  nondegenerate symmetric form (monodromy in O(3,C))
@@ -85,5 +85,4 @@ validating operator/series primitives on known operators...
    are REFUTED: an elliptic/2F1 closed form is EXPECTED, via a 2nd-order operator on
    that genus-one curve.  Non-Liouvillian (no algebraic/elementary form) still holds,
    now because G^0 = SO(3,C) is simple hence non-solvable.
-   [Facts (i)-(iii) due to J.-M. Maillard, private communication, July 2026;
-    independently re-verified here in exact arithmetic.]
+   [Facts (i)-(iii) are established above in exact arithmetic.]

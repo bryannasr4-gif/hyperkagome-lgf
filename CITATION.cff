@@ -5,6 +5,9 @@ authors:
   - family-names: Nasr
     given-names: Bryan
     email: bryannasr4@gmail.com
+  - family-names: Maillard
+    given-names: Jean-Marie
+    affiliation: "LPTMC, UMR 7600 CNRS, Sorbonne Université"
 type: software
 version: "1.0.0"
 date-released: "2026-07-05"

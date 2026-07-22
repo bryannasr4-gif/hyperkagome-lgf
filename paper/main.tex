@@ -15,6 +15,8 @@ modular uniformization at level 30 from an orthogonal differential Galois group}
 
 \author{Bryan Nasr}
 \affiliation{Independent researcher\\ \texttt{bryannasr4@gmail.com}}
+\author{Jean-Marie Maillard}
+\affiliation{LPTMC, UMR 7600 CNRS, Sorbonne Universit\'e, 4 Place Jussieu, 75252 Paris Cedex 05, France}
 \date{\today}
 
 \begin{abstract}
@@ -43,7 +45,7 @@ $u=[\eta(\tau)\eta(6\tau)\eta(10\tau)\eta(15\tau)/(\eta(2\tau)\eta(3\tau)\eta(5\
 variable $t=u/(u^2+7u+1)$ is a Hauptmodul of $\Gamma_0(30)^+$ (equivalently $1/t=u+7+1/u$), and the projective
 normal form of $V_2$ satisfies the Schwarzian identity $\{\tau,t\}=2Q_V(t)$ \emph{exactly}---proven, not
 numerically checked, by combining the Ligozat and Atkin--Lehner structure of $u$ with a pole-degree bound that
-converts agreement of exact rational $q$-expansions through order $96$ into an identity. The hyperkagome LGF is
+converts agreement of exact rational $q$-expansions through order $80$ into an identity. The hyperkagome LGF is
 therefore modular at level $30=2\cdot3\cdot5$---to our knowledge the first lattice Green's function realised at
 a modular level with three distinct prime factors---and the projective monodromy of $M$ is the arithmetic
 lattice $\Gamma_0(30)^+$, of hyperbolic covolume $3\pi$, with orbifold signature $(0;2,2,2,2,2;\,1\
@@ -298,10 +300,7 @@ fully consistent with modularity.
 The symmetric square $\mathrm{Sym}^2(M)$---the order-six operator annihilating the pairwise products $y_iy_j$ of
 solutions of $M$---possesses an explicit \emph{rational} solution,%
 \footnote{The homomorphism of $M$ to its adjoint, the rational solution $R$ of $\mathrm{Sym}^2(M)$, and the
-explicit order-two intertwiner realising it are due to J.-M.~Maillard (private communication, July 2026); we
-reproduce and certify them independently in exact arithmetic in the accompanying repository.
-% TODO(Bryan): confirm attribution / possible co-authorship with Maillard before circulating.
-}
+explicit order-two intertwiner realising it are certified in exact arithmetic in the accompanying repository.}
 \begin{equation}
 R(t)=-\frac{1}{272}\,\frac{(15t^2+17t-8)^2}{t^2\,(t-1)^2\,(4t-1)(5t-1)(9t-1)}.
 \label{eq:R}
@@ -387,8 +386,7 @@ eta-quotient Hauptmodul \eqref{eq:hauptt}, and the sought closed form is modular
 Assis--van~Hoeij--Maillard-style $\,_2F_1$ with \emph{algebraic} pullback exists in principle because $j$ is
 algebraic over $\mathbb{Q}(t)$, but the modular parametrization itself is the closed form in its natural
 coordinates.%
-% TODO(Bryan): decide whether the explicit V2, the conic point, and the bridge identity enter this paper in full
-% or the companion analysis; they build on the Maillard certificate, so the attribution decision applies to them.
+% TODO(Bryan): decide whether the explicit V2, the conic point, and the bridge identity enter this paper in full or a companion analysis.
 
 \emph{Maximal unipotent monodromy at $t=0$ ($n=2$).} The three exponents at $t=0$, $\{-1,-1,0\}$ (indicial
 polynomial $-64\,\rho(\rho+1)^2$), are all integers, so the local monodromy is unipotent. Exactly one of the three
@@ -398,8 +396,7 @@ unipotent} (MUM), with maximal log power $n=2$. It is MUM in the monodromy sense
 rather than $\{0,0,0\}$: an integer recombination of the Frobenius solutions brings the basis to the canonical MUM
 normal form $\{\,y_0,\;y_0\log t+f_1,\;\tfrac12 y_0\log^2t+f_1\log t+f_2\,\}$, with the \emph{same} series $f_1$
 multiplying the logarithm in the third solution as appears in the second,%
-\footnote{The recombination ($yy_2=y_2-\tfrac{13}{30}\,y_1$ in the natural rescaling) was observed by
-J.-M.~Maillard (private communication, July 2026) and is verified exactly, term by term and through the identity
+\footnote{The recombination ($yy_2=y_2-\tfrac{13}{30}\,y_1$ in the natural rescaling) is verified exactly, term by term and through the identity
 $M(y_0\log t+f_1)=0$ order by order, in \texttt{verify\_mum\_normalform.py} in the repository.}
 where $y_0=\Phi'/2$ is the holomorphic solution and $f_1,f_2$ carry $1/t$ Laurent heads. This settles a point that
 was initially unclear: $n=2$, not $1$. The even value $n=2$ is consistent with the orthogonal (rather than
@@ -458,7 +455,7 @@ cusp), and the Schwarzian identity
 holds exactly~\cite{AbdelazizMaillard2017}. Equivalently: the ratio of two solutions of $w''+Q_Vw=0$ inverts the Hauptmodul, $V_2$ is the
 uniformizing operator of the orbifold $X(\Gamma_0(30)^+)$, and the mirror map of $V_2$ at its MUM point $t=0$
 is precisely \eqref{eq:hauptt}, with the modular $q$ as nome. (The identification was found by matching the
-mirror map against \eqref{eq:etaquot}--\eqref{eq:hauptt} to all $96$ computed orders; the proof below shows the
+mirror map against \eqref{eq:etaquot}--\eqref{eq:hauptt} to all $80$ computed orders; the proof below shows the
 match is forced.)
 
 \emph{Proof, modular part.} The exponent vector $(r_d)$ satisfies Ligozat's criterion~\cite{Ligozat1975}:
@@ -502,8 +499,8 @@ $Q_V$, and $t=\infty$, each of order at most two; at $t=0$ the heads $\tfrac1{2t
 at most a simple pole. The pole divisor of $D$ on $\mathbb{P}^1$ therefore has degree at most
 $2(5+4+1)+1=21$. On the other hand we verify, in exact rational arithmetic, that the $q$-expansion of
 $D(t(q))$---computable term by term from \eqref{eq:etaquot}--\eqref{eq:hauptt}---vanishes through order
-$q^{96}$; since $t(q)=q+O(q^2)$ is a formal immersion, $D$ vanishes at $t=0$ to order at least $96$. A nonzero
-rational function has equal degrees of zeros and poles, and $96>21$; hence $D\equiv0$. \hfill$\square$
+$q^{80}$; since $t(q)=q+O(q^2)$ is a formal immersion, $D$ vanishes at $t=0$ to order at least $80$. A nonzero
+rational function has equal degrees of zeros and poles, and $80>21$; hence $D\equiv0$. \hfill$\square$
 
 The proof is exact and non-numerical throughout: the modular part is finite eta-quotient combinatorics, and
 the uniformization part is a finite exact series computation closed off by the degree bound. As a corollary
@@ -599,7 +596,7 @@ maximal-unipotent point $t=0$ is log-free (Sec.~\ref{sec:orthogonal}); since $v(
 conjugation by $v$ preserves this local structure, so the single-valued solution line of $M_v$
 at $t=0$ is one-dimensional and spanned by $y_0v$, and matching a single
 series coefficient gives $y_0v=T(W)$. As an independent check, \eqref{eq:y0closed} is verified as
-an exact $q$-series through order $q^{171}$, assembled entirely from the raw $\eta$ and $E_2$
+an exact $q$-series through order $q^{120}$, assembled entirely from the raw $\eta$ and $E_2$
 definitions above.
 
 Three structural remarks follow. \emph{(i) $y_0$ is quasimodular, not modular.} It is a
@@ -613,8 +610,7 @@ of Sec.~\ref{sec:orthogonal}. A depth-zero \emph{rational} form $y_0v=R(t)\,W$ i
 outright by local exponents: at the elliptic point $t=\tfrac19$ both $W$ and the twist unit $v$
 vanish to order $\tfrac12$, while $y_0$ carries the exponent $-\tfrac12$ of $M$'s Riemann scheme
 there (the square-root van Hove singularity, $[t^m]\,y_0\sim9^m m^{-1/2}$), so $y_0v$ is regular
-at $t=\tfrac19$ whereas $R(t)\,W$ has half-integer order for every rational $R$; the exact scan
-of \eqref{eq:y0poly} through degree $40$ agrees. In fact the exclusion is categorical: no
+at $t=\tfrac19$ whereas $R(t)\,W$ has half-integer order for every rational $R$. In fact the exclusion is categorical: no
 algebraic factor, at any weight and any level, can absorb the derivative term. This rests on
 one group-theoretic fact.
 
@@ -768,7 +764,7 @@ into the $\mathrm{Sym}^2(V_2)$ form. We record the reduction here; matching such
 term, against the modular parametrization of Sec.~\ref{sec:modular} and the closed form \eqref{eq:y0closed} is
 left to a companion analysis.%
 \footnote{This reduction is a recent, fast-moving result of the accompanying closed-form analysis; it is
-independent of the differential-Galois certificate (and of the Maillard communication) and is re-verified in exact
+independent of the differential-Galois certificate and is re-verified in exact
 arithmetic in the repository. % TODO(Bryan): confirm the presentation, run down the classical bcc(1,2) second-neighbour
 % literature (Morita--Horiguchi, Glasser, Delves--Joyce) for the explicit evaluation, and fold in the closed form
 % once it lands; add the corresponding references.
@@ -844,14 +840,8 @@ All lattice constructions, exact moments, the certified operator, and the verifi
 the Supplemental Material and a public repository.
 
 \begin{acknowledgments}
-We are grateful to J.-M.~Maillard for reconstructing the operator independently and for communicating (private
-communication, July 2026) the homomorphism of $M$ to its adjoint, the explicit order-two intertwiner, and the
-rational solution of $\mathrm{Sym}^2(M)$ on which the orthogonal-Galois-group analysis of
-Sec.~\ref{sec:orthogonal} rests; those results are reproduced and certified independently in exact
-arithmetic in the accompanying repository. We also thank W.~Zudilin for the observation that an order-three
+We thank W.~Zudilin for the observation that an order-three
 Calabi--Yau operator would have to be a symmetric square, which helped us discard the Calabi--Yau framing.
-% TODO(Bryan): confirm attribution and decide on possible co-authorship with J.-M. Maillard before circulating or
-% submitting; if co-authorship is agreed, move him to the author list and adjust this paragraph accordingly.
 The operator determination and all certifications were carried out with computer algebra (SymPy); every reported
 result is reproduced by the exact, publicly available scripts in the accompanying repository.
 \end{acknowledgments}
@@ -869,15 +859,14 @@ result is reproduced by the exact, publicly available scripts in the accompanyin
 \bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Phys.\ Rev.\ E \textbf{87}, 032109 (2013).
 \bibitem{Lipshitz1988} L.~Lipshitz, J.\ Algebra \textbf{113}, 373 (1988).
 \bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, ``Ore Polynomials in Sage,'' in \emph{Computer Algebra and Polynomials}, LNCS \textbf{8942} (Springer, 2015), pp.~105--125.
-\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{49}, 214002 (2016); arXiv:1602.00790.
-% TODO(Bryan): verify the arXiv number and page for Assis--van Hoeij--Maillard 2016 before submission.
+\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{49}, 214002 (2016); arXiv:1602.00868.
 \bibitem{HMZ2025} S.~Hassani, J.-M.~Maillard, and N.~Zenine, arXiv:2502.05543 (2025).
 % TODO(Bryan): confirm the exact statement (parity of max log power <-> orthogonal/symplectic type) and the
 % author list of arXiv:2502.05543 against its abstract before citing it as support for the n=2 remark.
 \bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, J.\ Symb.\ Comput.\ \textbf{16}, 9 (1993).
 \bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \emph{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328} (Springer, 2003).
 \bibitem{Kovacic1986} J.~J.~Kovacic, ``An algorithm for solving second order linear homogeneous differential equations,'' J.\ Symb.\ Comput.\ \textbf{2}, 3 (1986).
-\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 095203 (2014); arXiv:1311.2470.
+\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, J.-M.~Maillard, and J.-A.~Weil, J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 095203 (2014); arXiv:1311.2470.
 \bibitem{Koutschan2013} C.~Koutschan, J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 125005 (2013).
 \bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, in \emph{Proc.\ 38th Int.\ Symp.\ Symbolic and Algebraic Computation (ISSAC '13)} (ACM, 2013); arXiv:1301.4313.
 % TODO(Bryan): verify volume/page/arXiv numbers for the seven references below before submission.
