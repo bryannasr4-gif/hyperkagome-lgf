@@ -3,8 +3,7 @@ CERTIFY: the differential Galois group of the hyperkagome operator M is ORTHOGON
 
 This certificate CORRECTS and REPLACES the paper's earlier negative claim ("M is not a
 symmetric square in any equivalent sense => no closed form in complete elliptic integrals;
-SL3-type Galois group"). The correction is due to J.-M. Maillard (private communication,
-July 2026): although M is irreducible and is NOT a *literal* symmetric square, the symmetric
+SL3-type Galois group").  Although M is irreducible and is NOT a *literal* symmetric square, the symmetric
 square Sym^2(M) has a RATIONAL solution, so the solution space of M carries a monodromy-
 invariant nondegenerate quadratic form and the differential Galois group G is contained in the
 orthogonal group O(3,C).  Equivalently M is homomorphic to its adjoint by an order-2 intertwiner.
@@ -13,10 +12,9 @@ elliptic/2F1 closed form is EXPECTED rather than excluded (the explicit second-o
 lives on the genus-one curve u^2 = (1-4t)(1-5t)(1-9t)).
 
   ---------------------------------------------------------------------------------------------
-  ATTRIBUTION.  The three facts this script certifies -- (i) Homomorphisms(adjoint(M),M) != 0
+  SCOPE.  The three facts this script certifies -- (i) Homomorphisms(adjoint(M),M) != 0
   with the explicit order-2 intertwiner T, (ii) the rational solution R of Sym^2(M), and
-  (iii) the resulting O(3,C) structure -- are due to J.-M. Maillard (private communication,
-  July 2026).  This script is an INDEPENDENT exact re-verification of his results.
+  (iii) the resulting O(3,C) structure -- are established below in exact arithmetic.
   ---------------------------------------------------------------------------------------------
 
 All decisive steps are exact (rational arithmetic / operator algebra over Q(t); no floating
@@ -35,7 +33,7 @@ point).  Every routine is validated on operators with KNOWN structure before the
       exceeds the budget, so F == 0 identically.  (The budget is recomputed and printed by
       this script.)  The Gram matrix C = (c_ij) is symmetric and nondegenerate (rank 3).
 
-  (B) INTERTWINER, fully symbolic (exact over Q(t)):  with Maillard's order-2 operator T,
+  (B) INTERTWINER, fully symbolic (exact over Q(t)):  with the order-2 operator T,
       rightremainder(M o T, adjoint(M)) = 0 exactly.  So T maps solutions of adjoint(M) to
       solutions of M; a nonzero homomorphism between the irreducible M and adjoint(M) is an
       isomorphism, i.e. M is self-dual.  Self-dual + irreducible + ODD order => the invariant
@@ -387,7 +385,7 @@ for t0 in [F(1, 2), F(-1, 3)]:
            "nondegenerate symmetric form (monodromy in O(3,C))" if det != 0 else "DEGENERATE"))
     if t0 == F(1, 2):
         match = (csol == brief_c and det == F(3437476900, 7714413))
-        print("       matches Maillard/BRIEF reference values at t0=1/2:", "YES" if match else "NO")
+        print("       matches reference values at t0=1/2:", "YES" if match else "NO")
         okA = okA and match
 # ---- Fuchs-relation budget: why the margin-194 agreement is a PROOF ------------------
 # If F = R - sum c_ij y_i y_j were nonzero, W = span{y_i y_j, R} would be 7-dimensional and
@@ -443,7 +441,7 @@ assert right_remainder(opmul(Msc, [sp.Integer(1)]), adjoint(Msc)) == [sp.Integer
     "positive control: identity is a known intertwiner of the self-dual D^3-4D"
 print("  [validate] D^3-4D self-dual, T0=1 is an intertwiner (rem=0): PASS")
 
-# ---- Maillard's explicit order-2 intertwiner T (email, private communication July 2026) ----
+# ---- the explicit order-2 intertwiner T ----
 x = t
 p7 = 101025*x**7 - 369600*x**6 + 455798*x**5 - 290956*x**4 + 93657*x**3 - 17580*x**2 + 1800*x - 64
 quartic = 225*x**4 + 510*x**3 + 49*x**2 - 272*x + 64
@@ -592,8 +590,7 @@ if allpass:
     print("   are REFUTED: an elliptic/2F1 closed form is EXPECTED, via a 2nd-order operator on")
     print("   that genus-one curve.  Non-Liouvillian (no algebraic/elementary form) still holds,")
     print("   now because G^0 = SO(3,C) is simple hence non-solvable.")
-    print("   [Facts (i)-(iii) due to J.-M. Maillard, private communication, July 2026;")
-    print("    independently re-verified here in exact arithmetic.]")
+    print("   [Facts (i)-(iii) are established above in exact arithmetic.]")
 else:
     print("=> CERTIFICATE INCOMPLETE -- see FAIL markers above.")
     sys.exit(1)

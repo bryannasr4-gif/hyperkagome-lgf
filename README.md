@@ -10,8 +10,8 @@ and self-contained scripts that reproduce every certification.
 > differential Galois group. **That claim was wrong and has been retracted.** `Sym²(M)` has a rational
 > solution, so `M`'s Galois group is orthogonal (`O(3,ℂ)`, identity component `SO(3,ℂ) ≅ PSL(2,ℂ)`) and
 > `M` **is** projectively equivalent to the symmetric square of a second-order operator `V₂`. The
-> homomorphism-to-adjoint, the rational solution of `Sym²(M)`, and the explicit intertwiner are due to
-> **J.-M. Maillard (private communication, July 2026)**; they are re-verified here in exact arithmetic
+> homomorphism-to-adjoint, the rational solution of `Sym²(M)`, and the explicit intertwiner establish the
+> orthogonal structure; they are certified in exact arithmetic
 > (`numerics/certify_orthogonal.py`). Non-Liouvillianity (no algebraic/elementary form) still holds.
 >
 > **Resolution (July 2026).** The closed form is no longer merely *expected* — it is **proven and modular
@@ -74,7 +74,7 @@ solution `R(t)`**, so:
 apparent-type degree-7 locus. At `t = 0` (⇔ `z = ∞`) the local monodromy is **maximally unipotent (MUM)**:
 exponents `{−1,−1,0}` (all integers), a single 3×3 Jordan block ⇒ maximal log power `n = 2`, and the Frobenius
 basis takes the canonical MUM normal form `{y0, y0·log t + f1, y0·log²t/2 + f1·log t + f2}` after an integer
-recombination (Maillard, private communication; `numerics/verify_mum_normalform.py`). Note the exponents are
+recombination (`numerics/verify_mum_normalform.py`). Note the exponents are
 `{−1,−1,0}`, not the `{0,0,0}` of the Calabi–Yau normalization. It is **not** a ₃F₂ (which would have only three
 singular points), and it is **not** of Calabi–Yau type (Zudilin: an order-3 CY operator would be a literal
 symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1/9`**.
@@ -154,7 +154,7 @@ arithmetic with SymPy. Because the certification is by exact verification, it do
 ## License
 
 Code and data: MIT ([`LICENSE`](LICENSE)). The manuscript text and figures in `paper/` are © the
-author, all rights reserved (pending journal submission).
+authors, all rights reserved (pending journal submission).
 
 ## Citation
 

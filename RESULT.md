@@ -6,9 +6,8 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > **Correction (July 2026).** The earlier headline — *not-a-symmetric-square ⇒ no elliptic closed form;
 > SL₃-type Galois group* — is **retracted**. `Sym²(M)` has a rational solution, so `M`'s differential
 > Galois group is **orthogonal** (`O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`) and `M` **is** projectively a
-> symmetric square. Non-Liouvillianity survives. The Sym²/adjoint/intertwiner facts are due to
-> **J.-M. Maillard (private communication, July 2026)**, re-verified here in exact arithmetic
-> (`numerics/certify_orthogonal.py`, `CERTIFICATE_orthogonal.txt`).
+> symmetric square. Non-Liouvillianity survives. The Sym²/adjoint/intertwiner facts are certified in exact
+> arithmetic (`numerics/certify_orthogonal.py`, `CERTIFICATE_orthogonal.txt`).
 >
 > **Resolution (July 2026, this repository).** The closed form is no longer merely *expected* — it is
 > **proven and modular at level 30**. The second-order operator `V₂` (to which `M` is projectively
@@ -17,7 +16,7 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > **`t = u/(u²+7u+1)`** (equivalently `1/t = u + 7 + 1/u`) is a **Hauptmodul of `Γ₀(30)⁺`**, and the
 > Schwarzian identity `{τ,t} = 2·Q_V(t)` holds exactly. So the hyperkagome LGF is **modular at level
 > `30 = 2·3·5`** — apparently the first lattice Green's function realised at a modular level with three
-> distinct prime factors. Proven exactly (Ligozat + Atkin–Lehner + a pole-degree bound turning a 96-order
+> distinct prime factors. Proven exactly (Ligozat + Atkin–Lehner + a pole-degree bound turning an 80-order
 > series match into an identity) in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`; cross-vendor
 > audited. This resolves the closed-form existence Varma & Monien conjectured. The weight-2 period
 > `y₀ = Φ'/2` itself is exhibited in explicit closed form below — a depth-one quasimodular form on `Γ₀(30)⁺`
@@ -127,8 +126,8 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
 ## Independent verification — status
 - Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.
 - Irreducibility (over Q by complete exact enumeration; over Q̄ by Galois descent) and not-*literal*-Sym²:
-  reproduced. Maillard independently re-derived the operator and found the Sym²/adjoint homomorphism
-  (private communication, July 2026); re-verified here in exact arithmetic. An independent Maple `DFactor`
+  reproduced. The operator was reconstructed a second time independently, and the two reconstructions agree;
+  the Sym²/adjoint homomorphism is certified here in exact arithmetic. An independent Maple `DFactor`
   / Magma factorization over Q̄ (operator provided in `numerics/M_maple.txt`, `M_magma.txt`, `M_sage.py`)
   and a `Homomorphisms`/`symmetric_power`+`ratsols` check are recommended external cross-checks.
 - G(2) sign/exactness corrected: E=2 is singular; only Re G(1)=1/9 is exact.

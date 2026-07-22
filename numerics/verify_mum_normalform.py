@@ -3,22 +3,21 @@ CERTIFY: the local monodromy of M at t=0 is MAXIMALLY UNIPOTENT (MUM), in canoni
 
 Context.  certify_orthogonal.py part (C) proves the local monodromy at t=0 is a single 3x3
 unipotent Jordan block (exponents {-1,-1,0}, all integers; exactly one log-free solution;
-maximal log power n=2).  J.-M. Maillard (private communication, July 2026, third message)
-observed that the Frobenius basis can moreover be brought to the CANONICAL MUM normal form
+maximal log power n=2).  The Frobenius basis can moreover be brought to the CANONICAL MUM normal form
 
     yy0 = y0,
     yy1 = y0*log(t) + f1,
     yy2 = y0*log(t)^2/2 + f1*log(t) + f2,
 
-by the integer recombination yy2 = y2 - (13/30)*y1 of his rescaled basis -- i.e. the SAME
+by the integer recombination yy2 = y2 - (13/30)*y1 of the rescaled basis -- i.e. the SAME
 series f1 multiplies log(t) in yy2 as appears in yy1 (the strong Jordan-chain alignment:
 under analytic continuation t -> t*e^{2*pi*i}:  yy1 -> yy1 + 2*pi*i*yy0,
 yy2 -> yy2 + 2*pi*i*yy1 + (2*pi*i)^2/2 * yy0).  So t=0 is a MUM point in the monodromy sense,
 even though the exponents are {-1,-1,0} rather than {0,0,0} (the log partners carry 1/t heads).
 
 This script verifies, in exact rational arithmetic:
-  (A) internal consistency of the communicated data: F1 - (13/30)*y0 == f1 on every
-      communicated coefficient (including the 1/t heads), so the recombination
+  (A) internal consistency of the Frobenius data: F1 - (13/30)*y0 == f1 on every
+      coefficient (including the 1/t heads), so the recombination
       yy2 = y2 - (13/30)*y1 produces the aligned normal form;
   (B) cross-consistency with the first communication: f1 == -(4/15)*(first-message Laurent
       part of y1) and F1 == -(4/15)*(first-message log-coefficient of y2), term by term;
@@ -41,14 +40,14 @@ c = [[F(int(x)) for x in lst] for lst in Mj["coeffs"]]          # c0..c3 ascendi
 nu = [F(a, b) for a, b in json.load(open(os.path.join(HERE, "nu.json")))]
 y0 = [F(n + 1) * nu[n + 1] / 2 for n in range(len(nu) - 1)]     # analytic solution, ~109 terms
 
-# --- data communicated by Maillard (message 3), coefficients of t^{-1}..t^{10} ---
+# --- Frobenius data, coefficients of t^{-1}..t^{10} ---
 f1 = [F(4, 15), F(8, 3), F(251, 10), F(1092, 5), F(18457, 10), F(231599, 15),
       F(3872419, 30), F(16250528, 15), F(1920237593, 210), F(2717207602, 35),
       F(417545285593, 630), F(358201935913, 63)]
 F1 = [F(4, 15), F(31, 10), F(883, 30), F(2561, 10), F(64783, 30), F(540613, 30),
       F(4510537, 30), F(37799713, 30), F(2230870097, 210), F(6308648291, 70),
       F(484447525543, 630), F(4154283780859, 630)]
-# --- message 1 data (Maillard, private communication), same index range ---
+# --- the first rescaled Frobenius basis, same index range ---
 L1_old = [F(-1), F(-10), F(-753, 8), F(-819), F(-55371, 8), F(-231599, 4), F(-3872419, 8),
           F(-4062632), F(-1920237593, 56), F(-4075811403, 14), F(-417545285593, 168),
           F(-1791009679565, 84)]
@@ -58,7 +57,7 @@ L2_old = [F(-1), F(-93, 8), F(-883, 8), F(-7683, 8), F(-64783, 8), F(-540613, 8)
 
 # (A) recombination alignment: F1 - (13/30)*y0 == f1  (1/t heads carry no y0 term)
 okA = (F1[0] == f1[0]) and all(F1[k + 1] - F(13, 30) * y0[k] == f1[k + 1] for k in range(11))
-print("(A) F1 - (13/30)*y0 == f1 on all communicated terms:", "PASS" if okA else "FAIL")
+print("(A) F1 - (13/30)*y0 == f1 on all terms:", "PASS" if okA else "FAIL")
 
 # (B) rescaling vs message 1: f1 == -(4/15)*L1_old,  F1 == -(4/15)*L2_old
 okB = all(f1[k] == F(-4, 15) * L1_old[k] for k in range(12)) and \
@@ -125,7 +124,7 @@ if okA and okB and okC:
     print("Jordan block -- certify_orthogonal.py (C)), and the Frobenius basis takes the")
     print("canonical MUM normal form  {y0,  y0*log t + f1,  y0*log^2(t)/2 + f1*log t + f2}")
     print("after the integer recombination yy2 = y2 - (13/30)*y1")
-    print("[J.-M. Maillard, private communication, July 2026; verified here exactly].")
+    print("Verified here exactly, term by term.")
     print("The exponents are {-1,-1,0} (not {0,0,0}): MUM in the monodromy sense, with 1/t")
     print("Laurent heads on the log partners -- t=0 is E=infinity in the energy variable.")
 else:

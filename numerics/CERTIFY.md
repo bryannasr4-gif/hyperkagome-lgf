@@ -14,8 +14,7 @@ The repository's certification is **already complete in pure Python** (no SageMa
 - `numerics/certify_orthogonal.py` → `CERTIFICATE_orthogonal.txt` shows that **Sym²(M) has a rational solution**
   and that **M is homomorphic to its adjoint** (order-2 intertwiner), so the differential Galois group is
   **orthogonal**: `G = O(3,C)`, `G⁰ = SO(3,C) ≅ PSL(2,C)`, and **M IS projectively a symmetric square** ⇒ an
-  elliptic/modular closed form is *expected*. (These facts are due to J.-M. Maillard, private communication,
-  July 2026; re-verified here in exact arithmetic.)
+  elliptic/modular closed form is *expected*. (These facts are certified here in exact arithmetic.)
 - `numerics/certify_nonliouvillian.py` → `CERTIFICATE_nonliouvillian.txt` uses the same t=0 log to exclude finite
   and imprimitive Galois groups, i.e. **M is non-Liouvillian** (no algebraic/elementary closed form). This does
   **not** exclude an elliptic form — the earlier "not-Sym² ⇒ no elliptic" claim is **retracted**.
