@@ -1,0 +1,40 @@
+==============================================================================
+certify_bridge.py -- explicit V2 and the bridge identity to the lattice period
+==============================================================================
+
+[0] VALIDATION OF PRIMITIVES ON KNOWN STRUCTURE (before any real computation)
+  (0a) criterion ACCEPTS a manufactured symmetric square               PASS
+  (0a) and recovers p, q exactly                                       PASS
+  (0a) criterion REJECTS a perturbed (non-Sym^2) operator              PASS
+  (0b) series sqrt recovers a known square                             PASS
+  (0c) residual == 0 on an exact solution of the control operator      PASS
+  (0c) residual != 0 on a perturbed control operator                   PASS
+
+[1] THE DATA  (numerics/V2_data.json)
+    N = D^3 + B2 D^2 + B1 D + B0: the order-three operator produced by the conic
+    transport of the invariant quadratic form, INDEPENDENTLY of p and q below.
+    deg numer/denom:  B2 = 10/11,  B1 = 19/21,  B0 = 26/29
+    candidate V2 = D^2 + p D + q:  p = 10/11,   q = 18/20
+    conic point P = v0 + v1 D + v2 D^2, deg v0,v1,v2 = 9,10,11
+
+[2] SYMMETRIC-SQUARE CONSISTENCY AND THE PROJECTIVE NORMAL FORM
+    (B2, B1, B0 are taken from the transported operator in the data file; the
+    criterion below is a genuine constraint on that trio, not a tautology.)
+  (a) N satisfies the literal-Sym^2 criterion B0 == 4pq + 2q'          PASS
+  (a) the p, q recovered from N match the stored V2 exactly            PASS
+  (b) Q_V == q - p'/2 - p^2/4  (projective normal form)                PASS
+  (b) Q_V equals Eq. (9) of the paper as printed                       PASS
+
+[3] THE BRIDGE:  f0 = sqrt(P(y0)/P(y0)|_0)  solves V2(f0) = 0
+    y0 = Phi'/2 read from nu.json: 115 exact terms, head ['1', '10', '87', '724']
+      P(y0) is a unit at t=0 (so the square root is a power series)    PASS
+      the extracted square root squares back exactly                   PASS
+      V2(f0) == 0 on every Laurent coefficient through order t^107 (109 coefficients) PASS
+    (nonzero residual coefficients anywhere in the window: 1; highest index 110 = truncation edge)
+
+[4] NEGATIVE CONTROL: the same test must FAIL for a perturbed conic point
+      perturbing v0 by t^3 breaks the bridge                           PASS
+
+==============================================================================
+ALL CHECKS PASS
+==============================================================================
