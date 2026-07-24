@@ -111,8 +111,9 @@ modular structure}, realised through a nontrivial operator equivalence rather th
 pullback equivalences one usually tests. We obtain the operator explicitly, certify this structure by exact
 computation, and thereby explain \emph{why} a naive symmetric-square reduction was never found. We then prove the
 closed-form structure outright: the second-order operator underlying $M$ is the uniformizing operator of the
-genus-zero modular curve $X(\Gamma_0(30)^+)$, the natural variable $t$ generates its function field through an
-explicit level-30 eta-quotient parametrization, and the hyperkagome LGF is modular at level $30=2\cdot3\cdot5$---to our knowledge the first
+genus-zero modular curve $X(\Gamma_0(30)^+)$, the natural variable $t$ generates its function field and is given
+by an explicit level-30 eta-quotient parametrization, and the hyperkagome LGF is modular at level
+$30=2\cdot3\cdot5$---to our knowledge the first
 three-dimensional LGF known to require such an equivalence, and the first lattice Green's function realised at a
 modular level with three distinct prime factors.
 
@@ -390,7 +391,7 @@ operator of the modular curve $X(\Gamma_0(30)^+)$, its mirror map at the MUM poi
 eta-quotient parametrization \eqref{eq:hauptt}, and the sought closed form is modular---an
 Assis--van~Hoeij--Maillard-style $\,_2F_1$ with \emph{algebraic} pullback exists in principle because $j$ is
 algebraic over $\mathbb{Q}(t)$, but the modular parametrization itself is the closed form in its natural
-coordinates.%
+coordinates.
 
 \emph{Maximal unipotent monodromy at $t=0$ ($n=2$).} The three exponents at $t=0$, $\{-1,-1,0\}$ (indicial
 polynomial $-64\,\rho(\rho+1)^2$), are all integers, so the local monodromy is unipotent. Exactly one of the three
@@ -431,8 +432,10 @@ $Q_V=a_0-\tfrac14a_1^2-\tfrac12a_1'$, invariant under every function-multiplier 
 invariant of $M$ itself---is
 \begin{widetext}
 \begin{equation}
-Q_V(t)=\frac{N(t)}{4\,t^2(t-1)^2(4t-1)^2(5t-1)^2(9t-1)^2},\qquad
-N(t)=24300\,t^8-58860\,t^7+73437\,t^6-44294\,t^5+15111\,t^4-3160\,t^3+407\,t^2-30\,t+1.
+\begin{split}
+Q_V(t)&=\frac{N(t)}{4\,t^2(t-1)^2(4t-1)^2(5t-1)^2(9t-1)^2},\\[2pt]
+N(t)&=24300\,t^8-58860\,t^7+73437\,t^6-44294\,t^5+15111\,t^4-3160\,t^3+407\,t^2-30\,t+1.
+\end{split}
 \label{eq:QV}
 \end{equation}
 \end{widetext}
@@ -813,9 +816,10 @@ takes the exact value
 the flat-band contribution $\tfrac13/(1+2)=\tfrac19$ plus a dispersive principal value that vanishes by the
 $E=1$ symmetry. (The value at $E=2$ is a singular boundary value: $E=2$ is the van Hove point $t=1$ of
 \eqref{eq:riemann}. The exponents there are $\{-1,-\tfrac12,\tfrac12\}$, and the integer-separated pair
-$\pm\tfrac12$ permits a logarithm; direct Lorentzian broadening of the Brillouin-zone spectrum is consistent
-with a logarithmically divergent $\mathrm{Im}\,G$, and, as the $E=1$ symmetry requires, gives the same
-divergence at $E=0$, which is the same point $t=1$.) From the exponent $-\tfrac12$ at
+$\pm\tfrac12$ permits a logarithm; direct Lorentzian broadening of the Brillouin-zone spectrum
+(\texttt{numerics/verify\_vanhove\_log.py}) is consistent with a logarithmically divergent
+$\mathrm{Im}\,G$, and, as the $E=1$ symmetry requires, gives the same divergence at $E=0$, which is the same
+point $t=1$.) From the exponent $-\tfrac12$ at
 $t=\tfrac19$ the band-edge density of states behaves as $\rho(E)\sim\sqrt{E_{\rm edge}-E}$, and the flat band
 contributes the delta function $\tfrac13\,\delta(E+2)$.
 
