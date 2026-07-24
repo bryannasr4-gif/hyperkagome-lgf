@@ -4,7 +4,8 @@ certify_modular.py  --  exact certificate that V2 uniformizes X(Gamma_0(30)+).
 Proves, in exact rational arithmetic (self-contained; no external data files):
 
   u(tau) = [eta(tau) eta(6tau) eta(10tau) eta(15tau) / (eta(2tau) eta(3tau) eta(5tau) eta(30tau))]^3
-  t = u/(u^2 + 7u + 1)   (equivalently 1/t = u + 7 + 1/u = Hauptmodul of Gamma_0(30)+)
+  t = u/(u^2 + 7u + 1)   (equivalently 1/t = u + 7 + 1/u; generates the genus-zero
+                          function field of X(Gamma_0(30)+))
 
 is the modular parametrization of the projective normal form  w'' + Q_V(t) w = 0  of V2, with
   Q_V = N(t) / [4 t^2 (t-1)^2 (4t-1)^2 (5t-1)^2 (9t-1)^2],
@@ -239,6 +240,6 @@ fb = next((i for i in range(ORD - 2) if q2_sch[i] != q2_2QV[i]), None)
 check("q^2 ({tau,t_d} - 2 Q_V(t_d)) first nonzero order = %s (None => identity)" % fb, fb is None)
 print()
 
-print("RESULT:", "ALL CHECKS PASS -- V2 uniformizes X(Gamma_0(30)+); t is a Hauptmodul." if ok
+print("RESULT:", "ALL CHECKS PASS -- V2 uniformizes X(Gamma_0(30)+); t generates its function field." if ok
       else "FAILURE -- see above.")
 sys.exit(0 if ok else 1)

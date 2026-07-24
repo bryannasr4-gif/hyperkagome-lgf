@@ -32,7 +32,7 @@ CHECK 2 (corroborating scan).  The theorem implies L = W'/W (W = q dt/dq,
   content one, would survive reduction mod p).
 
 CHECK 0 (pipeline guards).  t(q) built from the level-30 eta quotient
-  reproduces the certified Hauptmodul heads, and Ntilde(W) = 0 holds through
+  reproduces the certified t(q) heads, and Ntilde(W) = 0 holds through
   q^553 in the pole-free polynomial form D^2 W''' + 4NDW' + 2(N'D-ND')W = 0
   -- tying the Q_V used here to the modular data end to end.
 
