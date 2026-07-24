@@ -6,7 +6,8 @@ THEOREM (proven; this script packages the exact checks).  With q the nome and
   u   = [eta(tau)eta(6tau)eta(10tau)eta(15tau)/(eta(2tau)eta(3tau)eta(5tau)eta(30tau))]^3,
   ell = q dlog u
       = (1/8)[E2(q)+6E2(q^6)+10E2(q^10)+15E2(q^15)-2E2(q^2)-3E2(q^3)-5E2(q^5)-30E2(q^30)],
-  t   = u/(u^2+7u+1)      (Hauptmodul of Gamma_0(30)+; equals the MUM mirror map of Q_V),
+  t   = u/(u^2+7u+1)      (generates the function field of X(Gamma_0(30)+); equals the
+                           MUM mirror map of Q_V),
   W   = q dt/dq,
   v   = sqrt((1-4t)(1-5t)(1-9t)),   v(0) = +1,
 the weight-two period  y0(t) = 1 + 10t + 87t^2 + 724t^3 + ...  (the holomorphic solution

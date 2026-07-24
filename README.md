@@ -17,7 +17,7 @@ and self-contained scripts that reproduce every certification.
 > **Resolution (July 2026).** The closed form is no longer merely *expected* — it is **proven and modular
 > at level 30**. `V₂` is the **uniformizing ODE of the modular curve `X(Γ₀(30)⁺)`**: with the level-30
 > eta quotient `u = [η(τ)η(6τ)η(10τ)η(15τ) / (η(2τ)η(3τ)η(5τ)η(30τ))]³`, the variable **`t = u/(u²+7u+1)`**
-> (i.e. `1/t = u+7+1/u`) is a **Hauptmodul of `Γ₀(30)⁺`**, and `{τ,t} = 2·Q_V(t)` holds exactly. So the
+> (i.e. `1/t = u+7+1/u`) **generates the genus-zero function field of `X(Γ₀(30)⁺)`**, and `{τ,t} = 2·Q_V(t)` holds exactly. So the
 > hyperkagome LGF is **modular at level `30 = 2·3·5`** — apparently the first lattice Green's function at a
 > modular level with three distinct prime factors. Proven exactly in
 > [`numerics/certify_modular.py`](numerics/certify_modular.py) → `CERTIFICATE_modular.txt`.
@@ -44,8 +44,9 @@ solution `R(t)`**, so:
   is why the exponent test does not see it). The determinant character of the monodromy is the quadratic
   character of the genus-one twist curve `v² = (1−4t)(1−5t)(1−9t)`.
 - **Modular parametrization — the closed form (proven).** `V₂` uniformizes `X(Γ₀(30)⁺)`:
-  **`t = u/(u²+7u+1)`** with `u` the level-30 eta quotient above is a **Hauptmodul of `Γ₀(30)⁺`**
-  (`1/t = u+7+1/u`), and the Schwarzian identity `{τ,t} = 2·Q_V(t)` holds exactly, with
+  **`t = u/(u²+7u+1)`** with `u` the level-30 eta quotient above **generates the genus-zero function field
+  of `X(Γ₀(30)⁺)`** (`1/t = u+7+1/u`; we call this a *Weber-like function parametrization*, reserving
+  "Hauptmodul" for the `₂F₁` pullback `1728/j`), and the Schwarzian identity `{τ,t} = 2·Q_V(t)` holds exactly, with
   `Q_V = N(t)/[4t²(t−1)²(4t−1)²(5t−1)²(9t−1)²]`,
   `N = 24300t⁸−58860t⁷+73437t⁶−44294t⁵+15111t⁴−3160t³+407t²−30t+1`. The projective monodromy of `M` is
   the arithmetic lattice `Γ₀(30)⁺` (covolume `3π`, signature `(0;2,2,2,2,2;1 cusp)`); the five order-2
@@ -96,7 +97,7 @@ symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1
   `CERTIFICATE_modular.txt`): the level-30 eta quotient `u` satisfies the Ligozat conditions (⇒ modular
   function on `Γ₀(30)`); `t = u/(u²+7u+1)` matches the `V₂` MUM mirror map to 80 orders; and the Schwarzian
   identity `{τ,t} = 2·Q_V(t)` holds — an a priori degree-≤8 rational identity verified far past its bound,
-  hence a proof. ⇒ `V₂` uniformizes `X(Γ₀(30)⁺)`; `t` is a Hauptmodul; LGF modular at level 30.
+  hence a proof. ⇒ `V₂` uniformizes `X(Γ₀(30)⁺)`; `t` generates its function field; LGF modular at level 30.
 - **Verified to the guess-and-verify standard of the field:** `M` annihilates the symmetry-reduced
   series exactly over ℚ through `t^111` — **112 relations against 57 free coefficients, a margin of
   55, zero residuals** — plus an independent from-scratch reconstruction and an independent
@@ -115,13 +116,21 @@ pip install -r requirements.txt
 python numerics/verify.py                    # moment fingerprint + exact annihilation of M (margin 55)
 python numerics/certify_factor.py            # no order-1/2 factor over Q; not-literal-Sym^2; irreducibility
 python numerics/certify_orthogonal.py        # Sym^2(M) rational solution => G = O(3,C); intertwiner; n=2; det char
-python numerics/certify_modular.py           # V2 uniformizes X(Gamma_0(30)+): t=u/(u^2+7u+1) Hauptmodul; Schwarzian
+python numerics/certify_modular.py           # V2 uniformizes X(Gamma_0(30)+): t=u/(u^2+7u+1) generates the field; Schwarzian
 python numerics/certify_nonliouvillian.py    # genuine log at t=0 => non-Liouvillian (no algebraic/elementary form)
 python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 local solutions log-free)
+python numerics/certify_bridge.py            # explicit V2 + conic point; bridge f0^2 = P(y0), V2(f0)=0 to t^107
+python numerics/certify_y0.py                # y0 = Phi'/2 closed form (weight-2 depth-1 quasimodular)
+python numerics/certify_y0_lemma.py          # y0 is NOT (modular form of any weight) x (algebraic)
+python numerics/verify_mum_normalform.py     # t=0 is MUM: canonical normal form, n=2
+python numerics/verify_watson_reduction.py   # LGF = generalized bcc(1,2) Watson integral
 python numerics/strengthen_certification.py  # overdetermination margin + independent Bloch moments
 python numerics/verify_specialvalues.py      # Re G(1) = 1/9 by symmetric BZ quadrature
+python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 (E=0,2) vs smooth controls
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
 ```
+
+All fifteen exit `0` on system Python.
 
 Each `certify_*` script validates its primitives on operators with known structure before the real
 run, and writes a plain-text certificate (`numerics/CERTIFICATE*.txt`).
@@ -134,10 +143,15 @@ numerics/
   lattice.pkl                                       — hyperkagome unit cell (12 sites, directed NN bonds)
   moments230.json, nu.json                          — exact integer moments m0..m230; symmetry-reduced nu
   M_coeffs.json                                      — the certified order-3 operator M (integer coeffs)
+  V2_data.json                                       — the explicit order-2 operator V2 (p, q, Q_V), the
+                                                       transported N = D^3+B2 D^2+B1 D+B0, and the conic point
   verify.py, certify_factor.py, certify_orthogonal.py, certify_modular.py, certify_nonliouvillian.py,
-  certify_p7_apparent.py, strengthen_certification.py, verify_specialvalues.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts
-                                                       (certify_modular.py: level-30 Hauptmodul / uniformization)
+  certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
+  verify_mum_normalform.py, verify_watson_reduction.py, strengthen_certification.py,
+  verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
+                                                     — reproduction / certification scripts (15, all exit 0)
+                                                       (certify_modular.py: level-30 uniformization;
+                                                        certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)
   CERTIFICATE*.txt                                   — generated certificates
   CT_SETUP.md, CERTIFY.md                            — creative-telescoping route; DFactor/Magma cross-check
