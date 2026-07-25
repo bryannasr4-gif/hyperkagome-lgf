@@ -1,0 +1,53 @@
+certify_phi_obstruction.py -- Phi (unlike Phi') is not weight-two quasimodular
+
+Dependencies: certify_y0.py (the rho-gauge), certify_y0_lemma.py
+(Gal(w''+Q_V w=0) = SL(2,C); irreducibility of Ntilde and the no-algebraic-
+element property of span{W,W',W''} follow -- see the docstring),
+certify_modular.py (t, W), V2_data.json (Q_V), M_coeffs.json + nu.json.
+
+Stage 0: validate series primitives
+  [PASS] sqrt(1+2q+q^2) == 1+q
+  [PASS] 1/(1-q) == sum q^k
+  [PASS] NEGATIVE CONTROL: sqrt(1+2q+2q^2) is NOT 1+q
+
+Stage 1: eta pipeline, y0 from the moments, and the rho-gauge anchor
+  [PASS] q*u head = [1,-3,3,-1,0,0,0,-3,9]
+  [PASS] t(q) head = q -4q^2 +12q^3 -34q^4 +90q^5
+  [PASS] v(0)=+1 and v^2 == (1-4t)(1-5t)(1-9t) o t(q) to 200 orders
+  [PASS] y0 head = [1,10,87,724]
+  [PASS] Phi head equals the moment sequence nu
+  [PASS] gauge anchor: B (y0 o t) v W == A0 W^2 + A1 (q dW/dq) to 200 orders
+
+Stage 2: Delta exactly, and the reduction to Ntilde_v(S2) = 2 Delta
+  [PASS] Delta == (13t-1)/(30 t (t-1)^2)
+  [PASS] Delta != 0  (the S2 = 0 case is impossible at every degree)
+  [PASS] reduction (generic S2): W'' and W' coefficients vanish identically
+  [PASS] reduction (generic S2): W coefficient == Ntilde_v(S2) - 2 Delta
+  [PASS] NEGATIVE CONTROL: with S1 = +d_v(S2) the W'' coefficient does NOT vanish
+  (C' = 0 in the reduction: a nonzero rational C' would equal an element of
+   v^{-1} span{W,W',W''}, impossible by consequence (ii) of the SL(2,C) lemma
+   -- see the docstring for the GCRD argument.)
+
+Stage 3: Phi == 2 rho1 W/v + 2 Int Delta W/v dt + 2/15   to 200 orders
+  [PASS] integrand q A'(q) = Delta W^2/v has no constant term (integrable)
+  [PASS] residual is the CONSTANT 2/15: q^0 coefficient   got 2/15
+  [PASS] residual constant through q^199 (first nonzero = None)
+  [PASS] NEGATIVE CONTROL: perturbing Delta (13->14) breaks the identity
+
+Stage 4: no rational solution of Ntilde_v(S2) = 2 Delta
+  [PASS] denominators cleared; leading coefficient = 15*t**3*(t - 1)**3*(4*t - 1)**3*(5*t - 1)**3*(9*t - 1)**3
+  [PASS] control: manufactured rational S* recovered exactly   candidate found
+  [PASS] control: homogeneous equation has only S = 0 (matches the SL(2,C) lemma)   candidate found
+  [PASS] FALSIFICATION: undersized box does NOT recover S*   inconsistent (28 samples > identity degree 22)
+    p = 0     nu_p = 0  ord_p(g) = 2  ind. integer roots (-m>0): []       m_max = 0
+    p = 1/9   nu_p = 0  ord_p(g) = 3  ind. integer roots (-m>0): []       m_max = 0
+    p = 1/5   nu_p = 0  ord_p(g) = 3  ind. integer roots (-m>0): []       m_max = 0
+    p = 1/4   nu_p = 0  ord_p(g) = 3  ind. integer roots (-m>0): []       m_max = 0
+    p = 1     nu_p = 0  ord_p(g) = 1  ind. integer roots (-m>0): []       m_max = 0
+    infinity: mu = 12, numerator degree bound = 3
+  [PASS] THEOREM: Ntilde_v(S2) = 2 Delta has no rational solution   inconsistent (24 samples > identity degree 18)
+
+Stage 5: sanity -- no polynomial relation a W + b W' + c W'' = 0, deg <= 10
+  [PASS] full column rank 33/33 (independence to this degree; all degrees by the lemma)
+
+RESULT: ALL CHECKS PASS -- Phi = 2 rho1 W/v + 2 Int Delta W/v dt + 2/15 with Delta = (13t-1)/(30t(t-1)^2), and Phi is NOT in Q(t) + v^{-1} span{W, W', W''}: the Green's function combination d/dE[(E-1)G_disp] is weight-two quasimodular, (E-1)G_disp itself is not.

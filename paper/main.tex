@@ -736,6 +736,87 @@ rational solution $R$ of Eq.~\eqref{eq:R}. The full
 symbolic-plus-series certification is the script \texttt{numerics/certify\_y0.py}
 (\texttt{CERTIFICATE\_y0.txt}).
 
+\section{The generating function itself: an exact obstruction}
+\label{sec:phiobs}
+
+The closed form \eqref{eq:y0closed} concerns the derivative $y_0=\Phi'/2$; the resolvent sits one
+integration higher. Since the dispersive part of $G$ is odd in $\zeta=z-1$ with even central moments
+$\nu_m$, its generating function is exactly
+\begin{equation}
+\zeta\,G_{\rm disp}(z)=\Phi(t),\qquad t=\zeta^{-2},
+\label{eq:zetaG}
+\end{equation}
+term by term at large $|\zeta|$. It is natural to ask whether $\Phi$ itself---hence the Green's
+function, the flat-band pole being elementary---admits a closed form in the same modular data. It
+does not, in the following precise sense, and the entire obstruction is one explicit rational
+function. Integrating \eqref{eq:y0closed} once by parts,
+\begin{equation}
+\Phi(t)=\frac{2\rho_1(t)\,W}{v}+2\!\int_0^{t}\!\Delta(s)\,\frac{W}{v}\,\rmd s+\frac{2}{15},
+\label{eq:phiid}
+\end{equation}
+\begin{equation}
+\Delta:=\rho_0-\Big(\rho_1'-\rho_1\,\frac{v'}{v}\Big)
+=\frac{13\,t-1}{30\,t\,(t-1)^2}\neq0.
+\label{eq:Delta}
+\end{equation}
+The identity \eqref{eq:phiid} is proven by differentiation---it reduces to \eqref{eq:y0closed} as
+exact rational-function algebra---with the constant fixed at $t=0$, where $\Phi(0)=\nu_0=\tfrac23$
+and $2\rho_1W/v\to\tfrac8{15}$; the integrand is regular there ($\Delta\,W/v\to-\tfrac1{30}$). Note
+the support of the obstruction: $\Delta$ has poles only at the cusp image $t=0$ and the principal
+van Hove point $t=1$---the twist locus $t=\tfrac14,\tfrac15,\tfrac19$ cancels out. If $\Delta$
+vanished, \eqref{eq:phiid} would place $\Phi$ in the same quasimodular module as $y_0$. It does not,
+and the failure is categorical, not an artifact of this particular rearrangement:
+
+\emph{Theorem ($\Phi$ lies outside the quasimodular module of $y_0$).}
+\begin{equation}
+\Phi\;\notin\;\mathbb{Q}(t)\;+\;v^{-1}\big(\mathbb{Q}(t)\,W+\mathbb{Q}(t)\,W'+\mathbb{Q}(t)\,W''\big).
+\label{eq:phithm}
+\end{equation}
+The module on the right is the $v^{-1}$-twist of the full $\rmd/\rmd t$-closure of $W$ over
+$\mathbb{Q}(t)$ (rank three, by $\widetilde N(W)=0$), extended by rational functions; it contains
+$y_0$ by \eqref{eq:y0closed}. The derivative of the generating function is quasimodular; the
+generating function itself is not.
+
+\emph{Proof.} Three exact steps, certified in \texttt{numerics/certify\_phi\_obstruction.py}
+(\texttt{CERTIFICATE\_phi\_obstruction.txt}). (a) For any nonzero $P=S_0+S_1\,\rmd/\rmd t+S_2\,
+\rmd^2/\rmd t^2$ over $\mathbb{Q}(t)$, the value $P(W)$ is neither zero nor algebraic over
+$\mathbb{C}(t)$. Indeed $P(W)=0$ would make $\mathrm{GCRD}(P,\widetilde N)$ a nonconstant right
+factor of order ${\le}2$ of $\widetilde N$, which is irreducible: its solution space is the
+symmetric square of the standard representation of $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$ (the
+Lemma of Sec.~\ref{sec:y0closed}). And an algebraic value is rational, by connectedness of
+$\mathcal{G}$~\cite{vdPutSinger}; then $P$ is constant on the Galois orbit of $W$---which spans
+$\mathrm{Sol}(\widetilde N)$, by irreducibility---so $P$ kills the ${\ge}2$-dimensional span of
+orbit differences, again a proper right factor. In particular $W,W',W''$ are independent over
+$\mathbb{Q}(t)$, and $v^{-1}\mathrm{span}\{W,W',W''\}$ meets $\mathbb{C}(t)$ only in $0$ (an
+equality $\xi/v=r$ would make $\xi=rv$ algebraic). (b) Suppose
+$\Phi=C+(S_0W+S_1W'+S_2W'')/v$ with rational $C,S_i$. Differentiating, eliminating $W'''$ by
+$\widetilde N(W)=0$, and comparing with $\Phi'=2y_0$ coefficient-wise in the independent triple
+$W,W',W''$ forces $C'=0$ (by the last sentence of (a)), $S_1=-\rmd_vS_2$ and
+$S_0=2\rho_1+\rmd_v^{\,2}S_2+4Q_VS_2$ with $\rmd_v:=\rmd/\rmd t-v'/v$, and leaves the single
+condition
+\begin{equation}
+\widetilde N_v(S_2)=2\Delta,\qquad
+\widetilde N_v:=\rmd_v^{\,3}+4Q_V\,\rmd_v+2Q_V',
+\label{eq:S2eq}
+\end{equation}
+verified symbolically for generic $S_2$. (c) Equation \eqref{eq:S2eq} has no rational solution: a
+rational $S_2$ could have poles only at $t=0,\tfrac19,\tfrac15,\tfrac14,1$; at each of these points
+the indicial polynomial of $\widetilde N_v$ has no negative-integer root and order matching forbids
+any pole at all, while the analysis at $t=\infty$ caps the degree at three. The resulting
+four-dimensional linear system is inconsistent, exactly over $\mathbb{Q}$. \hfill$\square$
+
+Physically, by \eqref{eq:zetaG},
+\begin{equation}
+\frac{\rmd}{\rmd z}\big[\zeta\,G_{\rm disp}(z)\big]=-\frac{4\,y_0(t)}{\zeta^{3}},\qquad
+t=\zeta^{-2}:
+\label{eq:dzG}
+\end{equation}
+the object the closed form \eqref{eq:y0closed} evaluates exactly is this derivative combination,
+while $\zeta\,G_{\rm disp}$ itself lies provably outside the module. The remaining transcendental
+in \eqref{eq:phiid} is the Eichler-type integral of the weight-four, determinant-character form
+$\Delta\,W^2/v$ (via $\rmd t=W\,\rmd q/q$); its arithmetic nature---its Eisenstein and cuspidal
+components on the twist cover of Eq.~\eqref{eq:twist}---we leave open.
+
 \section{The Watson reduction: a generalized body-centred-cubic integral}
 \label{sec:watson}
 The orthogonal structure of Sec.~\ref{sec:orthogonal} has a concrete origin, which can be exhibited directly.
@@ -826,7 +907,10 @@ contributes the delta function $\tfrac13\,\delta(E+2)$.
 \section{Discussion}
 We have given the exact differential equation that controls the hyperkagome lattice Green's function,
 determined its differential-Galois structure, proven its modularity, and obtained its weight-two period in
-explicit closed form. Constructively, $M$ is an irreducible
+explicit closed form. The result is also delimited exactly: the derivative
+$\rmd[\zeta G_{\rm disp}]/\rmd z$ is quasimodular through the closed form \eqref{eq:y0closed}, while the
+generating function $\zeta G_{\rm disp}$ itself provably is not, the entire obstruction being the rational
+function $\Delta$ of Eq.~\eqref{eq:Delta} (Sec.~\ref{sec:phiobs}). Constructively, $M$ is an irreducible
 third-order Picard--Fuchs operator that is not a \emph{literal} symmetric square, yet whose symmetric square
 carries a rational solution; its Galois group is therefore the full orthogonal group
 $\mathrm{O}(3,\mathbb{C})$, with identity component $\mathrm{SO}(3,\mathbb{C})$, and $M$ is

@@ -68,6 +68,16 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   level, in particular **not an eta quotient** (proof: `G(V₂) = SL(2,ℂ)`, then a torus/unipotent argument in the
   Picard–Vessiot field). Certified exactly in `numerics/certify_y0.py` and `numerics/certify_y0_lemma.py`
   (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
+- **The generating function `Φ` itself is provably NOT quasimodular — the obstruction is explicit.**
+  Integrating the closed form by parts once: `Φ = 2ρ₁·W/v + 2∫₀ᵗ Δ·(W/v) ds + 2/15` with
+  `Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²) ≠ 0` (poles only at the cusp `t=0` and the van Hove point
+  `t=1`; the twist locus cancels). **Theorem:** `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')`: the surviving
+  condition `Ñ_v(S₂) = 2Δ` has no rational solution (indicial analysis: no poles allowed, degree ≤ 3,
+  4-dim system inconsistent over ℚ). Physically `ζ·G_disp = Φ(t)` (`ζ = z−1`), so
+  `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular while `ζG_disp` itself is **not** — the closed form stops
+  exactly one integration short of the resolvent, and the gap is the Eichler-type integral of the weight-4
+  character form `Δ·W²/v`. Certified in `numerics/certify_phi_obstruction.py`
+  (→ `CERTIFICATE_phi_obstruction.txt`).
 - **Non-Liouvillian: no algebraic or elementary closed form.** A genuine log at t=0 (repeated indicial
   exponent −1; exactly one log-free local solution of three, `numerics/certify_nonliouvillian.py`) excludes
   finite and imprimitive differential-Galois groups; equivalently `G° = SO(3,ℂ)` is simple hence

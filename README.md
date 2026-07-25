@@ -58,6 +58,15 @@ solution `R(t)`**, so:
   (meromorphic modular form)×(algebraic function) at any weight or level, in particular **not an eta quotient**,
   so the period is genuinely quasimodular rather than modular. Certified exactly in `numerics/certify_y0.py` and
   `numerics/certify_y0_lemma.py` (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
+- **The generating function itself is provably NOT quasimodular (exact obstruction).** Integrating the
+  closed form once: `Φ = 2ρ₁·W/v + 2∫₀ᵗ Δ·(W/v) ds + 2/15` with the single obstruction
+  **`Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²) ≠ 0`** — poles only at the cusp `t=0` and the van Hove
+  point `t=1`, the twist locus cancels. **Theorem:** `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')` —
+  no rational solution of `Ñ_v(S₂) = 2Δ` exists (indicial analysis forbids every pole and caps the degree
+  at 3; the resulting 4-dim system is inconsistent, exactly over ℚ). Physically: since `ζ·G_disp = Φ(t)`
+  (`ζ = z−1`, `t = ζ⁻²`), the derivative `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular, while `ζG_disp`
+  itself is **not**; the gap is the Eichler-type integral of the weight-4 character form `Δ·W²/v`.
+  Certified in `numerics/certify_phi_obstruction.py` → `CERTIFICATE_phi_obstruction.txt`.
 - **Still non-Liouvillian ⇒ no algebraic or elementary closed form** — `G° = SO(3,ℂ)` is simple, hence
   non-solvable (an irreducible operator has Liouvillian solutions iff `G°` is solvable). This excludes
   algebraic/elementary forms only, and is fully consistent with the modular closed form (eta quotients and
@@ -122,6 +131,7 @@ python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 lo
 python numerics/certify_bridge.py            # explicit V2 + conic point; bridge f0^2 = P(y0), V2(f0)=0 to t^107
 python numerics/certify_y0.py                # y0 = Phi'/2 closed form (weight-2 depth-1 quasimodular)
 python numerics/certify_y0_lemma.py          # y0 is NOT (modular form of any weight) x (algebraic)
+python numerics/certify_phi_obstruction.py   # Phi itself is NOT weight-2 quasimodular; Delta identity + theorem
 python numerics/verify_mum_normalform.py     # t=0 is MUM: canonical normal form, n=2
 python numerics/verify_watson_reduction.py   # LGF = generalized bcc(1,2) Watson integral
 python numerics/strengthen_certification.py  # overdetermination margin + independent Bloch moments
@@ -130,7 +140,7 @@ python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
 ```
 
-All fifteen exit `0` on system Python.
+All sixteen exit `0` on system Python.
 
 Each `certify_*` script validates its primitives on operators with known structure before the real
 run, and writes a plain-text certificate (`numerics/CERTIFICATE*.txt`).
@@ -147,9 +157,9 @@ numerics/
                                                        transported N = D^3+B2 D^2+B1 D+B0, and the conic point
   verify.py, certify_factor.py, certify_orthogonal.py, certify_modular.py, certify_nonliouvillian.py,
   certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
-  verify_mum_normalform.py, verify_watson_reduction.py, strengthen_certification.py,
-  verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (15, all exit 0)
+  certify_phi_obstruction.py, verify_mum_normalform.py, verify_watson_reduction.py,
+  strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
+                                                     — reproduction / certification scripts (16, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
                                                         certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)
