@@ -59,7 +59,9 @@ modular form)$\times$(algebraic function) at any weight or level, in particular 
 period is quasimodular rather than modular.
 The operator remains non-Liouvillian---$G^\circ=\mathrm{SO}(3,\mathbb{C})$ is simple, hence non-solvable---so no
 algebraic or elementary closed form exists; the closed form is modular and quasimodular (eta quotients and Eisenstein
-series; a $\,_2F_1$ representation follows in principle via an algebraic pullback), exactly as the orthogonal Galois group demands. We further reduce the LGF, exactly, to a classical two-parameter Watson
+series), exactly as the orthogonal Galois group demands. The associated $\,_2F_1$ representation follows via an
+explicit algebraic pullback, which we show is solvable in radicals over $\mathbb{Q}(t)$, with Galois group the
+Atkin--Lehner group $(\mathbb{Z}/2)^3$ of the level. We further reduce the LGF, exactly, to a classical two-parameter Watson
 integral---the body-centred-cubic lattice with first- and second-neighbour hopping at spectral parameter
 $1-6t+3t^2$---identifying the object within the classical cubic-lattice Green's-function literature. We give
 the operator, its complete Riemann scheme, the invariant quadratic form and its Gram data, the single
@@ -389,8 +391,9 @@ point, before the certified run.
 The pullback question is settled, in its sharpest form, in Sec.~\ref{sec:modular}: $V_2$ is the uniformizing
 operator of the modular curve $X(\Gamma_0(30)^+)$, its mirror map at the MUM point is the level-30
 eta-quotient parametrization \eqref{eq:hauptt}, and the sought closed form is modular---an
-Assis--van~Hoeij--Maillard-style $\,_2F_1$ with \emph{algebraic} pullback exists in principle because $j$ is
-algebraic over $\mathbb{Q}(t)$, but the modular parametrization itself is the closed form in its natural
+Assis--van~Hoeij--Maillard-style $\,_2F_1$ with \emph{algebraic} pullback is now explicit: $1728/j$ is
+algebraic of degree eight over $\mathbb{Q}(t)$ and solvable in radicals (the Proposition of
+Sec.~\ref{sec:modular})---though the modular parametrization itself remains the closed form in its natural
 coordinates.
 
 \emph{Maximal unipotent monodromy at $t=0$ ($n=2$).} The three exponents at $t=0$, $\{-1,-1,0\}$ (indicial
@@ -546,10 +549,62 @@ the hyperkagome LGF lives at level $30=2\cdot3\cdot5$. To our knowledge every la
 sunrise-integral period) previously realised modularly occurs at a level with at most two distinct primes---
 levels $2,3,4,6$ dominate the classical cubic-lattice and Bessel-moment
 literature~\cite{Broadhurst2016,BlochKerrVanhove2015}---so the hyperkagome appears to be the first lattice
-Green's function realised at a level with three distinct prime factors. An
-Assis--van~Hoeij--Maillard-style $\,_2F_1$ representation~\cite{AVM2016} follows in principle, since $j$ is
-algebraic over $\mathbb{Q}(t)$ of bounded degree (an algebraic, not rational, pullback); but
-\eqref{eq:etaquot}--\eqref{eq:hauptt} is already the closed form in its most natural coordinates.
+Green's function realised at a level with three distinct prime factors. The
+Assis--van~Hoeij--Maillard-style $\,_2F_1$ representation~\cite{AVM2016} is now explicit rather than merely
+in-principle, and its algebraic pullback turns out to be solvable in radicals.
+
+\emph{Proposition (the pullback in radicals).} The pullback $H=1728/j$, the argument of the
+$\,_2F_1\!\left(\tfrac{1}{12},\tfrac{5}{12};1;\cdot\right)$ representation, is algebraic of degree exactly
+eight over $\mathbb{Q}(t)$: its primitive minimal polynomial $P_H(H,t)$ has bidegree $(8,72)$, and the
+splitting field of $P_H$ is the multiquadratic extension
+\begin{equation}
+\mathbb{Q}(t)\Big(\sqrt{(1-t)(1-9t)},\ \sqrt{(1-t)(1-5t)},\ \sqrt{1-4t}\Big),
+\label{eq:radfield}
+\end{equation}
+which is the full function field of $X_0(30)$. Consequently
+$\mathrm{Gal}\big(P_H/\mathbb{Q}(t)\big)\cong(\mathbb{Z}/2)^3$ is the Atkin--Lehner group $\mathcal{W}$, and
+the $\,_2F_1$ pullback is solvable in radicals. The product of the three radicands is $\big((1-t)\,v\big)^2$:
+the determinant-character twist $v$ of Eq.~\eqref{eq:twist} is, up to sign and the rational factor $1-t$, the
+product of the three quadratic layers of the radical tower.%
+\footnote{For the equivalent base $\,_2F_1\!\left(\tfrac18,\tfrac38;1;\cdot\right)$ the pullback satisfies a
+smaller equation, of bidegree $(4,24)$, whose two radicands $(1-t)(1-5t)$ and $(1-t)(1-4t)(1-9t)$ generate an
+index-two subfield of \eqref{eq:radfield} (M.~van~Hoeij and one of us, J.-M.M.); its analytic branch
+$H=256t-25600t^2+\cdots$ is verified against the certified $Q_V$ through the Schwarzian pullback identity to
+order $t^{96}$.}
+
+\emph{Proof.} The coefficients of $P_H$, an explicit radical expression for $H$ due to
+M.~van~Hoeij (private communication, July 2026), and the machine certificate are public
+(\texttt{numerics/pullback\_data.json}, \texttt{numerics/certify\_pullback.py}). The certificate proves four
+exact statements. (i)~$P_H(H,t)=0$ for the modular $H$: the identity is verified on the $q$-expansions
+through $q^{1200}$, and this is a proof rather than a series check because $H$ lies in the function field of
+$X_0(30)$, of degree $|\mathcal{W}|=8$ over $\mathbb{Q}(t)$ (quotient covolume ratio $24\pi/3\pi$), with pole
+divisor of degree $72$: $j$ has degree $[\mathrm{PSL}_2(\mathbb{Z}):\Gamma_0(30)]=72$, and $\nu_3(30)=0$ means
+that no point above $j=0$ retains an order-three stabiliser, so all $72/3=24$ of them are ramified of index
+three and $H=1728/j$ has $24$ triple poles. Hence a nonzero polynomial of bidegree at most $(8,72)$ evaluated
+on $H$ has polar degree at most $8\cdot72+72\cdot8=1152$, and since a nonzero function on a compact curve has
+as many zeros as poles, its order of vanishing at the cusp---where $q$ is a uniformiser, $\Gamma_0(30)$ having
+width one at $\infty$---is at most $1152<1200$. (ii)~The radical expression is an exact root of
+$P_H$: a polynomial identity in the multiquadratic algebra, in exact integer arithmetic, no series involved.
+(iii)~The seven subset products of the radicands are non-squares, so \eqref{eq:radfield} has degree eight
+over $\mathbb{Q}(t)$. (iv)~The eight sign-conjugates of the radical expression are pairwise distinct, and the
+branch with signs $(-,-,-)$ matches the $t$-expansion of the modular $H$; hence $H$ has degree exactly eight,
+$P_H$ is irreducible and is the minimal polynomial, and $\mathbb{Q}(t)(H)$ is all of \eqref{eq:radfield}.
+That field is $\mathbb{Q}(X_0(30))$: by the theorem of this section $\mathbb{Q}(t)$ is the fixed field of
+$\mathcal{W}$ acting on $\mathbb{Q}(X_0(30))$, so $[\mathbb{Q}(X_0(30)):\mathbb{Q}(t)]=|\mathcal{W}|=8$ by
+Artin's theorem, while $\mathbb{Q}(t)(H)\subseteq\mathbb{Q}(X_0(30))$ because $H=1728/j$ is a modular function
+for $\Gamma_0(30)$; equal degrees force equality, and $\mathrm{Gal}=\mathcal{W}$. As a consistency check,
+Riemann--Hurwitz for the $(\mathbb{Z}/2)^3$-cover \eqref{eq:radfield} of the $t$-line, branched over the five
+order-two orbifold points---$\{1,\tfrac19\}$, $\{1,\tfrac15\}$ and $\{\tfrac14,\infty\}$ through the three
+quadratic layers---gives four double points over each, hence $2g-2=8\cdot(-2)+5\cdot4$, i.e.\ $g=3$, the
+classical genus of $X_0(30)$. The ramification index is two even at $t=1$, where two of the radicands vanish
+simultaneously: their product $(1-t)^2(1-5t)(1-9t)$ has \emph{even} valuation there, so of the seven nontrivial
+characters exactly four are ramified and the unramified ones form a subgroup of order four; the inertia group is
+generated by the simultaneous sign flip and has order two, not four. \hfill$\square$
+
+The representation \eqref{eq:etaquot}--\eqref{eq:hauptt} remains the closed form in its most natural
+coordinates; the proposition shows what replaces rationality of the pullback: an abelian $(\mathbb{Z}/2)^3$
+radical tower whose quadratic layers are cut out by the Atkin--Lehner involutions, with the
+determinant-character twist $v$ appearing as their product.
 
 \section{The weight-two period in closed form}
 \label{sec:y0closed}
@@ -944,6 +999,8 @@ the public repository accompanying this paper.
 \begin{acknowledgments}
 We thank W.~Zudilin for the observation that an order-three
 Calabi--Yau operator would have to be a symmetric square, which helped us discard the Calabi--Yau framing.
+We are indebted to M.~van~Hoeij for the explicit radical expression for the pullback $1728/j$, computed from
+the explicit $V_2$ (private communication, July 2026) and certified in Sec.~\ref{sec:modular}.
 The operator determination and all certifications were carried out with computer algebra (SymPy); every reported
 result is reproduced by the exact, publicly available scripts in the accompanying repository.
 \end{acknowledgments}

@@ -67,6 +67,17 @@ solution `R(t)`**, so:
   (`ζ = z−1`, `t = ζ⁻²`), the derivative `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular, while `ζG_disp`
   itself is **not**; the gap is the Eichler-type integral of the weight-4 character form `Δ·W²/v`.
   Certified in `numerics/certify_phi_obstruction.py` → `CERTIFICATE_phi_obstruction.txt`.
+- **The ₂F₁ pullback is explicit and solvable in radicals (Atkin–Lehner Galois group).** The pullback
+  `H = 1728/j` of the `₂F₁([1/12,5/12];[1];·)` representation has primitive minimal polynomial `P_H(H,t)` of
+  bidegree **(8,72)** over `ℚ(t)`; its splitting field is the multiquadratic extension
+  `ℚ(t)(√((1−t)(1−9t)), √((1−t)(1−5t)), √(1−4t))` — the full function field of `X₀(30)` — so
+  `Gal(P_H) ≅ (ℤ/2)³` **is the Atkin–Lehner group of level 30**, and the pullback is solvable in radicals
+  (explicit radical expression: M. van Hoeij, private communication, July 2026). The product of the three
+  radicands is `((1−t)·v)²`: the determinant-character twist is the product of the quadratic layers.
+  Proof-grade: annihilation is verified through `q^1200`, past the a-priori divisor bound `8·72+72·8 = 1152`,
+  and the radical expression is checked as an **exact root** (polynomial identity, no series). For the
+  `₂F₁([1/8,3/8];[1];·)` base the minimal polynomial has bidegree (4,24) on an index-two subfield.
+  Data + certificate: `numerics/pullback_data.json`, `numerics/certify_pullback.py` → `CERTIFICATE_pullback.txt`.
 - **Still non-Liouvillian ⇒ no algebraic or elementary closed form** — `G° = SO(3,ℂ)` is simple, hence
   non-solvable (an irreducible operator has Liouvillian solutions iff `G°` is solvable). This excludes
   algebraic/elementary forms only, and is fully consistent with the modular closed form (eta quotients and
@@ -132,6 +143,8 @@ python numerics/certify_bridge.py            # explicit V2 + conic point; bridge
 python numerics/certify_y0.py                # y0 = Phi'/2 closed form (weight-2 depth-1 quasimodular)
 python numerics/certify_y0_lemma.py          # y0 is NOT (modular form of any weight) x (algebraic)
 python numerics/certify_phi_obstruction.py   # Phi itself is NOT weight-2 quasimodular; Delta identity + theorem
+python numerics/certify_pullback.py          # 2F1 pullback 1728/j: minimal polynomial (8,72); solvable in radicals;
+                                             #   Galois group = Atkin-Lehner (Z/2)^3; proof past the divisor bound 1152
 python numerics/verify_mum_normalform.py     # t=0 is MUM: canonical normal form, n=2
 python numerics/verify_watson_reduction.py   # LGF = generalized bcc(1,2) Watson integral
 python numerics/strengthen_certification.py  # overdetermination margin + independent Bloch moments
@@ -140,7 +153,7 @@ python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
 ```
 
-All sixteen exit `0` on system Python.
+All seventeen exit `0` on system Python.
 
 Each `certify_*` script validates its primitives on operators with known structure before the real
 run, and writes a plain-text certificate (`numerics/CERTIFICATE*.txt`).
@@ -155,11 +168,14 @@ numerics/
   M_coeffs.json                                      — the certified order-3 operator M (integer coeffs)
   V2_data.json                                       — the explicit order-2 operator V2 (p, q, Q_V), the
                                                        transported N = D^3+B2 D^2+B1 D+B0, and the conic point
+  pullback_data.json                                 — the (8,72) minimal polynomial of the 2F1 pullback 1728/j,
+                                                       van Hoeij's radical expression, and the (4,24) equation
+                                                       for the [1/8,3/8] base
   verify.py, certify_factor.py, certify_orthogonal.py, certify_modular.py, certify_nonliouvillian.py,
   certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
-  certify_phi_obstruction.py, verify_mum_normalform.py, verify_watson_reduction.py,
+  certify_phi_obstruction.py, certify_pullback.py, verify_mum_normalform.py, verify_watson_reduction.py,
   strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (16, all exit 0)
+                                                     — reproduction / certification scripts (17, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
                                                         certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)

@@ -78,6 +78,16 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   exactly one integration short of the resolvent, and the gap is the Eichler-type integral of the weight-4
   character form `Δ·W²/v`. Certified in `numerics/certify_phi_obstruction.py`
   (→ `CERTIFICATE_phi_obstruction.txt`).
+- **The ₂F₁ pullback in radicals.** The pullback `H = 1728/j` of the `₂F₁([1/12,5/12];[1];·)`
+  representation is algebraic of degree exactly 8 over `ℚ(t)`: primitive minimal polynomial `P_H` of
+  bidegree **(8,72)**, splitting field `ℚ(t)(√((1−t)(1−9t)), √((1−t)(1−5t)), √(1−4t))` = the function
+  field of `X₀(30)`, Galois group `(ℤ/2)³` = **the Atkin–Lehner group of level 30** — so the pullback is
+  solvable in radicals, and the product of the three radicands is `((1−t)·v)²` (the determinant-character
+  twist is the product of the quadratic layers; Riemann–Hurwitz recovers the classical genus 3 of `X₀(30)`).
+  The explicit radical expression is due to M. van Hoeij (private communication, July 2026); annihilation is
+  proven past the a-priori divisor bound (`q^1200 > 1152`) and the radical root is an exact polynomial
+  identity. For the `₂F₁([1/8,3/8];[1];·)` base: bidegree (4,24) on an index-two subfield. Certified in
+  `numerics/certify_pullback.py` (→ `CERTIFICATE_pullback.txt`, data `numerics/pullback_data.json`).
 - **Non-Liouvillian: no algebraic or elementary closed form.** A genuine log at t=0 (repeated indicial
   exponent −1; exactly one log-free local solution of three, `numerics/certify_nonliouvillian.py`) excludes
   finite and imprimitive differential-Galois groups; equivalently `G° = SO(3,ℂ)` is simple hence

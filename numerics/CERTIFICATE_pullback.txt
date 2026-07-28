@@ -1,0 +1,75 @@
+==============================================================================
+CERTIFICATE: the 2F1 pullback of V_2 in radicals  (certify_pullback.py)
+==============================================================================
+
+--- Stage 0: validation of primitives on controls -----------------------
+  [PASS] j-series control: q*j = 1 + 744 q + 196884 q^2 + ...
+  [PASS] E4 head 1 + 240q + 2160q^2
+  [PASS] Kronecker-multiply control: (1+q)^2 = 1+2q+q^2 and (1-3q)(1+3q) = 1-9q^2
+  [PASS] algebra control: (r1 r2 r3)^2 == ((1-x) v)^2, v^2 = (1-4x)(1-5x)(1-9x)
+  [PASS] algebra NEGATIVE control: (r1 r2)^2 != ((1-x) v)^2
+  [PASS] square-detector control: (2-3x)^2 detected as a square
+  [PASS] square-detector NEGATIVE control: (1-4x) is not a square
+
+--- Stage 1: P_H annihilates the modular H = 1728/j (PROOF) -------------
+  [PASS] q*u head [1,-3,3,-1,0,0,0,-3,9]
+  [PASS] t(q) head q - 4q^2 + 12q^3 - 34q^4 + 90q^5
+  [PASS] H(q) head 1728 q
+      series built in 4.4 s; evaluating P_H(H(q), t(q)) over Z ...
+      evaluation done in 151.9 s
+  [PASS] P_H(H(q), t(q)) == 0 through q^1200  (all 1201 orders exactly zero over Z)
+      a-priori bound: deg(H) = 72 (24 triple poles over j=0, since nu_3(30)=0 leaves no
+      elliptic point there) and deg(t) = |W| = 8, so a nonzero G of bidegree <= (8,72)
+      has polar degree <= 8*72 + 72*8 = 1152, hence vanishing order <= 1152 at the cusp
+      (q is a uniformiser: width one at infinity); 1200 > 1152, so P_H(H,t) == 0 is PROVEN.
+  [PASS] NEGATIVE control: corrupting coefficient (i,k)=(0,1) by +1 is detected at q^1
+
+--- Stage 2: the radical expression is an EXACT root of P_H --------------
+  [PASS] sum_i A_i(x) Num^i D^(8-i) == 0 in Q(x)[r1,r2,r3]  (all 8 components identically 0)  computed in 31.2 s
+  [PASS] NEGATIVE control: perturbing the radical expression by +1 gives a nonzero result  computed in 32.3 s
+
+--- Stage 3: the multiquadratic algebra is a degree-8 field --------------
+      r1^2               non-square: True
+      r2^2               non-square: True
+      r1^2*r2^2          non-square: True
+      r3^2               non-square: True
+      r1^2*r3^2          non-square: True
+      r2^2*r3^2          non-square: True
+      r1^2*r2^2*r3^2     non-square: True
+  [PASS] all seven subset products of the radicands are non-squares => [A:Q(x)] = 8
+
+--- Stage 4: conjugates, branch identification, minimality ---------------
+  [PASS] the 8 sign-conjugates of the radical expression are pairwise distinct
+  [PASS] series reversion control: t(q(t)) == t through t^19
+  [PASS] modular H(t) head 1728t - 1278720t^2 + 606044160t^3
+  [PASS] the analytic branch (-1,-1,-1) equals the modular H(t) through t^19
+  [PASS] NEGATIVE control: every other sign branch differs from H(t) within 20 orders
+  [PASS] content of the 657 integer coefficients of P_H is 1 (primitive)
+  [PASS] deg_H P_H = 8 (leading block nonzero)
+  [PASS] deg_t P_H = 72 (some t^72 coefficient nonzero)
+      Conclusion: P_H (degree 8) annihilates an element of exact degree 8, so it is
+      irreducible over Q(t) and IS the primitive minimal polynomial, bidegree (8,72).
+      Its splitting field is Q(t)(r1,r2,r3) = Q(X_0(30)); Gal = (Z/2)^3 = the
+      Atkin-Lehner group of level 30; the pullback is solvable in radicals.
+
+--- Stage 5: the (4,24) equation for the 2F1([1/8,3/8];[1];.) base -------
+  [PASS] OtherPH(OtherH) == 0 exactly in Q(x)[r2,s2]  (all 4 components identically 0)
+  [PASS] its 4 sign-conjugates are pairwise distinct => irreducible => minimal, bidegree (4,24)
+  [PASS] s2^2 == r1^2 * r3^2 / (1-x)^0  i.e. (1-x)(1-4x)(1-9x) == [(1-x)(1-9x)]*(1-4x)  so s2 = +-r1 r3 and Q(x)(r2, s2) is an index-two subfield of Q(x)(r1,r2,r3)
+  [PASS] Q_E of the printed base operator = (15z^2-19z+16)/(64 z^2 (z-1)^2)
+  [PASS] Newton branch of OtherPH exact to t^100
+  [PASS] branch head 256t - 25600t^2 + 1441792t^3
+  [PASS] Schwarz identity Q_E(H)H'^2 + (1/2){H,t} == Q_V through t^96  against certified V2_data.json (guess-and-verify standard, 97 orders)
+  [PASS] NEGATIVE control: perturbing the branch at t^6 breaks the Schwarz identity
+
+==============================================================================
+RESULT: ALL PASS  (0 checks failed)   total 221.6 s
+The 2F1([1/12,5/12];[1];.) pullback H = 1728/j of V_2 has primitive minimal
+polynomial P_H of bidegree (8,72) over Q(t); its splitting field is
+Q(t)(sqrt((1-t)(1-9t)), sqrt((1-t)(1-5t)), sqrt(1-4t)) = Q(X_0(30)), with Galois
+group (Z/2)^3, the Atkin-Lehner group of level 30; the product of the three
+radicands is ((1-t)v)^2, v the determinant-character twist.  The pullback is
+solvable in radicals (explicit expression: M. van Hoeij, private communication,
+July 2026).  For the 2F1([1/8,3/8];[1];.) base the minimal polynomial has
+bidegree (4,24) on an index-two subfield (van Hoeij & Maillard).
+==============================================================================
