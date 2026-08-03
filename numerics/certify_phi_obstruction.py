@@ -1,5 +1,5 @@
-"""certify_phi_obstruction.py -- Phi itself is NOT weight-two quasimodular (theorem),
-and the exact identity that isolates the obstruction.
+"""certify_phi_obstruction.py -- Phi itself lies OUTSIDE the quasimodular module of
+y0 (theorem), and the exact identity that isolates the obstruction.
 
 Setting (established elsewhere in this repository):
   t = the degree-one coordinate on X(Gamma_0(30)+) of certify_modular.py,
@@ -40,9 +40,24 @@ THIS CERTIFICATE PROVES, in that setting:
                  inconsistent, exactly over Q.
     ==>  Phi is NOT in  Q(t) + v^{-1} span_{Q(t)}{W, W', W''};
          since that module contains every chi-twisted meromorphic quasimodular
-         form of weight two and depth <= 2, Phi -- unlike its derivative -- is
-         not weight-two quasimodular.  The one remaining transcendental in Phi
-         is the Eichler-type integral of the weight-four form Delta W^2 / v.
+         form of weight two and depth <= 2 WITH COEFFICIENTS IN Q(t), Phi --
+         unlike its derivative -- is not such a form.  The one remaining
+         transcendental in Phi is the Eichler-type integral of the weight-four
+         form Delta W^2 / v.
+
+    SCOPE (stated so it is not read wider than it is proved).  What is excluded
+    is membership in the displayed Q(t)-module.  NOT excluded here: coefficients
+    algebraic over Q(t) rather than rational, the opposite v-parity, and weights
+    or depths outside (two, <= 2).  Closing the algebraic-coefficient case needs
+    a descent argument (average over the Galois orbit of the coefficient field,
+    then split by the involution v -> -v); that argument is not run here.
+
+    INVARIANCE.  Delta is only a coset representative: it rescales with the
+    choice of v-model and shifts by Ntilde_v(S2) under a change of slice, so its
+    pole locations carry no structural meaning (a Moebius change of hauptmodul
+    sends the numerator 13t-1 to 10s-1).  The invariant statement is that the
+    class [2 Delta] in Q(t)/Ntilde_v(Q(t)) is nonzero, which is what the rank
+    computation below actually establishes.
 
 Physically:  (E-1) G_disp(E) = Phi(t), t = (E-1)^{-2}, so the modular closed form
 of y0 determines  d/dE [ (E-1) G_disp(E) ] = -4 y0(t) / (E-1)^3  exactly, while
@@ -171,7 +186,9 @@ def eta_ipart(d, n=NQ):
     return s
 
 
-emit("certify_phi_obstruction.py -- Phi (unlike Phi') is not weight-two quasimodular")
+emit("certify_phi_obstruction.py -- Phi (unlike Phi') lies OUTSIDE the quasimodular")
+emit("module Q(t) + v^{-1}(Q(t)W + Q(t)W' + Q(t)W'') of y0.  Scope: rational")
+emit("coefficients and this v-parity; algebraic coefficients are not excluded here.")
 emit("")
 emit("Dependencies: certify_y0.py (the rho-gauge), certify_y0_lemma.py")
 emit("(Gal(w''+Q_V w=0) = SL(2,C); irreducibility of Ntilde and the no-algebraic-")
@@ -600,7 +617,11 @@ emit("")
 verdict = ("ALL CHECKS PASS -- Phi = 2 rho1 W/v + 2 Int Delta W/v dt + 2/15 with "
            "Delta = (13t-1)/(30t(t-1)^2), and Phi is NOT in Q(t) + v^{-1} "
            "span{W, W', W''}: the Green's function combination d/dE[(E-1)G_disp] "
-           "is weight-two quasimodular, (E-1)G_disp itself is not."
+           "is weight-two quasimodular, while (E-1)G_disp itself lies outside "
+           "that module.  Scope: Q(t) coefficients and this v-parity; the "
+           "algebraic-coefficient case is not excluded here.  Invariant content: "
+           "the class [2 Delta] in Q(t)/Ntilde_v(Q(t)) is nonzero -- Delta alone "
+           "is a coset representative and its poles are gauge, not structure."
            if ok_all else "CERTIFICATION FAILED -- see FAIL lines above")
 emit("RESULT: " + verdict)
 

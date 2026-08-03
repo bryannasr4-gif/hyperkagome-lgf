@@ -68,16 +68,21 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   level, in particular **not an eta quotient** (proof: `G(V₂) = SL(2,ℂ)`, then a torus/unipotent argument in the
   Picard–Vessiot field). Certified exactly in `numerics/certify_y0.py` and `numerics/certify_y0_lemma.py`
   (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
-- **The generating function `Φ` itself is provably NOT quasimodular — the obstruction is explicit.**
+- **The generating function `Φ` lies outside the quasimodular module of `y₀` — the obstruction is explicit.**
   Integrating the closed form by parts once: `Φ = 2ρ₁·W/v + 2∫₀ᵗ Δ·(W/v) ds + 2/15` with
-  `Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²) ≠ 0` (poles only at the cusp `t=0` and the van Hove point
-  `t=1`; the twist locus cancels). **Theorem:** `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')`: the surviving
-  condition `Ñ_v(S₂) = 2Δ` has no rational solution (indicial analysis: no poles allowed, degree ≤ 3,
-  4-dim system inconsistent over ℚ). Physically `ζ·G_disp = Φ(t)` (`ζ = z−1`), so
-  `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular while `ζG_disp` itself is **not** — the closed form stops
-  exactly one integration short of the resolvent, and the gap is the Eichler-type integral of the weight-4
-  character form `Δ·W²/v`. Certified in `numerics/certify_phi_obstruction.py`
-  (→ `CERTIFICATE_phi_obstruction.txt`).
+  `Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²)`. **Theorem:**
+  `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')`: the surviving condition `Ñ_v(S₂) = 2Δ` has no rational
+  solution (indicial analysis: no poles allowed, degree ≤ 3, 4-dim system inconsistent over ℚ).
+  What is invariant is the non-vanishing of the class `[2Δ] ∈ ℚ(t)/Ñ_v(ℚ(t))`: `Δ` itself is only a coset
+  representative — rescaled by the choice of `v`-model, shifted by `Ñ_v(S₂)` under a change of slice — so
+  its pole locations are a property of that choice and not of the Green's function, and no structural
+  meaning attaches to the particular form `(13t−1)/(30t(t−1)²)`. Physically `ζ·G_disp = Φ(t)`
+  (`ζ = z−1`), so `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular while `ζG_disp` itself is **not in that
+  module** — the closed form stops exactly one integration short of the resolvent, and the gap is an
+  Eichler-type integral of the weight-4 character form `Δ·W²/v`.
+  **Scope:** the theorem excludes the displayed `ℚ(t)`-module; it does not by itself exclude
+  quasimodularity with coefficients algebraic over `ℚ(t)`, nor the opposite `v`-parity.
+  Certified in `numerics/certify_phi_obstruction.py` (→ `CERTIFICATE_phi_obstruction.txt`).
 - **The ₂F₁ pullback in radicals.** The pullback `H = 1728/j` of the `₂F₁([1/12,5/12];[1];·)`
   representation is algebraic of degree exactly 8 over `ℚ(t)`: primitive minimal polynomial `P_H` of
   bidegree **(8,72)**, splitting field `ℚ(t)(√((1−t)(1−9t)), √((1−t)(1−5t)), √(1−4t))` = the function

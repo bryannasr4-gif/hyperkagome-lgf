@@ -58,14 +58,19 @@ solution `R(t)`**, so:
   (meromorphic modular form)×(algebraic function) at any weight or level, in particular **not an eta quotient**,
   so the period is genuinely quasimodular rather than modular. Certified exactly in `numerics/certify_y0.py` and
   `numerics/certify_y0_lemma.py` (→ `CERTIFICATE_y0.txt`, `CERTIFICATE_y0_lemma.txt`).
-- **The generating function itself is provably NOT quasimodular (exact obstruction).** Integrating the
-  closed form once: `Φ = 2ρ₁·W/v + 2∫₀ᵗ Δ·(W/v) ds + 2/15` with the single obstruction
-  **`Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²) ≠ 0`** — poles only at the cusp `t=0` and the van Hove
-  point `t=1`, the twist locus cancels. **Theorem:** `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')` —
-  no rational solution of `Ñ_v(S₂) = 2Δ` exists (indicial analysis forbids every pole and caps the degree
-  at 3; the resulting 4-dim system is inconsistent, exactly over ℚ). Physically: since `ζ·G_disp = Φ(t)`
-  (`ζ = z−1`, `t = ζ⁻²`), the derivative `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular, while `ζG_disp`
-  itself is **not**; the gap is the Eichler-type integral of the weight-4 character form `Δ·W²/v`.
+- **The generating function `Φ` lies outside the quasimodular module of `y₀` (exact obstruction).**
+  Integrating the closed form once: `Φ = 2ρ₁·W/v + 2∫₀ᵗ Δ·(W/v) ds + 2/15` with
+  **`Δ = ρ₀ − (ρ₁' − ρ₁·v'/v) = (13t−1)/(30t(t−1)²)`**. **Theorem:**
+  `Φ ∉ ℚ(t) + v⁻¹(ℚ(t)W + ℚ(t)W' + ℚ(t)W'')` — no rational solution of `Ñ_v(S₂) = 2Δ` exists
+  (indicial analysis forbids every pole and caps the degree at 3; the resulting 4-dim system is
+  inconsistent, exactly over ℚ). The invariant content is the non-vanishing of the class
+  `[2Δ] ∈ ℚ(t)/Ñ_v(ℚ(t))`; the individual representative `Δ` — and hence where its poles sit —
+  depends on the choice of `v`-model and slice, so no structural meaning attaches to the particular
+  form `(13t−1)/(30t(t−1)²)`. Physically: since `ζ·G_disp = Φ(t)` (`ζ = z−1`, `t = ζ⁻²`), the
+  derivative `d[ζG_disp]/dz = −4y₀(t)/ζ³` **is** quasimodular, while `ζG_disp` itself is **not in
+  that module**; the gap is an Eichler-type integral of the weight-4 character form `Δ·W²/v`.
+  **Scope:** the theorem excludes the `ℚ(t)`-module displayed above. It does not by itself exclude
+  quasimodularity with coefficients algebraic over `ℚ(t)`, nor the opposite `v`-parity.
   Certified in `numerics/certify_phi_obstruction.py` → `CERTIFICATE_phi_obstruction.txt`.
 - **The ₂F₁ pullback is explicit and solvable in radicals (Atkin–Lehner Galois group).** The pullback
   `H = 1728/j` of the `₂F₁([1/12,5/12];[1];·)` representation has primitive minimal polynomial `P_H(H,t)` of
@@ -142,7 +147,7 @@ python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 lo
 python numerics/certify_bridge.py            # explicit V2 + conic point; bridge f0^2 = P(y0), V2(f0)=0 to t^107
 python numerics/certify_y0.py                # y0 = Phi'/2 closed form (weight-2 depth-1 quasimodular)
 python numerics/certify_y0_lemma.py          # y0 is NOT (modular form of any weight) x (algebraic)
-python numerics/certify_phi_obstruction.py   # Phi itself is NOT weight-2 quasimodular; Delta identity + theorem
+python numerics/certify_phi_obstruction.py   # Phi lies outside y0's quasimodular module; Delta identity + theorem
 python numerics/certify_pullback.py          # 2F1 pullback 1728/j: minimal polynomial (8,72); solvable in radicals;
                                              #   Galois group = Atkin-Lehner (Z/2)^3; proof past the divisor bound 1152
 python numerics/verify_mum_normalform.py     # t=0 is MUM: canonical normal form, n=2

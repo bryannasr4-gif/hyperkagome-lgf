@@ -1,4 +1,6 @@
-certify_phi_obstruction.py -- Phi (unlike Phi') is not weight-two quasimodular
+certify_phi_obstruction.py -- Phi (unlike Phi') lies OUTSIDE the quasimodular
+module Q(t) + v^{-1}(Q(t)W + Q(t)W' + Q(t)W'') of y0.  Scope: rational
+coefficients and this v-parity; algebraic coefficients are not excluded here.
 
 Dependencies: certify_y0.py (the rho-gauge), certify_y0_lemma.py
 (Gal(w''+Q_V w=0) = SL(2,C); irreducibility of Ntilde and the no-algebraic-
@@ -50,4 +52,4 @@ Stage 4: no rational solution of Ntilde_v(S2) = 2 Delta
 Stage 5: sanity -- no polynomial relation a W + b W' + c W'' = 0, deg <= 10
   [PASS] full column rank 33/33 (independence to this degree; all degrees by the lemma)
 
-RESULT: ALL CHECKS PASS -- Phi = 2 rho1 W/v + 2 Int Delta W/v dt + 2/15 with Delta = (13t-1)/(30t(t-1)^2), and Phi is NOT in Q(t) + v^{-1} span{W, W', W''}: the Green's function combination d/dE[(E-1)G_disp] is weight-two quasimodular, (E-1)G_disp itself is not.
+RESULT: ALL CHECKS PASS -- Phi = 2 rho1 W/v + 2 Int Delta W/v dt + 2/15 with Delta = (13t-1)/(30t(t-1)^2), and Phi is NOT in Q(t) + v^{-1} span{W, W', W''}: the Green's function combination d/dE[(E-1)G_disp] is weight-two quasimodular, while (E-1)G_disp itself lies outside that module.  Scope: Q(t) coefficients and this v-parity; the algebraic-coefficient case is not excluded here.  Invariant content: the class [2 Delta] in Q(t)/Ntilde_v(Q(t)) is nonzero -- Delta alone is a coset representative and its poles are gauge, not structure.
