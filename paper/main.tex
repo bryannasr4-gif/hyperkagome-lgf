@@ -67,7 +67,7 @@ differential intertwiner makes the operator projectively a symmetric square. Our
 the underlying second-order operator uniformizes the genus-zero modular curve of the Fricke group of
 level thirty, an explicit eta quotient parametrizing the natural variable; the Schwarzian identity is
 proved by a pole-degree bound, not checked numerically. The hyperkagome Green's function is therefore
-modular at level thirty, which establishes the closed form Varma and Monien conjectured. Its
+modular at level thirty, which supplies the closed form Varma and Monien sought. Its
 weight-two period is obtained explicitly, as a depth-one quasimodular form provably not a modular
 form times an algebraic function at any weight.
 \end{abstract}
@@ -113,7 +113,7 @@ higher-order or irreducible differential operator (the diamond lattice already s
 trend~\cite{Guttmann2010,Joyce1998}). The natural three-dimensional frustrated network is the
 \emph{hyperkagome} lattice: a chiral arrangement of corner-sharing triangles, obtained by removing one quarter
 of the sites of the pyrochlore lattice in an ordered (space group $P4_132$) fashion. It is realized by the Ir$^{4+}$
-moments of Na$_4$Ir$_3$O$_8$, a leading three-dimensional quantum-spin-liquid candidate~\cite{Okamoto2007,
+moments of Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}, a leading three-dimensional quantum-spin-liquid candidate~\cite{Okamoto2007,
 Hopkinson2007,Lawler2008}, which has made its single-particle spectral functions of independent interest.
 
 Varma and Monien~\cite{VarmaMonien2013} computed the hyperkagome density of states and reduced it to a single
@@ -124,8 +124,8 @@ remained open.
 
 We settle its analytic structure and prove its modularity. The hyperkagome LGF is governed by an \emph{irreducible third-order}
 Picard--Fuchs operator $M$ that is not a \emph{literal} symmetric square, yet whose symmetric square carries a
-rational solution: the differential Galois group is \emph{orthogonal}, $G=\mathrm{O}(3,\mathbb{C})$ with
-$G^\circ=\mathrm{SO}(3,\mathbb{C})\cong\mathrm{PSL}(2,\mathbb{C})$, so $M$ \emph{is} projectively equivalent to the
+rational solution: the differential Galois group is \emph{orthogonal}, $G_M=\mathrm{O}(3,\mathbb{C})$ with
+$G_M^\circ=\mathrm{SO}(3,\mathbb{C})\cong\mathrm{PSL}(2,\mathbb{C})$, so $M$ \emph{is} projectively equivalent to the
 symmetric square of a second-order operator. The obstruction Varma and Monien met is therefore not a genuine
 third-order (``$\mathrm{SL}_3$-generic'') object with no elliptic reduction; it is a \emph{hidden orthogonal /
 modular structure}, realized through a nontrivial operator equivalence rather than the function-multiplier and
@@ -139,10 +139,12 @@ three-dimensional LGF known to require such an equivalence, and the first lattic
 modular level with three distinct prime factors.
 
 \section{Hyperkagome lattice and its Green's function}
+\label{sec:lattice}
 The hyperkagome lattice has twelve sites per cubic cell, each with coordination number four; its nearest-neighbor
-tight-binding Bloch Hamiltonian $H(\bm k)$ is a $12\times12$ Hermitian matrix. We fix the hopping $t=1$ and the
-energy origin at the band center. Diagonalizing $H(\bm k)$ over the Brillouin zone yields the spectrum shown in
-Fig.~\ref{fig:dos}. Three exact features organise everything that follows.
+tight-binding Bloch Hamiltonian $H(\bm k)$ is a $12\times12$ Hermitian matrix. We fix the hopping amplitude to
+unity (reserving $t$ for the spectral variable introduced below) and the energy origin at the band center.
+Diagonalizing $H(\bm k)$ over the Brillouin zone yields the spectrum shown in
+Figure~\ref{fig:dos}. Three exact features organize everything that follows.
 
 \emph{(i) A flat band, and the line-graph structure.} The hyperkagome lattice is the line graph of a three-regular
 ``premedial'' net $\Gamma$ (eight vertices per cell, twelve edges): its sites are the edges of $\Gamma$ and its
@@ -150,22 +152,21 @@ triangles are the vertices of $\Gamma$. For the line graph $L(\Gamma)$ of a $d$-
 $A(L(\Gamma))=B^{\!\top}B-2I$ with $B$ the incidence matrix, so the spectrum is $\{\mu_i+d-2\}$ together with the
 eigenvalue $-2$ of multiplicity $(\text{edges})-(\text{vertices})$. Here $d=3$, giving four flat bands at $E=-2$
 (spectral weight exactly $1/3$, i.e.\ $\tfrac{12-8}{12}$); this contributes a pole $\tfrac13(z+2)^{-1}$ to $G(z)$
-and is the flat-band pole written $1/(t_{\rm VM}{+}1)$ in Ref.~\cite{VarmaMonien2013}, whose energy variable is
+and is the flat-band pole written $1/(t_{\rm VM}{+}1)$ in \cite{VarmaMonien2013}, whose energy variable is
 $t_{\rm VM}=E/2$ (the correspondence, including this pole and its weight, is reproduced in their variable by
 \texttt{numerics/vm\_crosscheck.py} in the repository). The eight dispersive bands are $E=\mu_i+1$ and fill $[-2,4]$, since the adjacency
 eigenvalues $\mu_i$ of a three-regular graph lie in $[-3,3]$.
 
 \emph{(ii) An exact reflection symmetry, from bipartiteness.} A graph has an adjacency spectrum symmetric about
 $0$ if and only if it is bipartite; we verify that the premedial net $\Gamma$ is bipartite (it admits a
-translation-consistent two-colouring, checked on finite blocks up to $5^3$ cells, and its cycles are of even
-length). Through the line-graph shift $E=\mu+1$ this makes the dispersive density of states \emph{exactly}
+translation-consistent two-coloring, checked on finite blocks up to $5^3$ cells). Through the line-graph shift $E=\mu+1$ this makes the dispersive density of states \emph{exactly}
 symmetric about $E=1$; independently, all odd central moments
 $\int\rho_{\rm disp}(E)(E-1)^{2m+1}\rmd E$ vanish in exact arithmetic for every odd order up to
 $229$, the highest the tabulated moments support. Hence the dispersive part of
 $G$ is odd in $\zeta\equiv z-1$, and is a function of $t\equiv\zeta^{-2}$.
 
 \emph{(iii) Integer moments.} The per-site spectral moments $m_n=\frac{1}{12}\Tr H^n$ are exact integers,
-$m_{0..10}=1,0,4,4,28,60,260,756,2828,9292,33384$; we computed them to $m_{230}$ by closed-walk enumeration.
+$m_0,\dots,m_{10}=1,0,4,4,28,60,260,756,2828,9292,33384$; we computed them to $m_{230}$ by closed-walk enumeration.
 Among the ordered quarter-depletions of the pyrochlore lattice, the chiral hyperkagome enantiomorphs are the ones
 reproducing this sequence (hexagon-containing depletions already differ at $m_6=264\neq260$); this selection is
 checked separately and is not needed for what follows.
@@ -173,7 +174,7 @@ checked separately and is not needed for what follows.
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/dos.pdf}
-\caption{Density of states of the hyperkagome tight-binding model ($t=1$). Four flat bands at $E=-2$ carry weight
+\caption{Density of states of the hyperkagome tight-binding model at unit hopping. Four flat bands at $E=-2$ carry weight
 $1/3$; the eight dispersive bands fill $[-2,4]$ and are \emph{exactly} symmetric about $E=1$, with principal van
 Hove singularities at $E=0,2$ (dashed) and weaker interior features at $E=-1,3$ and $E=1\pm\sqrt5$ (see text).}
 \label{fig:dos}
@@ -183,18 +184,19 @@ Hove singularities at $E=0,2$ (dashed) and weaker interior features at $E=-1,3$ 
 Because $G(z)$ is the diagonal of a rational function over the torus, it is holonomic (D-finite): it satisfies a
 linear differential equation with polynomial coefficients~\cite{Lipshitz1988}. We determine that equation from
 the moments. Removing the flat band, $d_n=m_n-\tfrac13(-2)^n$, and forming the even central moments
-$\nu_m=\int\rho_{\rm disp}(E-1)^{2m}\rmd E$, the generating function $\Phi(t)=\sum_m\nu_m t^m$ (with
+$\nu_m=\int\rho_{\rm disp}(E)\,(E-1)^{2m}\rmd E$, the generating function $\Phi(t)=\sum_m\nu_m t^m$ (with
 $t=\zeta^{-2}$) is the essential object. Guessing a minimal annihilator from the exact $\nu$ sequence by the
-method of differential approximants~\cite{Guttmann2010,orealgebra} returns an operator $L$ of order four and
+method of differential approximants~\cite{Guttmann2010,orealgebra} returns an operator $L_4$ of order four and
 degree fifteen.
 
-This $L$ is reducible in a trivial way: it admits the constant solution, so $L=M\,\rmd/\rmd t$ exactly, with
+This $L_4$ is reducible in a trivial way: it admits the constant solution, so $L_4=M\,\rmd/\rmd t$ exactly, with
 $M$ of order \emph{three} and degree fifteen,
 \begin{equation}
 M=\sum_{i=0}^{3}c_i(t)\,\Big(\frac{\rmd}{\rmd t}\Big)^{i},\quad \deg c_i\le 15,
 \label{eq:M}
 \end{equation}
-the minimal operator annihilating $\Phi'$. Its leading coefficient factorises as
+the minimal annihilator of $\Phi'$---minimal in the certified, guess-and-verify sense
+made precise under \emph{Certification} below. Its leading coefficient factorizes as
 \begin{equation}
 c_3(t)\propto t^2\,(t-\tfrac19)(t-\tfrac15)(t-\tfrac14)(t-1)^3\,p_7(t),
 \label{eq:lc}
@@ -224,19 +226,25 @@ a dedicated holonomic-functions implementation.
 \section{Riemann scheme and differential-Galois structure}
 The analytic nature of the LGF is decided by the local structure of $M$. Computing the Frobenius indicial
 exponents at each regular singular point gives the Riemann scheme
+{\small\setlength{\arraycolsep}{3pt}%
 \begin{equation}
-{\setlength{\arraycolsep}{3pt}\small
 \begin{array}{c|ccccccc}
  & t=0 & t=\tfrac19 & t=\tfrac15 & t=\tfrac14 & t=1 & p_7 & t=\infty \\\hline
 \text{exp.} & \{-1,-1,0\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\} & \{-\tfrac12,0,1\}
  & \{-1,-\tfrac12,\tfrac12\} & \{0,1,3\} & \{\tfrac32,2,3\}
-\end{array}}
+\end{array}
 \label{eq:riemann}
-\end{equation}
+\end{equation}}
 Here $p_7$ denotes the irreducible degree-seven locus, whose seven Galois-conjugate roots all carry the same
 integer exponents $\{0,1,3\}$, computed exactly by reduction modulo $p_7$. These are \emph{apparent}
-singularities: integer exponents alone do not establish this, but all three local solutions there are log-free,
-which we verify from the Frobenius obstruction at each root of $p_7$ over several primes. We use the standard
+singularities: integer exponents alone do not establish this, but all three local solutions at each root are
+log-free---indeed analytic. Log-freeness is verified directly through the Frobenius obstruction at each root of
+$p_7$, computed modulo several independent primes; independently of that check, analyticity follows
+unconditionally from the intertwiner of Section~\ref{sec:y0closed}: the exact operator identity of step [IV] of
+Theorem~\ref{thm:y0}, together with the injectivity computation \eqref{eq:Einj}, carries a full solution basis of
+the operator $\widetilde N$---which is regular on the $p_7$ locus, as are the twist unit $v$ and the first-order
+operator $T$ of \eqref{eq:y0rhos}---onto a basis of solutions of $M$, so every local solution of $M$ at each root
+of $p_7$ is analytic. We use the standard
 Riemann-scheme convention at infinity, in which an exponent $\rho$ at $t=\infty$ corresponds to a local solution
 $y\sim t^{-\rho}$; the three solutions there thus behave as $t^{-3/2}$, $t^{-2}$ and $t^{-3}$. As a check on
 \eqref{eq:riemann}, the operator has $s=13$ singular points---the five rational points above, the seven roots of
@@ -256,18 +264,18 @@ square---and then determine its differential Galois group, which is the object t
 question.
 
 \emph{$M$ is irreducible over $\overline{\mathbb{Q}}(t)$.} $M$ is Fuchsian---regular singular at every point,
-including $t=\infty$ (exponents $\{\tfrac32,2,3\}$)---so any first-order right factor $\mathrm{d}/\mathrm{d}t-u$
-has $u=\sum_s e_s/(t-s)$ with $e_s$ a local exponent at each singular point $s$ and \emph{no} polynomial part. At
+including $t=\infty$ (exponents $\{\tfrac32,2,3\}$)---so any first-order right factor $\mathrm{d}/\mathrm{d}t-h$
+has $h=\sum_s e_s/(t-s)$ with $e_s$ a local exponent at each singular point $s$ and \emph{no} polynomial part. At
 the rational singular points the $e_s$ are the exponents of \eqref{eq:riemann}; at the irreducible degree-seven
 locus $p_7$ the common (Galois-invariant) residue ranges over its exponents $\{0,1,3\}$. This candidate set is
 finite, and each candidate is tested exactly over $\mathbb{Q}$ by the
-divisibility criterion $c_3(u''+3uu'+u^3)+c_2(u'+u^2)+c_1u+c_0=0$. No first-order right factor of $M$ exists over
+divisibility criterion $c_3(h''+3hh'+h^3)+c_2(h'+h^2)+c_1h+c_0=0$. No first-order right factor of $M$ exists over
 $\mathbb{Q}(t)$, and none of $\mathrm{adjoint}(M)$---which for a third-order operator excludes an order-two right
 factor of $M$ as well---so $M$ has no right factor of order one or two over $\mathbb{Q}(t)$. We now descend to
-$\overline{\mathbb{Q}}(t)$ in two steps. \emph{First}, $M$ has no order-one right factor there: a hyperexponential
-solution $\mathrm{d}/\mathrm{d}t-u$ with $u\in\overline{\mathbb{Q}}(t)$ has a finite Galois orbit
-$\{\mathrm{d}/\mathrm{d}t-u^\sigma\}$ of right factors of $M$, whose least common left multiple is a right factor
-\emph{defined over $\mathbb{Q}(t)$} of order $k\in\{1,2,3\}$; $k=1$ gives $u\in\mathbb{Q}(t)$ and $k=2$ an
+$\overline{\mathbb{Q}}(t)$ in two steps. \emph{First}, $M$ has no order-one right factor there: a first-order right factor
+$\mathrm{d}/\mathrm{d}t-h$ with $h\in\overline{\mathbb{Q}}(t)$ has a finite Galois orbit
+$\{\mathrm{d}/\mathrm{d}t-h^\sigma\}$ of right factors of $M$, whose least common left multiple is a right factor
+\emph{defined over $\mathbb{Q}(t)$} of order $k\in\{1,2,3\}$; $k=1$ gives $h\in\mathbb{Q}(t)$ and $k=2$ an
 order-two right factor over $\mathbb{Q}$, both excluded above, while $k=3$ would make $M$ the LCLM of order-one
 operators, hence completely reducible, forcing \emph{semisimple} local monodromy and no logarithm---contradicting
 the genuine logarithm at $t=0$ (repeated indicial exponent $-1$, exactly one log-free local solution of three,
@@ -294,7 +302,7 @@ local ramification index; both preserve arithmetic progressions, so the exponent
 equivalence realized by a \emph{differential intertwiner}---a homomorphism of differential modules of order two,
 which shifts the individual local exponents by \emph{different} integers and so destroys the arithmetic
 progressions while preserving the Galois-theoretic content. This is exactly the loophole the hyperkagome operator
-exploits: as we show in Sec.~\ref{sec:orthogonal}, $M$ \emph{is} equivalent to a symmetric square through such an
+exploits: as we show in Section~\ref{sec:orthogonal}, $M$ \emph{is} equivalent to a symmetric square through such an
 order-two intertwiner, even though it is not a literal symmetric square (nor a multiplier/pullback of one). Correcting an overstatement in
 an earlier version of this work, the not-a-literal-symmetric-square property therefore does \emph{not} exclude an
 elliptic closed form; the closed-form question is settled instead by the Galois group, which we now compute.
@@ -311,11 +319,11 @@ In either case there can be \emph{no logarithmic solution}. But $M$ has a genuin
 at $t=0$ the indicial exponent $-1$ is repeated and only one log-free (Laurent) local solution exists (of three),
 so the local monodromy is non-semisimple. This excludes both the finite and the imprimitive cases, so the Galois
 group acts irreducibly and non-solvably and $M$ is non-Liouvillian. The differential-Galois computation of the next
-section gives the same conclusion more sharply: $G^\circ=\mathrm{SO}(3,\mathbb{C})$ is simple, hence non-solvable,
-and an irreducible operator has Liouvillian solutions if and only if $G^\circ$ is solvable. Being non-Liouvillian
+section gives the same conclusion more sharply: $G_M^\circ=\mathrm{SO}(3,\mathbb{C})$ is simple, hence non-solvable,
+and an irreducible operator has Liouvillian solutions if and only if $G_M^\circ$ is solvable. Being non-Liouvillian
 does \emph{not} preclude an elliptic form---the complete elliptic integral $K$ is itself non-Liouvillian, and the
 simple-cubic LGF operator is irreducible and non-Liouvillian yet closed-form in $K$. Indeed, as the next section
-shows, the hyperkagome operator \emph{is} orthogonally equivalent to a symmetric square, and Sec.~\ref{sec:modular}
+shows, the hyperkagome operator \emph{is} orthogonally equivalent to a symmetric square, and Section~\ref{sec:modular}
 proves the resulting closed form outright---it is modular, through eta quotients and genus-zero modular
 functions, which are themselves non-Liouvillian; the non-Liouvillian result excludes only the algebraic and elementary cases and is
 fully consistent with modularity.
@@ -333,6 +341,7 @@ R(t)=-\frac{1}{272}\,\frac{(15t^2+17t-8)^2}{t^2\,(t-1)^2\,(4t-1)(5t-1)(9t-1)}.
 Expanding $R=\sum_{i\le j}c_{ij}\,y_iy_j$ in a fundamental system $y_1,y_2,y_3$ of $M$ determines a symmetric
 $3\times3$ Gram matrix $C=(c_{ij})$. In the basis fixed by the initial conditions $y_i^{(j)}(t_0)=\delta_{ij}$ at
 the ordinary point $t_0=\tfrac12$,
+{\small
 \begin{equation}
 \begin{split}
 (c_{11},c_{12},c_{13},c_{22},c_{23},c_{33})&=
@@ -340,7 +349,7 @@ the ordinary point $t_0=\tfrac12$,
 -\tfrac{1925200}{157437},\;\tfrac{83066560}{1102059},\;-\tfrac{712021969}{7714413}\Big),\\[2pt]
 \det C&=\tfrac{3437476900}{7714413}\neq0\ (\text{rank }3).
 \end{split}
-\end{equation}
+\end{equation}}
 Equation~\eqref{eq:R} is verified as an exact identity:
 the six constants are fixed by six series coefficients and then satisfy $194$ further exact relations at
 each of two independent ordinary base points ($t_0=\tfrac12$ and $t_0=-\tfrac13$). The agreement is a proof, not
@@ -350,40 +359,40 @@ are bounded below by the certified data---the pairwise sums of the exponents of 
 point, the pole and zero orders of $R$, and \emph{distinct} non-negative integers at every apparent point. The
 Fuchs relation then caps the vanishing order of any nonzero element of that span at an $M$-ordinary point at
 $109$, while $F$ is verified to vanish to order $200$; hence $F\equiv0$ identically. Independently and at the operator level,
-we exhibit an order-two differential intertwiner $T\in\mathrm{Hom}(\mathrm{adjoint}(M),M)$ and verify the exact
-identity $\mathrm{rightrem}\big(M\,T,\ \mathrm{adjoint}(M)\big)=0$ over $\mathbb{Q}(t)$, so $M$ is homomorphic---in
+we exhibit an order-two differential intertwiner $\iota\in\mathrm{Hom}(\mathrm{adjoint}(M),M)$ and verify the exact
+identity $\mathrm{rightrem}\big(M\,\iota,\ \mathrm{adjoint}(M)\big)=0$ over $\mathbb{Q}(t)$, so $M$ is homomorphic---in
 fact isomorphic, since both are irreducible of the same rank---to its adjoint. Four consequences follow.
 
 \emph{(1) The monodromy lies in an orthogonal group.} Because $R$ is single-valued (rational) and
 $R=\sum c_{ij}y_iy_j$ with the six products linearly independent (the leading $6\times6$ coefficient system is
 nonsingular), every monodromy matrix $\gamma$ obeys $\gamma^{\!\top}C\gamma=C$: the solution space carries a
 monodromy-invariant symmetric bilinear form. $M$ is Fuchsian, so by the density theorem the differential Galois
-group $G$ is the Zariski closure of the monodromy group, whence $G\subseteq\mathrm{O}(C)\cong\mathrm{O}(3,\mathbb{C})$.
+group $G_M$ is the Zariski closure of the monodromy group, whence $G_M\subseteq\mathrm{O}(C)\cong\mathrm{O}(3,\mathbb{C})$.
 
 \emph{(2) The form is nondegenerate.} By irreducibility, the kernel of $C$---an invariant subspace---is $0$, so $C$
 is nondegenerate; by Schur's lemma the invariant form is unique up to scale, and in odd dimension it is symmetric
 rather than symplectic. We confirm $\det C\neq0$ directly, at both base points.
 
 \emph{(3) The identity component is $\mathrm{SO}(3,\mathbb{C})$.} The genuine logarithm at $t=0$ makes a monodromy
-element non-semisimple, so $G$ is infinite. Suppose, for contradiction, that $G^\circ$ were solvable. As a normal
-subgroup of $G$, $G^\circ$ acts semisimply on the solution space $V$ by Clifford's theorem (since $V$ is
-$G$-irreducible); by the Lie--Kolchin theorem the irreducible representations of a connected solvable group are
-one-dimensional, so $G^\circ$ acts diagonally in some basis and $G$ permutes the resulting isotypic components. If
-the three characters are distinct, $G$ is monomial (imprimitive)---but every monomial matrix is semisimple (if its
+element non-semisimple, so $G_M$ is infinite. Suppose, for contradiction, that $G_M^\circ$ were solvable. As a normal
+subgroup of $G_M$, $G_M^\circ$ acts semisimply on the solution space $V$ by Clifford's theorem (since $V$ is
+$G_M$-irreducible); by the Lie--Kolchin theorem the irreducible representations of a connected solvable group are
+one-dimensional, so $G_M^\circ$ acts diagonally in some basis and $G_M$ permutes the resulting isotypic components. If
+the three characters are distinct, $G_M$ is monomial (imprimitive)---but every monomial matrix is semisimple (if its
 permutation part has order $k$, its $k$-th power is diagonal and invertible, and an invertible matrix with a
 diagonalizable power is diagonalizable in characteristic zero), contradicting the logarithm. A $(2{+}1)$ pattern of
 characters cannot be permuted nontrivially, which would make $V$ reducible---again a contradiction. A single
-character makes $G^\circ$ scalar, hence, inside $\mathrm{O}(3,\mathbb{C})$, finite, forcing $G$ finite and every
-element semisimple---once more contradicting the logarithm. Hence $G^\circ$ is non-solvable, and the only
+character makes $G_M^\circ$ scalar, hence, inside $\mathrm{O}(3,\mathbb{C})$, finite, forcing $G_M$ finite and every
+element semisimple---once more contradicting the logarithm. Hence $G_M^\circ$ is non-solvable, and the only
 non-solvable connected subgroup of $\mathrm{O}(3,\mathbb{C})$ is $\mathrm{SO}(3,\mathbb{C})$; therefore
-$G^\circ=\mathrm{SO}(3,\mathbb{C})$.
+$G_M^\circ=\mathrm{SO}(3,\mathbb{C})$.
 
-\emph{(4) The determinant character: $G=\mathrm{O}(3,\mathbb{C})$ in full.} The Wronskian $\mathrm{Wr}$ of $M$ satisfies
+\emph{(4) The determinant character: $G_M=\mathrm{O}(3,\mathbb{C})$ in full.} The Wronskian $\mathrm{Wr}$ of $M$ satisfies
 $\mathrm{Wr}'/\mathrm{Wr}=-c_2/c_3$, whose residue at each singular point equals the local exponent sum there minus $3$. This is
 half-integral exactly at $t=\tfrac19,\tfrac15,\tfrac14$ and $\infty$ (for instance at $\tfrac19$,
 $(-\tfrac12+0+1)-3=-\tfrac52$) and integral at $t=0,1$ and on $p_7$; hence $\det(\text{monodromy})=-1$ at those
-four points and $+1$ elsewhere. Thus $G$ is \emph{not} contained in $\mathrm{SO}(3,\mathbb{C})$, i.e.\
-$G=\mathrm{O}(3,\mathbb{C})$ in full, and the determinant character is the quadratic character of the genus-one
+four points and $+1$ elsewhere. Thus $G_M$ is \emph{not} contained in $\mathrm{SO}(3,\mathbb{C})$, i.e.\
+$G_M=\mathrm{O}(3,\mathbb{C})$ in full, and the determinant character is the quadratic character of the genus-one
 curve
 \begin{equation}
 v^2=(1-4t)(1-5t)(1-9t),
@@ -393,13 +402,13 @@ ramified at exactly $\{\tfrac19,\tfrac15,\tfrac14,\infty\}$---an even number of 
 and the same four points at which the pole orders of $R$ in \eqref{eq:R} are odd.
 
 Since $\mathrm{SO}(3,\mathbb{C})\cong\mathrm{PSL}(2,\mathbb{C})$ through the symmetric square of the standard
-two-dimensional representation, $G^\circ=\mathrm{SO}(3,\mathbb{C})$ means that $M$ \emph{is projectively equivalent
+two-dimensional representation, $G_M^\circ=\mathrm{SO}(3,\mathbb{C})$ means that $M$ \emph{is projectively equivalent
 to $\mathrm{Sym}^2(V_2)$} for a second-order operator $V_2$ (defined over $\mathbb{Q}(t,v)$ with $v$ as in
 \eqref{eq:twist}, or over $\mathbb{Q}(t)$ after the corresponding quadratic twist). The equivalence is carried by
 the order-two intertwiner above; it shifts individual local exponents by \emph{different} integers and so destroys
 the arithmetic progressions, which is exactly why $M$ is not a literal symmetric square (nor a multiplier or
 pullback of one) yet is orthogonally, projectively, one. The same structural phenomenon is known in the differential
-algebra of lattice models: Assis, van Hoeij and Maillard~\cite{AVM2016} meet an order-three operator $N_3$
+algebra of lattice models: Assis, van Hoeij and Maillard~\cite{AVM2016} encounter an order-three operator $N_3$
 homomorphic to a symmetric square $\mathrm{Sym}^2(V_2)$, recover $V_2$ by a conic construction, and solve it as a
 $\,_2F_1$ with an algebraic (modular) pullback. For the hyperkagome that conic construction has now been carried
 out in the accompanying analysis: the transported invariant form admits an explicit rational conic point, yielding
@@ -410,8 +419,8 @@ analytic solution. The operator $V_2$, the rational conic point, and this verifi
 \texttt{numerics/V2\_data.json} and \texttt{numerics/certify\_bridge.py} in the repository, the latter validating
 each of its series primitives on operators of known structure, and failing on a deliberately perturbed conic
 point, before the certified run.
-The pullback question is settled, in its sharpest form, in Sec.~\ref{sec:modular}: $V_2$ is the uniformizing
-operator of the modular curve $X(\Gamma_0(30)^+)$, its mirror map at the MUM point is the level-30
+The pullback question is settled, in its sharpest form, in Section~\ref{sec:modular}: $V_2$ is the uniformizing
+operator of the modular curve $X(\Gamma_0(30)^+)$, its mirror map at the maximally unipotent point $t=0$ (see below) is the level-30
 eta-quotient parametrization \eqref{eq:hauptt}, and the sought closed form is modular---an
 Assis--van~Hoeij--Maillard-style $\,_2F_1$ with \emph{algebraic} pullback is now explicit: $1728/j$ is
 algebraic of degree eight over $\mathbb{Q}(t)$ and solvable in radicals
@@ -436,10 +445,11 @@ variable $t=(E-1)^{-2}$ the point $t=0$ is $E=\infty$ (equivalently $z=\infty$),
 infinity, and the $1/t$ Laurent heads of the logarithmic partners are a feature of that point rather than a
 pathology.
 
-\section{The modular parametrization: $V_2$ uniformizes $X(\Gamma_0(30)^+)$}
+\section{The modular parametrization: \texorpdfstring{$V_2$ uniformizes $X(\Gamma_0(30)^+)$}{V2 uniformizes X(Gamma0(30)+)}}
 \label{sec:modular}
 
-We now prove the statement toward which Secs.~\ref{sec:orthogonal} and \ref{sec:watson} point: the second-order
+We now prove the statement toward which Section~\ref{sec:orthogonal} points, and which the lattice-side
+reduction of Section~\ref{sec:watson} below independently anchors: the second-order
 operator $V_2$ is the \emph{uniformizing differential equation} of a classical modular curve, and the variable
 $t$ generates its genus-zero function field.%
 \footnote{Terminology: in the Conway--Norton normalization~\cite{ConwayNorton1979} a degree-one generator of
@@ -450,8 +460,8 @@ map \eqref{eq:etaquot}--\eqref{eq:hauptt} as a \emph{Weber-like function paramet
 Throughout, $\tau$ lies in the upper half-plane, $q=e^{2\pi i\tau}$,
 $\eta(\tau)=q^{1/24}\prod_{n\ge1}(1-q^n)$, and $\Gamma_0(30)^+$ denotes the extension of $\Gamma_0(30)$ by its
 seven Atkin--Lehner involutions $w_e$, $e\in\{2,3,5,6,10,15,30\}$~\cite{AtkinLehner1970,ConwayNorton1979}; we
-henceforth write $v$ for the twist variable of Eq.~\eqref{eq:twist}, reserving $u$ for the modular function
-below. The projective normal form of the explicit $V_2$ of Sec.~\ref{sec:orthogonal}---the operator
+henceforth write $v$ for the twist variable of \eqref{eq:twist}, reserving $u$ for the modular function
+below. The projective normal form of the explicit $V_2$ of Section~\ref{sec:orthogonal}---the operator
 $w''+Q_V(t)\,w=0$ obtained from $V_2=\partial_t^2+a_1\partial_t+a_0$ via
 $Q_V=a_0-\tfrac14a_1^2-\tfrac12a_1'$, invariant under every function-multiplier gauge and hence a projective
 invariant of $M$ itself---is
@@ -514,7 +524,8 @@ $Q$-value for every genus-zero Conway--Norton class, including $30\mathrm{B}$, i
 in~\cite{LianWiczer2006}, and that entry is exactly our $Q_V$ under the change of generator
 $t=z/(1+4z)$ induced by $1/t=T_{30\mathrm{B}}+4$. That table is obtained by fitting an ansatz to a
 bounded $q$-expansion, with no degree bound and no proof of termination. The contribution
-of~\eqref{eq:schwarz} is the a priori pole-degree bound established below, which converts such a
+of~\eqref{eq:schwarz} is the a priori pole-degree bound established in the proof of
+Theorem~\ref{thm:modular}, which converts such a
 match into an identity; in particular it retro-proves the tabulated $30\mathrm{B}$ entry.
 Equivalently: the ratio of two solutions of $w''+Q_Vw=0$ inverts the parametrization $t(\tau)$, $V_2$ is the
 uniformizing operator of the orbifold $X(\Gamma_0(30)^+)$, and the mirror map of $V_2$ at its MUM point $t=0$
@@ -580,17 +591,17 @@ points of $u\mapsto u+1/u$), while $t=\tfrac14,\,1,\,\infty$ correspond to the r
 $u^2+6u+1$, $u^2+7u+1$, and the cusp $t=0$ to $u\in\{0,\infty\}$.
 
 Three consequences deserve separate statement. \emph{(i) The monodromy is arithmetic.} The projective
-monodromy group of $V_2$---hence of $M$, by the projective equivalence of Sec.~\ref{sec:orthogonal}---is the
+monodromy group of $V_2$---hence of $M$, by the projective equivalence of Section~\ref{sec:orthogonal}---is the
 deck group of the uniformization: \emph{exactly} the discrete arithmetic lattice
 $\Gamma_0(30)^+\subset\mathrm{PSL}_2(\mathbb{R})$, of covolume $3\pi$. \emph{(ii) The twist is itself
-modular.} The determinant character of Sec.~\ref{sec:orthogonal} is a quadratic character of
+modular.} The determinant character of Section~\ref{sec:orthogonal} is a quadratic character of
 $\Gamma_0(30)^+$ trivial on $\Gamma_0(30)$; its kernel is the index-two subgroup $\Gamma_0(30){+}2,3,6$, and
 the associated double cover of the $t$-line, branched at the four $\det=-1$ points
 $\{\tfrac19,\tfrac15,\tfrac14,\infty\}$, has genus one by Riemann--Hurwitz---it is precisely the twist curve
-$v^2=(1-4t)(1-5t)(1-9t)$ of Eq.~\eqref{eq:twist}, now identified as $X(\Gamma_0(30){+}2,3,6)$. In particular
+$v^2=(1-4t)(1-5t)(1-9t)$ of \eqref{eq:twist}, now identified as $X(\Gamma_0(30){+}2,3,6)$. In particular
 the analytic period $y_0=\Phi'/2$, pulled back by \eqref{eq:hauptt}, is a weight-two object carrying this
 quadratic twist character, in the manner familiar from the modular interpretation of the Ap\'ery
-numbers~\cite{Beukers1987}---though, as Sec.~\ref{sec:y0closed} shows, a \emph{depth-one quasimodular} one
+numbers~\cite{Beukers1987}---though, as Section~\ref{sec:y0closed} shows, a \emph{depth-one quasimodular} one
 rather than a modular form; its explicit closed form is derived there. \emph{(iii) The Varma--Monien question is resolved.} Varma and Monien judged it ``highly
 suggestive that a closed form expression can be obtained'' for their threefold integral~\cite{VarmaMonien2013};
 the theorem proves this in the strongest structural sense, with the closed form modular rather than elliptic:
@@ -617,12 +628,12 @@ the $\,_2F_1$ pullback is solvable in radicals.
 \end{prop}
 
 The product of the three radicands is $\big((1-t)\,v\big)^2$:
-the determinant-character twist $v$ of Eq.~\eqref{eq:twist} is, up to sign and the rational factor $1-t$, the
+the determinant-character twist $v$ of \eqref{eq:twist} is, up to sign and the rational factor $1-t$, the
 product of the three quadratic layers of the radical tower.%
 \footnote{For the equivalent base $\,_2F_1\!\left(\tfrac18,\tfrac38;1;\cdot\right)$ the pullback satisfies a
 smaller equation, of bidegree $(4,24)$, whose two radicands $(1-t)(1-5t)$ and $(1-t)(1-4t)(1-9t)$ generate an
 index-two subfield of \eqref{eq:radfield}; its analytic branch
-$H=256t-25600t^2+\cdots$ is verified against the certified $Q_V$ through the Schwarzian pullback identity to
+$\widetilde H=256\,t-25600\,t^2+\cdots$ is verified against the certified $Q_V$ through the Schwarzian pullback identity to
 order $t^{96}$.}
 
 \begin{proof}
@@ -634,10 +645,10 @@ exact statements. (i)~$P_H(H,t)=0$ for the modular $H$: the identity is verified
 through $q^{1200}$, and this is a proof rather than a series check because $H$ lies in the function field of
 $X_0(30)$, of degree $|\mathcal{W}|=8$ over $\mathbb{Q}(t)$ (quotient covolume ratio $24\pi/3\pi$), with pole
 divisor of degree $72$: $j$ has degree $[\mathrm{PSL}_2(\mathbb{Z}):\Gamma_0(30)]=72$, and $\nu_3(30)=0$ means
-that no point above $j=0$ retains an order-three stabiliser, so all $72/3=24$ of them are ramified of index
+that no point above $j=0$ retains an order-three stabilizer, so all $72/3=24$ of them are ramified of index
 three and $H=1728/j$ has $24$ triple poles. Hence a nonzero polynomial of bidegree at most $(8,72)$ evaluated
 on $H$ has polar degree at most $8\cdot72+72\cdot8=1152$, and since a nonzero function on a compact curve has
-as many zeros as poles, its order of vanishing at the cusp---where $q$ is a uniformiser, $\Gamma_0(30)$ having
+as many zeros as poles, its order of vanishing at the cusp---where $q$ is a uniformizer, $\Gamma_0(30)$ having
 width one at $\infty$---is at most $1152<1200$. (ii)~The radical expression is an exact root of
 $P_H$: a polynomial identity in the multiquadratic algebra, in exact integer arithmetic, no series involved.
 (iii)~The seven subset products of the radicands are non-squares, so \eqref{eq:radfield} has degree eight
@@ -666,10 +677,10 @@ determinant-character twist $v$ appearing as their product.
 \label{sec:y0closed}
 
 The weight-two period $y_0=\Phi'/2$ itself admits an explicit closed form in the modular data of
-Sec.~\ref{sec:modular}. Write $W=q\,\rmd t/\rmd q$ for the nome derivative of the modular function $t$ of
+Section~\ref{sec:modular}. Write $W=q\,\rmd t/\rmd q$ for the nome derivative of the modular function $t$ of
 \eqref{eq:hauptt} (so that $W$ is a constant multiple of $w_1^2$, with $w_1=(\rmd t/\rmd\tau)^{1/2}$ a
 solution of the projective normal form $w''+Q_Vw=0$ of \eqref{eq:QV}), put $W'=\rmd W/\rmd t$, and let
-$v$ be the twist unit of Eq.~\eqref{eq:twist} in the branch $v(0)=+1$.
+$v$ be the twist unit of \eqref{eq:twist} in the branch $v(0)=+1$.
 
 \begin{thm}\label{thm:y0}
 With this notation, the weight-two period of the hyperkagome lattice Green's function is
@@ -708,7 +719,7 @@ derivative
 one has $W=(1-u^2)\,u\,\ell/(u^2+7u+1)^2$ and $v=(u^2-1)\sqrt{u^2+3u+1}/(u^2+7u+1)^{3/2}$.
 
 \begin{proof}[Proof sketch]
-The identity is proven, not fitted, in five steps.
+The identity is proved, not fitted, in five steps.
 [I] By the Schwarzian identity \eqref{eq:schwarz}, $w_1=(\rmd t/\rmd\tau)^{1/2}$ solves
 $w''+Q_Vw=0$, so $W$ solves its symmetric square.
 [II] Elementarily, $y''=-Q_Vy$ forces $z=y^2$ to satisfy
@@ -717,14 +728,14 @@ $\widetilde N(z):=z'''+4Q_Vz'+2Q_V'z=0$; hence $\widetilde N(W)=0$.
 coefficients in $\mathbb{Q}(t)$ (the logarithmic derivative $v'/v$ is rational) and annihilates
 $y_0v$.
 [IV] The first-order operator $T=\rho_0+\rho_1\,\rmd/\rmd t$ satisfies the exact operator identity
-$M_v\,T=X\,\widetilde N$ in the ring $\mathbb{Q}(t)\langle\rmd/\rmd t\rangle$ of linear differential
+$M_v\,T=Y\,\widetilde N$ in the ring $\mathbb{Q}(t)\langle\rmd/\rmd t\rangle$ of linear differential
 operators over $\mathbb{Q}(t)$, with right remainder
-identically zero and $X$ of order one whose top-order coefficient carries the
+identically zero and $Y$ of order one whose top-order coefficient carries the
 apparent-singularity polynomial $p_7$; therefore $T$ maps solutions of $\widetilde N$ to
 solutions of $M_v$, and $T(W)$ solves $M_v$.
 [V] $T(W)$ is single-valued near $t=0$ ($W$ and $W'$ are single-valued functions of $t$ there,
 since $t(q)=q+O(q^2)$ is invertible), and exactly one of the three local solutions of $M$ at the
-maximal-unipotent point $t=0$ is log-free (Sec.~\ref{sec:orthogonal}); since $v(0)=1\neq0$,
+maximal-unipotent point $t=0$ is log-free (Section~\ref{sec:orthogonal}); since $v(0)=1\neq0$,
 conjugation by $v$ preserves this local structure, so the single-valued solution line of $M_v$
 at $t=0$ is one-dimensional and spanned by $y_0v$, and matching a single
 series coefficient gives $y_0v=T(W)$. As an independent check, \eqref{eq:y0closed} is verified as
@@ -734,12 +745,12 @@ definitions above.
 
 Three structural remarks follow. \emph{(i) $y_0$ is quasimodular, not modular.} It is a
 weight-two \emph{depth-one} quasimodular form on $\Gamma_0(30)^+$ carrying the orthogonal
-determinant character of Sec.~\ref{sec:orthogonal}; equivalently it lives on the genus-one twist
-double cover $X(\Gamma_0(30){+}2,3,6)$ of Eq.~\eqref{eq:twist}. \emph{(ii) The derivative term is
+determinant character of Section~\ref{sec:orthogonal}; equivalently it lives on the genus-one twist
+double cover $X(\Gamma_0(30){+}2,3,6)$ of \eqref{eq:twist}. \emph{(ii) The derivative term is
 essential.} In the minimal-degree representation \eqref{eq:y0poly}---unique, as the fitting
 nullspace is one-dimensional---the coefficient $A_1$ is not identically zero: the term
 $\rho_1W'$ is exactly the quasimodular depth introduced by inverting the order-two intertwiner
-of Sec.~\ref{sec:orthogonal}. A depth-zero \emph{rational} form $y_0v=R(t)\,W$ is excluded
+of Section~\ref{sec:orthogonal}. A depth-zero \emph{rational} form $y_0v=R(t)\,W$ is excluded
 outright by local exponents: at the elliptic point $t=\tfrac19$ both $W$ and the twist unit $v$
 vanish to order $\tfrac12$, while $y_0$ carries the exponent $-\tfrac12$ of $M$'s Riemann scheme
 there (the square-root van Hove singularity, $[t^m]\,y_0\sim9^m m^{-1/2}$), so $y_0v$ is regular
@@ -776,7 +787,7 @@ both solution spaces (whose Galois group restricts \emph{onto} the Galois group 
 operator~\cite{vdPutSinger}), so it identifies the Galois representation on
 $\mathrm{Sol}(M_v)$ with the symmetric square of the standard representation of $\mathcal{G}$.
 Now $\mathrm{Gal}(M_v)^\circ=\mathrm{Gal}(M)^\circ=\mathrm{SO}(3,\mathbb{C})$
-(Sec.~\ref{sec:orthogonal}): a finite extension of the base field replaces the Galois group by
+(Section~\ref{sec:orthogonal}): a finite extension of the base field replaces the Galois group by
 a closed subgroup of finite index, which shares its identity component~\cite{vdPutSinger}---
 applied once to $M$ and once to $M_v$ across $\mathbb{C}(t)\subset\mathbb{C}(t,v)$---and over
 $\mathbb{C}(t,v)$ multiplication by the base-field element $v$ identifies
@@ -786,8 +797,8 @@ solvable (it lies in a Borel subgroup or in the normalizer of a torus, or is
 finite~\cite{Kovacic1986,vdPutSinger}), and then so would the identity component
 $\mathrm{Sym}^2(\mathcal{G})^\circ\cong\mathrm{Gal}(M_v)^\circ$ of its symmetric
 square---contradicting the non-solvability of the simple group $\mathrm{SO}(3,\mathbb{C})$.
-Hence $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$. (Independently, the theorem of
-Sec.~\ref{sec:modular} identifies the projective monodromy of $w''+Q_Vw=0$ with the lattice
+Hence $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$. (Independently,
+Theorem~\ref{thm:modular} identifies the projective monodromy of $w''+Q_Vw=0$ with the lattice
 $\Gamma_0(30)^+$, which is Zariski-dense in $\mathrm{PSL}(2,\mathbb{C})$, and the Galois group
 of a Fuchsian operator is the Zariski closure of its monodromy; either route suffices.)
 \end{proof}
@@ -831,25 +842,25 @@ Every member of \eqref{eq:excl} lies in $K$, so $\mathcal{A}\in K$ is algebraic 
 $\mathbb{C}(t)$; because $\mathcal{G}=\mathrm{SL}(2,\mathbb{C})$ is \emph{connected}, the
 algebraic closure of $\mathbb{C}(t)$ in $K$ is $\mathbb{C}(t)$ itself~\cite{vdPutSinger}, so
 $\mathcal{A}\in\mathbb{C}(t)$ is fixed by the Galois action. Now act with explicit elements
-of $\mathcal{G}$ in the basis $(w_1,w_2)$. The torus elements
-$\sigma_\lambda:(w_1,w_2)\mapsto(\lambda w_1,\lambda^{-1}w_2)$ fix $\mathcal{L}$ and scale
+of $\mathcal{G}$ in the basis $(w_1,\hat w)$, where $\hat w$ is a second, independent solution of $w''+Q_Vw=0$. The torus elements
+$\sigma_\lambda:(w_1,\hat w)\mapsto(\lambda w_1,\lambda^{-1}\hat w)$ fix $\mathcal{L}$ and scale
 $W\mapsto\lambda^2W$, so applying $\sigma_\lambda$ to \eqref{eq:excl} forces
 $\lambda^{n(k-2)}=1$ for every $\lambda\in\mathbb{C}^\times$: hence $k=2$. (In particular
 $k=0$ is impossible: $y_0v$ is not itself algebraic over $\mathbb{C}(t)$.) For $k=2$,
 \eqref{eq:excl} reads $(\rho_0+\rho_1\mathcal{L})^n=\mathcal{A}\in\mathbb{C}(t)$, and the
-unipotent elements $\sigma_\mu:(w_1,w_2)\mapsto(w_1+\mu w_2,\,w_2)$ give
+unipotent elements $\sigma_\mu:(w_1,\hat w)\mapsto(w_1+\mu \hat w,\,\hat w)$ give
 $(\rho_0+\rho_1\sigma_\mu(\mathcal{L}))^n=\mathcal{A}$ with
-$\sigma_\mu(\mathcal{L})=2(w_1+\mu w_2)'/(w_1+\mu w_2)$. These are pairwise distinct: equal
-logarithmic derivatives would force the ratio of $w_1+\mu w_2$ and $w_1+\mu'w_2$ to be a
+$\sigma_\mu(\mathcal{L})=2(w_1+\mu \hat w)'/(w_1+\mu \hat w)$. These are pairwise distinct: equal
+logarithmic derivatives would force the ratio of $w_1+\mu \hat w$ and $w_1+\mu'\hat w$ to be a
 constant of $K$ (the constants of $K$ are $\mathbb{C}$), impossible for $\mu\neq\mu'$ since
-$w_1,w_2$ are linearly independent over $\mathbb{C}$. Since $\rho_1\neq0$, the field elements
+$w_1,\hat w$ are linearly independent over $\mathbb{C}$. Since $\rho_1\neq0$, the field elements
 $\rho_0+\rho_1\sigma_\mu(\mathcal{L})$, $\mu\in\mathbb{C}$, are infinitely many distinct roots
 in $K$ of the polynomial $X^n-\mathcal{A}$---a contradiction. Hence no such $F$, $a$ exist.
 \end{proof}
 
 The quasimodular depth of $y_0$ is therefore intrinsic---no algebraic factor, at any weight or
 level, can absorb the $W'$ term, and $\rho_1\neq0$ is exactly the obstruction. This sharpens
-consequence (ii) of Sec.~\ref{sec:modular} to a categorical exclusion. Both
+consequence (ii) of Section~\ref{sec:modular} to a categorical exclusion. Both
 computational inputs (the nonvanishing \eqref{eq:Einj}, and, as corroboration, a certified
 scan excluding any polynomial relation $P(t,\,tW'/W)=0$ through bidegree $(28,12)$) are
 certified in \texttt{numerics/certify\_y0\_lemma.py}
@@ -859,8 +870,8 @@ the square-root van Hove singularity of the three-dimensional density of states.
 half-integer residues $\tfrac12$ of $V_2$'s first-order coefficient $a_1$ at
 $t=\tfrac14,\tfrac15,\tfrac19$ are the twist multipliers that defeat every trivial-character
 ansatz, and the quadratic $15t^2+17t-8$ governing $\rho_1$ is the one already visible in the
-rational solution $R$ of Eq.~\eqref{eq:R}. The full
-symbolic-plus-series certification is the script \texttt{numerics/certify\_y0.py}
+rational solution $R$ of \eqref{eq:R}. The full
+symbolic-plus-series certification is provided by the script \texttt{numerics/certify\_y0.py}
 (\texttt{CERTIFICATE\_y0.txt}).
 
 \section{The generating function itself: an exact obstruction}
@@ -886,7 +897,7 @@ function. Integrating \eqref{eq:y0closed} once by parts,
 =\frac{13\,t-1}{30\,t\,(t-1)^2}\neq0.
 \label{eq:Delta}
 \end{equation}
-The identity \eqref{eq:phiid} is proven by differentiation---it reduces to \eqref{eq:y0closed} as
+The identity \eqref{eq:phiid} is proved by differentiation---it reduces to \eqref{eq:y0closed} as
 exact rational-function algebra---with the constant fixed at $t=0$, where $\Phi(0)=\nu_0=\tfrac23$
 and $2\rho_1W/v\to\tfrac8{15}$; the integrand is regular there ($\Delta\,W/v\to-\tfrac1{30}$). Note
 the support of the obstruction: $\Delta$ has poles only at the cusp image $t=0$ and the principal
@@ -920,9 +931,9 @@ $\mathrm{Sol}(\widetilde N)$, by irreducibility---so $P$ kills the ${\ge}2$-dime
 orbit differences, again a proper right factor. In particular $W,W',W''$ are independent over
 $\mathbb{Q}(t)$, and $v^{-1}\mathrm{span}\{W,W',W''\}$ meets $\mathbb{C}(t)$ only in $0$ (an
 equality $\xi/v=r$ would make $\xi=rv$ algebraic). (b) Suppose
-$\Phi=C+(S_0W+S_1W'+S_2W'')/v$ with rational $C,S_i$. Differentiating, eliminating $W'''$ by
+$\Phi=C_0+(S_0W+S_1W'+S_2W'')/v$ with rational $C_0,S_i$. Differentiating, eliminating $W'''$ by
 $\widetilde N(W)=0$, and comparing with $\Phi'=2y_0$ coefficient-wise in the independent triple
-$W,W',W''$ forces $C'=0$ (by the last sentence of (a)), $S_1=-\rmd_vS_2$ and
+$W,W',W''$ forces $C_0'=0$ (by the last sentence of (a)), $S_1=-\rmd_vS_2$ and
 $S_0=2\rho_1+\rmd_v^{\,2}S_2+4Q_VS_2$ with $\rmd_v:=\rmd/\rmd t-v'/v$, and leaves the single
 condition
 \begin{equation}
@@ -947,13 +958,14 @@ the object that the closed form \eqref{eq:y0closed} evaluates exactly is this de
 while $\zeta\,G_{\rm disp}$ itself lies provably outside the module. The remaining transcendental
 in \eqref{eq:phiid} is the Eichler-type integral of the weight-four, determinant-character form
 $\Delta\,W^2/v$ (via $\rmd t=W\,\rmd q/q$); its arithmetic nature---its Eisenstein and cuspidal
-components on the twist cover of Eq.~\eqref{eq:twist}---we leave open.
+components on the twist cover of \eqref{eq:twist}---we leave open.
 
 \section{The Watson reduction: a generalized body-centered-cubic integral}
 \label{sec:watson}
-The orthogonal structure of Sec.~\ref{sec:orthogonal} has a concrete origin, which can be exhibited directly.
+The orthogonal structure of Section~\ref{sec:orthogonal} has a concrete origin, which can be exhibited directly.
 Writing $\mathrm{CT}_\theta$ for the constant term (torus average) over $\theta=(\theta_1,\theta_2,\theta_3)\in
-[0,2\pi)^3$, and eliminating the band index of the dispersive bands from the K$_4$ (srs) Bloch matrix by a
+[0,2\pi)^3$, and eliminating the band index of the dispersive bands from the Bloch matrix of the premedial
+net $\Gamma$ of Section~\ref{sec:lattice} (the $\mathrm{K}_4$, or srs, net) by a
 resultant, the moment generating function collapses to a single three-dimensional torus integral,
 \begin{equation}
 \begin{split}
@@ -977,24 +989,22 @@ $\Xi\mapsto8\prod_i\cos\theta_i$; the cancellation of all half-integer powers of
 $\mathrm{CT}_\theta\log D_+$ (so $\Phi$ is an honest power series in $t$); and the reproduction of the exact moments
 $\nu_m$ through $m=8$. Two internal consistencies confirm the picture. The half-integer coupling $t^{3/2}$ is
 single-valued only on the $\sqrt t$ double cover---precisely the determinant-character curve
-$v^2=(1-4t)(1-5t)(1-9t)$ of Sec.~\ref{sec:orthogonal}. And the singular set $\{\tfrac19,\tfrac15,\tfrac14,1\}$ is the
+$v^2=(1-4t)(1-5t)(1-9t)$ of Section~\ref{sec:orthogonal}. And the singular set $\{\tfrac19,\tfrac15,\tfrac14,1\}$ is the
 set of critical values of the bcc$(1,2)$ band map along the curve, independently reproducing the Riemann
 scheme~\eqref{eq:riemann}.
 
-This realization anchors the modular closed form of Sec.~\ref{sec:modular} on the lattice side: $I(w;a,b)$ is
+This realization anchors the modular closed form of Section~\ref{sec:modular} on the lattice side: $I(w;a,b)$ is
 the cubic lattice Green's function with second-neighbor interactions, whose natural home is the classical
 second-neighbor literature (Morita and Horiguchi~\cite{MoritaHoriguchi1971}; the extended Watson integrals of
 Glasser and Zucker~\cite{GlasserZucker1977}; the cubic modular transformations of Joyce~\cite{Joyce1998})---while the modular structure itself is \emph{proven} in
-Sec.~\ref{sec:modular}, independently of any particular literature evaluation. The remaining task is to specialize such an evaluation to the curve above, or to integrate
+Section~\ref{sec:modular}, independently of any particular literature evaluation. The remaining task is to specialize such an evaluation to the curve above, or to integrate
 $D_+$ termwise---it is quadratic in each $\cos\theta_i$, so one angular integration yields an inverse square root
 and the next an elliptic integral, leaving a one-dimensional algebraic period that the orthogonal structure forces
 into the $\mathrm{Sym}^2(V_2)$ form. We record the reduction here; matching such a classical evaluation, term by
-term, against the modular parametrization of Sec.~\ref{sec:modular} and the closed form \eqref{eq:y0closed} is
-left to a companion analysis.%
-\footnote{This reduction is a recent, fast-moving result of the accompanying closed-form analysis; it is
-independent of the differential-Galois certificate and is re-verified in exact
-arithmetic in the repository.
-}
+term, against the modular parametrization of Section~\ref{sec:modular} and the closed form \eqref{eq:y0closed} is
+left to future work.%
+\footnote{This reduction is independent of the differential-Galois certificate; it is verified in exact
+arithmetic by \texttt{numerics/verify\_watson\_reduction.py} in the repository.}
 
 \section{Exact results}
 Independently of the closed-form question, the operator yields exact data. At the symmetric center $E=1$ the LGF
@@ -1003,7 +1013,7 @@ takes the exact value
 \mathrm{Re}\,G(1)=\tfrac19,
 \end{equation}
 the flat-band contribution $\tfrac13/(1+2)=\tfrac19$ plus a dispersive principal value that vanishes by the
-$E=1$ symmetry. (The value at $E=2$ is a singular boundary value: $E=2$ is the van Hove point $t=1$ of
+$E=1$ symmetry (the value is reproduced numerically by \texttt{numerics/verify\_specialvalues.py}). (The value at $E=2$ is a singular boundary value: $E=2$ is the van Hove point $t=1$ of
 \eqref{eq:riemann}. The exponents there are $\{-1,-\tfrac12,\tfrac12\}$, and the integer-separated pair
 $\pm\tfrac12$ permits a logarithm; direct Lorentzian broadening of the Brillouin-zone spectrum
 (\texttt{numerics/verify\_vanhove\_log.py}) is consistent with a logarithmically divergent
@@ -1014,12 +1024,12 @@ contributes the delta function $\tfrac13\,\delta(E+2)$.
 
 \section{Conclusion}
 We have given the exact differential equation that controls the hyperkagome lattice Green's function,
-determined its differential-Galois structure, proven its modularity, and obtained its weight-two period in
+determined its differential-Galois structure, proved its modularity, and obtained its weight-two period in
 explicit closed form. The Green's function is non-Liouvillian---it has no closed form in algebraic or
 elementary functions---and yet it is modular. The result is also delimited exactly: the derivative
 $\rmd[\zeta G_{\rm disp}]/\rmd z$ is quasimodular through the closed form \eqref{eq:y0closed}, while the
 generating function $\zeta G_{\rm disp}$ itself provably is not, the entire obstruction being the rational
-function $\Delta$ of Eq.~\eqref{eq:Delta} (Sec.~\ref{sec:phiobs}). Constructively, $M$ is an irreducible
+function $\Delta$ of \eqref{eq:Delta} (Section~\ref{sec:phiobs}). Constructively, $M$ is an irreducible
 third-order Picard--Fuchs operator that is not a \emph{literal} symmetric square, yet whose symmetric square
 carries a rational solution; its Galois group is therefore the full orthogonal group
 $\mathrm{O}(3,\mathbb{C})$, with identity component $\mathrm{SO}(3,\mathbb{C})$, and $M$ is
@@ -1031,14 +1041,14 @@ $\Gamma_0(30)^+$. This settles the integral left open by Varma and Monien: the r
 reduction was never found is not that the object is genuinely third-order, but that the reduction is hidden
 behind an operator homomorphism, invisible to the local-exponent tests that detect only function-multiplier
 and pullback equivalences---and the closed form, once reached, is modular at level $30$ rather than elliptic
-at the classical levels. The Watson reduction of Sec.~\ref{sec:watson} anchors the same structure on the
+at the classical levels. The Watson reduction of Section~\ref{sec:watson} anchors the same structure on the
 lattice side: the LGF is exactly the classical generalized body-centered-cubic integral with first- and
 second-neighbor hopping, so the classical second-neighbor cubic-lattice literature and the
 conic/\texttt{reduceorder} program of Assis, van Hoeij and Maillard~\cite{AVM2016} meet the modular
 parametrization in a single object. The hyperkagome LGF is, to our knowledge, the first three-dimensional
 lattice Green's function shown to require such an operator equivalence rather than a literal symmetric-square
 factorization, and the first realized at a modular level with three distinct prime factors. The weight-two
-period $y_0$ itself is exhibited explicitly in Sec.~\ref{sec:y0closed} as a depth-one quasimodular form on
+period $y_0$ itself is exhibited explicitly in Section~\ref{sec:y0closed} as a depth-one quasimodular form on
 $\Gamma_0(30)^+$ twisted by the determinant character, and is provably not a modular form times an algebraic
 function at any weight (Theorem~\ref{thm:noalg})---in particular, not an eta quotient.
 
@@ -1048,7 +1058,7 @@ and~\ref{thm:phi}; that $M$ is the \emph{minimal} annihilator of the Green's fun
 guess-and-verify standard of the lattice-statistics literature, and an unconditional creative-telescoping
 proof of minimality remains the one open step.
 
-The result is directly relevant to the modeling of Na$_4$Ir$_3$O$_8$ and related hyperkagome magnets, where the
+The result is directly relevant to the modeling of Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8} and related hyperkagome magnets, where the
 single-particle LGF enters impurity, disorder, and dynamical-mean-field treatments; it provides the exact
 band-edge and special-point data and a certified equation for high-precision evaluation. More broadly, it adds an
 explicit three-dimensional frustrated lattice, with a nontrivial orthogonal Galois group, a level-30 modular
@@ -1057,49 +1067,50 @@ of Picard--Fuchs operators arising in lattice statistics. An unconditional creat
 is the minimal annihilator and the analogous Heisenberg/transport Green's functions are natural next steps.
 
 All lattice constructions, exact moments, the certified operator, and the verification scripts are provided in
-the public repository accompanying this paper.
+the public repository accompanying this paper,
+\url{https://github.com/bryannasr4-gif/hyperkagome-lgf}.
 
 \section*{Acknowledgments}
 We thank W.~Zudilin for the observation that an order-three
 Calabi--Yau operator would have to be a symmetric square, which helped us discard the Calabi--Yau framing.
 We are indebted to M.~van~Hoeij for the explicit radical expression for the pullback $1728/j$, computed from
-the explicit $V_2$ (private communication, July 2026) and certified in Sec.~\ref{sec:modular}.
+the explicit $V_2$ (private communication, July 2026) and certified in Section~\ref{sec:modular}.
 The operator determination and all certifications were carried out with computer algebra (SymPy); every reported
 result is reproduced by the exact, publicly available scripts in the accompanying repository.
 
 \begin{thebibliography}{99}
-\bibitem{Economou} E.~N.~Economou, \emph{Green's Functions in Quantum Physics}, 3rd ed.\ (Springer, 2006).
-\bibitem{Guttmann2010} A.~J.~Guttmann, J.\ Phys.\ A \textbf{43}, 305205 (2010).
-\bibitem{Watson1939} G.~N.~Watson, ``Three triple integrals,'' Q.\ J.\ Math.\ Oxford Ser.\ \textbf{10}, 266--276 (1939).
-\bibitem{Joyce1973} G.~S.~Joyce, Philos.\ Trans.\ R.\ Soc.\ A \textbf{273}, 583 (1973).
-\bibitem{GlasserZucker1977} M.~L.~Glasser and I.~J.~Zucker, ``Extended Watson integrals for the cubic lattices,'' Proc.\ Natl.\ Acad.\ Sci.\ USA \textbf{74}, 1800 (1977).
-\bibitem{MoritaHoriguchi1971} T.~Morita and T.~Horiguchi, ``Calculation of the lattice Green's function for the bcc, fcc, and rectangular lattices,'' J.\ Math.\ Phys.\ \textbf{12}, 986 (1971).
-\bibitem{Joyce1998} G.~S.~Joyce, J.\ Phys.\ A \textbf{31}, 5105 (1998).
-\bibitem{Okamoto2007} Y.~Okamoto, M.~Nohara, H.~Aruga-Katori, and H.~Takagi, Phys.\ Rev.\ Lett.\ \textbf{99}, 137207 (2007).
-\bibitem{Hopkinson2007} J.~M.~Hopkinson, S.~V.~Isakov, H.-Y.~Kee, and Y.~B.~Kim, Phys.\ Rev.\ Lett.\ \textbf{99}, 037201 (2007).
-\bibitem{Lawler2008} M.~J.~Lawler, H.-Y.~Kee, Y.~B.~Kim, and A.~Vishwanath, Phys.\ Rev.\ Lett.\ \textbf{100}, 227201 (2008).
-\bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Phys.\ Rev.\ E \textbf{87}, 032109 (2013).
-\bibitem{Lipshitz1988} L.~Lipshitz, J.\ Algebra \textbf{113}, 373 (1988).
-\bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, ``Ore Polynomials in Sage,'' in \emph{Computer Algebra and Polynomials}, LNCS \textbf{8942} (Springer, 2015), pp.~105--125.
-\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, J.\ Phys.\ A: Math.\ Theor.\ \textbf{49}, 214002 (2016); arXiv:1602.00868.
-\bibitem{HMZ2025} S.~Hassani, J.-M.~Maillard, and N.~Zenine, ``On the diagonals of rational functions: the minimal number of variables,'' J.\ Phys.\ A: Math.\ Theor.\ \textbf{58}, 255202 (2025); arXiv:2502.05543.
-\bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, J.\ Symb.\ Comput.\ \textbf{16}, 9 (1993).
-\bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \emph{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328} (Springer, 2003).
-\bibitem{Kovacic1986} J.~J.~Kovacic, ``An algorithm for solving second order linear homogeneous differential equations,'' J.\ Symb.\ Comput.\ \textbf{2}, 3 (1986).
-\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, J.-M.~Maillard, and J.-A.~Weil, J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 095203 (2014); arXiv:1311.2470.
-\bibitem{Koutschan2013} C.~Koutschan, J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 125005 (2013).
-\bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, in \emph{Proc.\ 38th Int.\ Symp.\ Symbolic and Algebraic Computation (ISSAC '13)} (ACM, 2013); arXiv:1301.4313.
-\bibitem{AtkinLehner1970} A.~O.~L.~Atkin and J.~Lehner, ``Hecke operators on $\Gamma_0(m)$,'' Math.\ Ann.\ \textbf{185}, 134 (1970).
-\bibitem{Ligozat1975} G.~Ligozat, \emph{Courbes modulaires de genre 1}, Bull.\ Soc.\ Math.\ France, M\'em.\ \textbf{43} (Soci\'et\'e math\'ematique de France, Paris, 1975), 80 pp.
-\bibitem{ConwayNorton1979} J.~H.~Conway and S.~P.~Norton, ``Monstrous moonshine,'' Bull.\ London Math.\ Soc.\ \textbf{11}, 308 (1979).
-\bibitem{DiamondShurman} F.~Diamond and J.~Shurman, \emph{A First Course in Modular Forms}, Graduate Texts in Mathematics \textbf{228} (Springer, 2005).
-\bibitem{Beukers1987} F.~Beukers, ``Irrationality proofs using modular forms,'' in \emph{Journ\'ees arithm\'etiques de Besan\c{c}on}, Ast\'erisque \textbf{147--148}, 271--283 (1987).
-\bibitem{Broadhurst2016} D.~Broadhurst, ``Feynman integrals, $L$-series and Kloosterman moments,'' Commun.\ Number Theory Phys.\ \textbf{10}, 527 (2016); arXiv:1604.03057.
-\bibitem{BlochKerrVanhove2015} S.~Bloch, M.~Kerr, and P.~Vanhove, ``A Feynman integral via higher normal functions,'' Compos.\ Math.\ \textbf{151}, 2329 (2015); arXiv:1406.2664.
-\bibitem{AbdelazizMaillard2017} Y.~Abdelaziz and J.-M.~Maillard, ``Modular forms, Schwarzian conditions, and symmetries of differential equations in physics,'' J.\ Phys.\ A: Math.\ Theor.\ \textbf{50}, 215203 (2017); arXiv:1611.08493.
-\bibitem{AbdelazizKoutschanMaillard2017} Y.~Abdelaziz, C.~Koutschan, and J.-M.~Maillard, ``Schwarzian conditions for linear differential operators with selected differential Galois groups,'' J.\ Phys.\ A: Math.\ Theor.\ \textbf{50}, 465201 (2017); arXiv:1706.07423.
-\bibitem{FordMcKayNorton1994} D.~Ford, J.~McKay, and S.~P.~Norton, ``More on replicable functions,'' Commun.\ Algebra \textbf{22}, 5175 (1994). See also OEIS \href{https://oeis.org/A205826}{A205826} (class $30\mathrm{A}$) and \href{https://oeis.org/A058613}{A058613} (class $30\mathrm{B}$).
-\bibitem{LianWiczer2006} B.~H.~Lian and J.~L.~Wiczer, ``Genus zero modular functions,'' arXiv:math/0611291.
+\bibitem{Economou} E.~N.~Economou, \textit{Green's Functions in Quantum Physics}, 3rd ed., Springer, Berlin, 2006.
+\bibitem{Guttmann2010} A.~J.~Guttmann, Lattice Green's functions in all dimensions. \textit{J. Phys. A: Math. Theor.} \textbf{43} (2010), 305205.
+\bibitem{Watson1939} G.~N.~Watson, Three triple integrals. \textit{Q. J. Math. Oxford Ser.} \textbf{10} (1939), 266--276.
+\bibitem{Joyce1973} G.~S.~Joyce, On the simple cubic lattice Green function. \textit{Philos. Trans. R. Soc. Lond. A} \textbf{273} (1973), 583--610.
+\bibitem{GlasserZucker1977} M.~L.~Glasser and I.~J.~Zucker, Extended Watson integrals for the cubic lattices. \textit{Proc. Natl. Acad. Sci. USA} \textbf{74} (1977), 1800--1801.
+\bibitem{MoritaHoriguchi1971} T.~Morita and T.~Horiguchi, Calculation of the lattice Green's function for the bcc, fcc, and rectangular lattices. \textit{J. Math. Phys.} \textbf{12} (1971), 986--992.
+\bibitem{Joyce1998} G.~S.~Joyce, On the cubic modular transformation and the cubic lattice Green functions. \textit{J. Phys. A: Math. Gen.} \textbf{31} (1998), 5105--5115.
+\bibitem{Okamoto2007} Y.~Okamoto, M.~Nohara, H.~Aruga-Katori, and H.~Takagi, Spin-liquid state in the $S=\frac12$ hyperkagome antiferromagnet Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 137207.
+\bibitem{Hopkinson2007} J.~M.~Hopkinson, S.~V.~Isakov, H.-Y.~Kee, and Y.~B.~Kim, Classical antiferromagnet on a hyperkagome lattice. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 037201.
+\bibitem{Lawler2008} M.~J.~Lawler, H.-Y.~Kee, Y.~B.~Kim, and A.~Vishwanath, Topological spin liquid on the hyperkagome lattice of Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{100} (2008), 227201.
+\bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Lattice Green's functions for kagome, diced, and hyperkagome lattices. \textit{Phys. Rev. E} \textbf{87} (2013), 032109.
+\bibitem{Lipshitz1988} L.~Lipshitz, The diagonal of a D-finite power series is D-finite. \textit{J. Algebra} \textbf{113} (1988), 373--378.
+\bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, Ore polynomials in Sage. In \textit{Computer Algebra and Polynomials}, Lecture Notes in Computer Science \textbf{8942}, Springer, 2015, pp.~105--125.
+\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, The perimeter generating functions of three-choice, imperfect, and one-punctured staircase polygons. \textit{J. Phys. A: Math. Theor.} \textbf{49} (2016), 214002; arXiv:1602.00868.
+\bibitem{HMZ2025} S.~Hassani, J.-M.~Maillard, and N.~Zenine, On the diagonals of rational functions: the minimal number of variables. \textit{J. Phys. A: Math. Theor.} \textbf{58} (2025), 255202; arXiv:2502.05543.
+\bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, Galois groups of second and third order linear differential equations. \textit{J. Symb. Comput.} \textbf{16} (1993), 9--36.
+\bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \textit{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328}, Springer, Berlin, 2003.
+\bibitem{Kovacic1986} J.~J.~Kovacic, An algorithm for solving second order linear homogeneous differential equations. \textit{J. Symb. Comput.} \textbf{2} (1986), 3--43.
+\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, J.-M.~Maillard, and J.-A.~Weil, Differential algebra on lattice Green functions and Calabi--Yau operators. \textit{J. Phys. A: Math. Theor.} \textbf{47} (2014), 095203; arXiv:1311.2470.
+\bibitem{Koutschan2013} C.~Koutschan, Lattice Green functions of the higher-dimensional face-centered cubic lattices. \textit{J. Phys. A: Math. Theor.} \textbf{46} (2013), 125005.
+\bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, Creative telescoping for rational functions using the Griffiths--Dwork method. In \textit{Proc. 38th Int. Symp. on Symbolic and Algebraic Computation (ISSAC~'13)}, ACM, New York, 2013; arXiv:1301.4313.
+\bibitem{AtkinLehner1970} A.~O.~L.~Atkin and J.~Lehner, Hecke operators on $\Gamma_0(m)$. \textit{Math. Ann.} \textbf{185} (1970), 134--160.
+\bibitem{Ligozat1975} G.~Ligozat, Courbes modulaires de genre 1. \textit{Bull. Soc. Math. France, M\'em.} \textbf{43} (1975), 80~pp.
+\bibitem{ConwayNorton1979} J.~H.~Conway and S.~P.~Norton, Monstrous moonshine. \textit{Bull. London Math. Soc.} \textbf{11} (1979), 308--339.
+\bibitem{DiamondShurman} F.~Diamond and J.~Shurman, \textit{A First Course in Modular Forms}, Graduate Texts in Mathematics \textbf{228}, Springer, New York, 2005.
+\bibitem{Beukers1987} F.~Beukers, Irrationality proofs using modular forms. In \textit{Journ\'ees arithm\'etiques de Besan\c{c}on}, Ast\'erisque \textbf{147--148} (1987), 271--283.
+\bibitem{Broadhurst2016} D.~Broadhurst, Feynman integrals, $L$-series and Kloosterman moments. \textit{Commun. Number Theory Phys.} \textbf{10} (2016), 527--569; arXiv:1604.03057.
+\bibitem{BlochKerrVanhove2015} S.~Bloch, M.~Kerr, and P.~Vanhove, A Feynman integral via higher normal functions. \textit{Compos. Math.} \textbf{151} (2015), 2329--2375; arXiv:1406.2664.
+\bibitem{AbdelazizMaillard2017} Y.~Abdelaziz and J.-M.~Maillard, Modular forms, Schwarzian conditions, and symmetries of differential equations in physics. \textit{J. Phys. A: Math. Theor.} \textbf{50} (2017), 215203; arXiv:1611.08493.
+\bibitem{AbdelazizKoutschanMaillard2017} Y.~Abdelaziz, C.~Koutschan, and J.-M.~Maillard, Schwarzian conditions for linear differential operators with selected differential Galois groups. \textit{J. Phys. A: Math. Theor.} \textbf{50} (2017), 465201; arXiv:1706.07423.
+\bibitem{FordMcKayNorton1994} D.~Ford, J.~McKay, and S.~P.~Norton, More on replicable functions. \textit{Commun. Algebra} \textbf{22} (1994), 5175--5193. See also OEIS \href{https://oeis.org/A205826}{A205826} (class $30\mathrm{A}$) and \href{https://oeis.org/A058613}{A058613} (class $30\mathrm{B}$).
+\bibitem{LianWiczer2006} B.~H.~Lian and J.~L.~Wiczer, Genus zero modular functions. Preprint, arXiv:math/0611291.
 \end{thebibliography}
 
 \end{document}
