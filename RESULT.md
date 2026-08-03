@@ -112,7 +112,8 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
 
 **Conditional-on-M note.** The structure theorem (irreducible; orthogonal Galois group; non-Liouvillian)
 is a rigorous consequence *of M*, but M is established to the guess-and-verify standard (annihilation to
-margin 55, independent rebuild), not by an unconditional creative-telescoping proof — which remains an
+margin 55, plus a second independent implementation by the authors), not by an unconditional
+creative-telescoping proof — which remains an
 open item. (The orthogonality certificates themselves are exact, given M.) This is stated in the paper.
 
 ## Riemann scheme of M (Frobenius exponents)
