@@ -158,7 +158,9 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
   `v = √((1−4t)(1−5t)(1−9t))` shifts that log-derivative by `3v′/v` and kills the order-two character;
   the intertwiner is then the **order-one** `T = ρ₀ + ρ₁ d/dt`, with `(M_v·T) mod Sym²(V₂) = 0` exactly.
   Consistency stage: against the *non-unimodular* stored `V₂` the two determinants agree up to an explicit
-  rational witness, which is why the paper's rational bridge operator `P` exists and contradicts nothing.
+  rational witness, and `P` is verified to be an intertwiner **at the operator level** — the right remainder
+  of `Sym²(V₂)·P` by `M` is exactly `0`, while the same `P` against the projective normal form leaves a
+  nonzero remainder — so the paper's rational bridge operator contradicts nothing.
   `det Sym² = (det)⁴` explains why `Sym²(M)` and `Sym⁴(V₂)` *are* homomorphic over ℚ(t).
 
 ## Independent verification — status

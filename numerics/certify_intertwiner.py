@@ -382,6 +382,28 @@ check("so it does NOT agree with the unimodular case (which has residue 0 everyw
 f_cons, ok_cons = log_derivative_witness(sp.cancel(a - a_stored))
 check("M and the STORED Sym^2(V_2) have ISOMORPHIC determinants: explicit rational witness",
       ok_cons, "f = %s" % str(f_cons)[:80])
+
+# Equal determinants only remove the obstruction.  Exhibit the intertwiner itself: with
+# N the stored order-three operator and P = v0 + v1 D + v2 D^2 the conic/bridge operator,
+# P is a module homomorphism iff N o P vanishes on Sol(M), i.e. iff the right-division
+# remainder of N o P by M is exactly zero.  (certify_bridge.py verifies only the
+# single-solution identity f_0^2 = P(y_0); this is the stronger operator statement, and it
+# is what justifies calling P an intertwiner.)
+Nst = [sp.cancel(sp.sympify(Vd[k]["num"]) / sp.sympify(Vd[k]["den"]))
+       for k in ("B0", "B1", "B2")] + [sp.Integer(1)]
+Pop = [sp.cancel(sp.sympify(Vd[k]["num"]) / sp.sympify(Vd[k]["den"]))
+       for k in ("v0", "v1", "v2")]
+check("the stored order-three operator N really is a symmetric square (B0 == 4pq + 2q')",
+      sp.simplify(Nst[0] - (4 * p_ * q_ + 2 * sp.diff(q_, t))) == 0)
+_, RemP = rdiv(opmul(Nst, Pop), Mcoef)
+check("P is a genuine INTERTWINER: remainder of (N o P) mod M is exactly 0",
+      trim(RemP) == [sp.Integer(0)], "order(P) = %d" % (len(trim(Pop)) - 1))
+_, RemPbad = rdiv(opmul(Nst, [Pop[0], Pop[1], sp.cancel(Pop[2] + t)]), Mcoef)
+check("NEGATIVE CONTROL: perturbing the top coefficient of P breaks it",
+      trim(RemPbad) != [sp.Integer(0)])
+_, RemPproj = rdiv(opmul(Ntil, Pop), Mcoef)
+check("NEGATIVE CONTROL: the same P against the PROJECTIVE Sym^2(V_2) does NOT intertwine",
+      trim(RemPproj) != [sp.Integer(0)])
 out("    Hence a rational intertwiner is possible in the stored normalization and impossible")
 out("    in the projective one.  Both of the paper's statements stand; the distinction is")
 out("    exactly the normalization of V_2, which is why the passage needed spelling out.")

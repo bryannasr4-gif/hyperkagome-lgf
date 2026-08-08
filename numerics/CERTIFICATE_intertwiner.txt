@@ -77,6 +77,10 @@ certify_intertwiner.py -- the determinant-character obstruction to a rational
   [PASS] res of the STORED Sym^2(V_2) character at t = 1/9 is -3/2, also a half-integer
   [PASS] so it does NOT agree with the unimodular case (which has residue 0 everywhere)
   [PASS] M and the STORED Sym^2(V_2) have ISOMORPHIC determinants: explicit rational witness   f = 1/(t**2*(t - 1)**4*(4*t - 1)*(5*t - 1)*(9*t - 1)*(101025*t**7 - 369600*t**6 + 45
+  [PASS] the stored order-three operator N really is a symmetric square (B0 == 4pq + 2q')
+  [PASS] P is a genuine INTERTWINER: remainder of (N o P) mod M is exactly 0   order(P) = 2
+  [PASS] NEGATIVE CONTROL: perturbing the top coefficient of P breaks it
+  [PASS] NEGATIVE CONTROL: the same P against the PROJECTIVE Sym^2(V_2) does NOT intertwine
     Hence a rational intertwiner is possible in the stored normalization and impossible
     in the projective one.  Both of the paper's statements stand; the distinction is
     exactly the normalization of V_2, which is why the passage needed spelling out.
