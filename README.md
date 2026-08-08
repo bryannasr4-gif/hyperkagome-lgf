@@ -33,7 +33,10 @@ Working from exact lattice moments, we determine that the hyperkagome Green's fu
 removing the flat-band pole and using the exact reflection symmetry about `E = 1` — is annihilated
 by an **irreducible order-3 Picard–Fuchs operator `M` of degree 15**, and that `M` is **not a
 *literal* symmetric square** of a second-order operator (its Frobenius exponent triples are not the
-arithmetic progressions a symmetric square would force). **Nevertheless `Sym²(M)` has a rational
+arithmetic progressions a symmetric square would force). The order-4 operator guessed from the
+moments factors as `L₄ = M·d/dt`, and that is its **unique** factorization: `L₄` is *not*
+`LCLM(N, d/dt)` for any order-3 `N`, so the constant solution is not a direct summand and `M` is the
+intrinsic object (`numerics/certify_lclm.py`, two independent proofs). **`Sym²(M)` has a rational
 solution `R(t)`**, so:
 
 - **Orthogonal Galois group.** The solution space of `M` carries a monodromy-invariant, nondegenerate,
@@ -140,6 +143,7 @@ Requires only Python 3.10+ with NumPy, SciPy, SymPy, mpmath (no SageMath):
 pip install -r requirements.txt
 python numerics/verify.py                    # moment fingerprint + exact annihilation of M (margin 55)
 python numerics/certify_factor.py            # no order-1/2 factor over Q; not-literal-Sym^2; irreducibility
+python numerics/certify_lclm.py              # L4 = M d/dt is the UNIQUE factorization (no LCLM splitting)
 python numerics/certify_orthogonal.py        # Sym^2(M) rational solution => G = O(3,C); intertwiner; n=2; det char
 python numerics/certify_modular.py           # V2 uniformizes X(Gamma_0(30)+): t=u/(u^2+7u+1) generates the field; Schwarzian
 python numerics/certify_nonliouvillian.py    # genuine log at t=0 => non-Liouvillian (no algebraic/elementary form)
@@ -158,7 +162,7 @@ python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
 ```
 
-All seventeen exit `0` on system Python.
+All eighteen exit `0` on system Python.
 
 Each `certify_*` script validates its primitives on operators with known structure before the real
 run, and writes a plain-text certificate (`numerics/CERTIFICATE*.txt`).
@@ -176,11 +180,11 @@ numerics/
   pullback_data.json                                 — the (8,72) minimal polynomial of the 2F1 pullback 1728/j,
                                                        van Hoeij's radical expression, and the (4,24) equation
                                                        for the [1/8,3/8] base
-  verify.py, certify_factor.py, certify_orthogonal.py, certify_modular.py, certify_nonliouvillian.py,
-  certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
+  verify.py, certify_factor.py, certify_lclm.py, certify_orthogonal.py, certify_modular.py,
+  certify_nonliouvillian.py, certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
   certify_phi_obstruction.py, certify_pullback.py, verify_mum_normalform.py, verify_watson_reduction.py,
   strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (17, all exit 0)
+                                                     — reproduction / certification scripts (18, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
                                                         certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)

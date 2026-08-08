@@ -43,7 +43,8 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   expected {0,1/2,1}. **But this does *not* exclude an elliptic form:** the AP test sees only
   function-multiplier and pullback equivalences, not operator homomorphisms.
 - **Orthogonal differential Galois group.** `Sym²(M)` has an explicit rational solution
-  `R(t) = −(1/272)(15t²+17t−8)² / (t²(t−1)²(4t−1)(5t−1)(9t−1))`; equivalently `M` is homomorphic to its
+  `R(t) = (15t²+17t−8)² / (t²(t−1)²(4t−1)(5t−1)(9t−1))`, fixed only up to an overall constant (the
+  certificate carries the normalization `−R/272`); equivalently `M` is homomorphic to its
   adjoint by an order-2 intertwiner `T`. So the solution space carries a monodromy-invariant nondegenerate
   symmetric form ⇒ `G = O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`, and **M *is* projectively equivalent to the
   symmetric square of a 2nd-order operator** `V₂`; the det character of the monodromy = the quadratic
