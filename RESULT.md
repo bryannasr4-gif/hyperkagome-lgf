@@ -151,6 +151,15 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
   intertwiner remainder identity `rightremainder(M·T, adjoint(M)) = 0` exact over ℚ(t); indicial
   −64ρ(ρ+1)², log-free dim 1 ⇒ n = 2; Wronskian residues ⇒ det character −1 at {1/9,1/5,1/4,∞} ⇒ O(3,ℂ).
   All machinery validated on positive/negative controls (D³−4D self-dual, θ³ Jordan, etc.).
+- **The `M ↔ Sym²(V₂)` intertwiner and where it hides (`numerics/certify_intertwiner.py`):** the Wronskian
+  log-derivative of `M` has residue `−5/2` at each of `t = 1/4, 1/5, 1/9`, so `Λ³(M)` is non-trivial while
+  `Sym²(V₂)` in *projective normal form* is unimodular ⇒ no rational homomorphism in either direction,
+  necessarily (this is why a direct Maple `Homomorphisms` search returns nothing). Conjugating by
+  `v = √((1−4t)(1−5t)(1−9t))` shifts that log-derivative by `3v′/v` and kills the order-two character;
+  the intertwiner is then the **order-one** `T = ρ₀ + ρ₁ d/dt`, with `(M_v·T) mod Sym²(V₂) = 0` exactly.
+  Consistency stage: against the *non-unimodular* stored `V₂` the two determinants agree up to an explicit
+  rational witness, which is why the paper's rational bridge operator `P` exists and contradicts nothing.
+  `det Sym² = (det)⁴` explains why `Sym²(M)` and `Sym⁴(V₂)` *are* homomorphic over ℚ(t).
 
 ## Independent verification — status
 - Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.

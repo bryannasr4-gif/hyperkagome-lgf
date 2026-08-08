@@ -1,0 +1,94 @@
+==============================================================================
+certify_intertwiner.py -- the determinant-character obstruction to a rational
+                          intertwiner between M and Sym^2(V_2), and its removal
+==============================================================================
+
+--- Stage 0: validation of the primitives on objects of KNOWN structure ------
+  [PASS] D o (t + D) = 1 + t D + D^2   [1, t, 1]
+  [PASS] right division of a genuine multiple leaves remainder 0
+  [PASS] NEGATIVE CONTROL: right division of a NON-multiple leaves remainder != 0   remainder [1]
+  [PASS] witness constructor RECOVERS f = (t-1)^2/t^3 from f'/f   (t - 1)**2/t**3
+  [PASS] p_7 is irreducible over Q (so its roots cannot be enumerated rationally)
+  [PASS] witness constructor RECOVERS f = p_7^3/t^2, poles on p_7 included   (101025*t**7 - 369600*t**6 + 455798*t**5 - 290956*t**4 + 93657*t**3 - 
+  [PASS] NEGATIVE CONTROL: no witness for a half-integer multiplicity   non-integer multiplicity 1/2 on factor t - 1
+  [PASS] NEGATIVE CONTROL: no witness for a double pole   denominator factor t - 1 has multiplicity 2
+  [PASS] NEGATIVE CONTROL: no witness for a nonzero polynomial part   nonzero polynomial part t
+  [PASS] residue routine: res of 3/(t-1) at t=1 is 3
+  [PASS] residue routine: res of -5/(2(4t-1)) at t=1/4 is -5/8
+  [PASS] residue routine: res at a regular point is 0
+
+--- Stage 1: the determinant character of M ----------------------------------
+  [PASS] M read from M_coeffs.json has order 3 and nonzero leading coefficient
+    Wronskian log-derivative a = -c2/c3 ; residues at the finite singular points:
+       t = 0          residue -5
+       t = 1/9        residue -5/2
+       t = 1/5        residue -5/2
+       t = 1/4        residue -5/2
+       t = 1          residue -4
+  [PASS] the residues at t = 1/4, 1/5, 1/9 are all HALF-INTEGERS (not integers)   res(1/4)=-5/2, res(1/5)=-5/2, res(1/9)=-5/2
+  [PASS] the residues at t = 0 and t = 1 ARE integers (so the obstruction is localized)
+  [PASS] hence a is NOT f'/f for ANY f in Qbar(t)* => Lambda^3(M) is non-trivial   res at t=1/4 is -5/2, not an integer
+  [PASS] cross-check: the witness constructor also finds no witness for a   non-integer multiplicity -5/2 on factor 4*t - 1
+
+--- Stage 2: Sym^2(V_2) in projective normal form is unimodular --------------
+  [PASS] Ntilde = D^3 + 4 Q_V D + 2 Q_V' has a vanishing D^2 coefficient
+  [PASS] so its Wronskian log-derivative is 0, a log-derivative (f = 1): Lambda^3 trivial
+  [PASS] cross-check: Q_V == q - p'/2 - p^2/4 from the stored V_2
+
+--- Stage 3: no rational intertwiner, in either direction --------------------
+  [PASS] Lambda^3(M) non-trivial and Lambda^3(Ntilde) trivial => M is NOT isomorphic to Ntilde
+    Both operators are irreducible (M: certify_factor.py; Ntilde: Sym^2 of the
+    uniformizing operator of X(Gamma_0(30)^+), projective monodromy Zariski-dense in
+    PSL(2,C)), so a nonzero homomorphism would be an isomorphism.  Hence
+    Hom(M, Ntilde) = Hom(Ntilde, M) = 0 over Q(t): the empty Maple output is FORCED.
+
+--- Stage 4: conjugating by v = sqrt((1-4t)(1-5t)(1-9t)) kills the character --
+  [PASS] v'/v is RATIONAL (so the conjugation stays inside Q(t)<D>)   (270*t**2 - 101*t + 9)/((4*t - 1)*(5*t - 1)*(9*t - 1))
+  [PASS] M_v := v o M o v^{-1} has order 3
+  [PASS] every coefficient of M_v lies in Q(t) (verified one by one, not assumed)
+  [PASS] the residue of M_v's character at t = 1/4 is now an INTEGER   residue -1
+  [PASS] the residue of M_v's character at t = 1/5 is now an INTEGER   residue -1
+  [PASS] the residue of M_v's character at t = 1/9 is now an INTEGER   residue -1
+  [PASS] an explicit rational witness f with f'/f = -c2/c3 exists => character KILLED   f = (101025*t**7 - 369600*t**6 + 455798*t**5 - 290956*t**4 + 93657*t**3 - 17580*t**2 + 1800*t 
+  [PASS] and it differs from a by exactly 3 v'/v, the conjugation shift
+
+--- Stage 5: over M_v the intertwiner is rational and of ORDER ONE -----------
+  [PASS] T = rho_0 + rho_1 D has order ONE
+  [PASS] right-division remainder of M_v o T by Ntilde is exactly 0 => T : Sol(Ntilde) -> Sol(M_v)   remainder [0]
+  [PASS] NEGATIVE CONTROL: perturbing rho_1 by t breaks that identity
+  [PASS] NEGATIVE CONTROL: the SAME T against the UNCONJUGATED M leaves a nonzero remainder
+
+--- Stage 6: why the symmetric-square level sees what M does not -------------
+    For a rank-three module, det Sym^2 = (det)^4 and det Sym^2(M) is therefore the
+    fourth power of the character; the character has order two, so every even tensor
+    power of it is trivial.  Concretely:
+  [PASS] 1 * a has a non-integer residue at t = 1/4  (-5/2)
+  [PASS] 2 * a has an INTEGER residue at t = 1/4  (-5)
+  [PASS] 4 * a has an INTEGER residue at t = 1/4  (-10)
+  [PASS] and 2a really is a log-derivative: explicit witness verified   f = (101025*t**7 - 369600*t**6 + 455798*t**5 - 290956*t**4 + 93657*t**3 - 
+
+--- Stage 7: consistency with the rational P of the bridge identity ----------
+    The paper also exhibits a RATIONAL order-two P over Q(t) with P(y_0) = f_0^2,
+    M(y_0) = 0 and V_2(f_0) = 0.  Taken carelessly that contradicts Stage 3.  It does
+    not, because there V_2 is the stored NON-unimodular form D^2 + p D + q, whose
+    symmetric square has Wronskian log-derivative -3p, not 0.  Checked here:
+  [PASS] res of the STORED Sym^2(V_2) character at t = 1/4 is -3/2, also a half-integer
+  [PASS] res of the STORED Sym^2(V_2) character at t = 1/5 is -3/2, also a half-integer
+  [PASS] res of the STORED Sym^2(V_2) character at t = 1/9 is -3/2, also a half-integer
+  [PASS] so it does NOT agree with the unimodular case (which has residue 0 everywhere)
+  [PASS] M and the STORED Sym^2(V_2) have ISOMORPHIC determinants: explicit rational witness   f = 1/(t**2*(t - 1)**4*(4*t - 1)*(5*t - 1)*(9*t - 1)*(101025*t**7 - 369600*t**6 + 45
+    Hence a rational intertwiner is possible in the stored normalization and impossible
+    in the projective one.  Both of the paper's statements stand; the distinction is
+    exactly the normalization of V_2, which is why the passage needed spelling out.
+
+==============================================================================
+RESULT: ALL CHECKS PASS.
+The determinant character of M -- the quadratic character of
+v^2 = (1-4t)(1-5t)(1-9t) -- is the ONLY obstruction to a rational intertwiner
+with Sym^2(V_2) in projective normal form.  It makes Hom(M, Sym^2(V_2)) = 0 over
+Q(t) in both directions, it is removed by the single conjugation M_v = v M v^{-1},
+and over M_v the intertwiner is the ORDER-ONE operator T = rho_0 + rho_1 d/dt.
+Being of order two, the character is invisible at the symmetric-square level,
+which is why Sym^2(M) and Sym^4(V_2) are homomorphic over Q(t) while M and
+Sym^2(V_2) are not.
+==============================================================================

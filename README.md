@@ -121,6 +121,13 @@ symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1
   intertwiner `T` (`rightremainder(M·T, adjoint(M)) = 0` exactly over ℚ(t)); the `t = 0` Jordan block is
   single/3×3 (`n = 2`); the determinant character is `−1` at `{1/9,1/5,1/4,∞}` ⇒ `G = O(3,ℂ)`, twist
   curve `v² = (1−4t)(1−5t)(1−9t)`. ⇒ `G° = SO(3,ℂ)`, projectively a symmetric square.
+- **Where the `M ↔ Sym²(V₂)` intertwiner hides** (`numerics/certify_intertwiner.py`,
+  `CERTIFICATE_intertwiner.txt`): the Wronskian log-derivative of `M` has residue `−5/2` at each of
+  `t = 1/4, 1/5, 1/9`, so `Λ³(M)` is non-trivial while `Sym²(V₂)` (projective normal form) is unimodular ⇒
+  **no rational homomorphism exists in either direction**, necessarily. The single conjugation
+  `M_v = v·M·v⁻¹` shifts that log-derivative by `3v′/v` and kills the order-two character, after which the
+  intertwiner is the **order-one** `T = ρ₀ + ρ₁ d/dt` (remainder of `M_v·T` mod `Sym²(V₂)` exactly `0`).
+  The same parity is why `Sym²(M)` and `Sym⁴(V₂)` *are* homomorphic over ℚ(t): `det Sym² = (det)⁴`.
 - **Modular parametrization, certified exactly** (`numerics/certify_modular.py`,
   `CERTIFICATE_modular.txt`): the level-30 eta quotient `u` satisfies the Ligozat conditions (⇒ modular
   function on `Γ₀(30)`); `t = u/(u²+7u+1)` matches the `V₂` MUM mirror map to 80 orders; and the Schwarzian
@@ -145,6 +152,7 @@ python numerics/verify.py                    # moment fingerprint + exact annihi
 python numerics/certify_factor.py            # no order-1/2 factor over Q; not-literal-Sym^2; irreducibility
 python numerics/certify_lclm.py              # L4 = M d/dt is the UNIQUE factorization (no LCLM splitting)
 python numerics/certify_orthogonal.py        # Sym^2(M) rational solution => G = O(3,C); intertwiner; n=2; det char
+python numerics/certify_intertwiner.py       # det character is the ONLY obstruction to a rational M <-> Sym^2(V2)
 python numerics/certify_modular.py           # V2 uniformizes X(Gamma_0(30)+): t=u/(u^2+7u+1) generates the field; Schwarzian
 python numerics/certify_nonliouvillian.py    # genuine log at t=0 => non-Liouvillian (no algebraic/elementary form)
 python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 local solutions log-free)
@@ -180,11 +188,12 @@ numerics/
   pullback_data.json                                 — the (8,72) minimal polynomial of the 2F1 pullback 1728/j,
                                                        van Hoeij's radical expression, and the (4,24) equation
                                                        for the [1/8,3/8] base
-  verify.py, certify_factor.py, certify_lclm.py, certify_orthogonal.py, certify_modular.py,
+  verify.py, certify_factor.py, certify_lclm.py, certify_orthogonal.py, certify_intertwiner.py,
+  certify_modular.py,
   certify_nonliouvillian.py, certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
   certify_phi_obstruction.py, certify_pullback.py, verify_mum_normalform.py, verify_watson_reduction.py,
   strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (18, all exit 0)
+                                                     — reproduction / certification scripts (19, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
                                                         certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)
