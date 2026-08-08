@@ -40,22 +40,25 @@ WHAT IS PROVED HERE (all exact, in Q(t); no floating point anywhere)
       and does not depend on that bookkeeping.
 
   [5] Over M_v the intertwiner is rational and has ORDER ONE: with T = rho_0 + rho_1 D of
-      Eq. (12) of the paper, the right-division remainder of M_v o T by Ntilde is exactly 0,
+      Eq. (15) of the paper, the right-division remainder of M_v o T by Ntilde is exactly 0,
       so T maps Sol(Ntilde) into Sol(M_v).  (Independently recomputed here; certify_y0.py
       reaches the same identity by a different route.)
 
   [6] The obstruction is an order-two character, so it dies in every even tensor
       construction: 2a and 4a have integer residues where a does not.  That is why the
-      symmetric-square level -- Sym^2(M) against Sym^4(V_2) -- shows the homomorphism that
-      the level of M itself cannot.
+      determinant obstruction is absent at the symmetric-square level -- Sym^2(M) against
+      Sym^4(V_2) -- where the direct search at the level of M is blocked.  (The homomorphy
+      at that level was reported by Maillard's Maple session and is NOT certified here;
+      only the disappearance of the obstruction is.)
 
 NEGATIVE CONTROLS (a check that has never been shown to fail is not a check)
   - the log-derivative predicate REJECTS a function with a half-integer residue, REJECTS a
     function with a double pole, and REJECTS one carrying a polynomial part;
   - right division REJECTS a non-factor;
   - perturbing rho_1 by t breaks the intertwiner identity of [5];
-  - a control operator built to have integer residues is correctly ACCEPTED, so [1] is not
-    an artifact of the predicate always saying "no".
+  - positive witness controls (a rational function with an irreducible degree-7 factor
+    included) are correctly ACCEPTED, so [1] is not an artifact of the routine always
+    saying "no".
 
 Runs on system Python (sympy only).  Writes CERTIFICATE_intertwiner.txt.
 """
@@ -393,8 +396,11 @@ Nst = [sp.cancel(sp.sympify(Vd[k]["num"]) / sp.sympify(Vd[k]["den"]))
        for k in ("B0", "B1", "B2")] + [sp.Integer(1)]
 Pop = [sp.cancel(sp.sympify(Vd[k]["num"]) / sp.sympify(Vd[k]["den"]))
        for k in ("v0", "v1", "v2")]
-check("the stored order-three operator N really is a symmetric square (B0 == 4pq + 2q')",
+check("the stored order-three operator N really is Sym^2(V_2): B0 == 4pq + 2q'",
       sp.simplify(Nst[0] - (4 * p_ * q_ + 2 * sp.diff(q_, t))) == 0)
+check("... and B1 == 2p^2 + p' + 4q",
+      sp.simplify(Nst[1] - (2 * p_ ** 2 + sp.diff(p_, t) + 4 * q_)) == 0)
+check("... and B2 == 3p", sp.simplify(Nst[2] - 3 * p_) == 0)
 _, RemP = rdiv(opmul(Nst, Pop), Mcoef)
 check("P is a genuine INTERTWINER: remainder of (N o P) mod M is exactly 0",
       trim(RemP) == [sp.Integer(0)], "order(P) = %d" % (len(trim(Pop)) - 1))
@@ -422,8 +428,10 @@ else:
     out("Q(t) in both directions, it is removed by the single conjugation M_v = v M v^{-1},")
     out("and over M_v the intertwiner is the ORDER-ONE operator T = rho_0 + rho_1 d/dt.")
     out("Being of order two, the character is invisible at the symmetric-square level,")
-    out("which is why Sym^2(M) and Sym^4(V_2) are homomorphic over Q(t) while M and")
-    out("Sym^2(V_2) are not.")
+    out("which is why the determinant obstruction is absent between Sym^2(M) and")
+    out("Sym^4(V_2) (their homomorphy was reported by J.-M. Maillard, private")
+    out("communication, and is NOT certified by this script) while M and Sym^2(V_2)")
+    out("are provably not homomorphic.")
 out("=" * 78)
 
 open(os.path.join(HERE, "CERTIFICATE_intertwiner.txt"), "w").write("\n".join(OUT) + "\n")

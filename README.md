@@ -127,7 +127,8 @@ symmetric square, and this is not). Headline exact special value: **`Re G(1) = 1
   **no rational homomorphism exists in either direction**, necessarily. The single conjugation
   `M_v = v·M·v⁻¹` shifts that log-derivative by `3v′/v` and kills the order-two character, after which the
   intertwiner is the **order-one** `T = ρ₀ + ρ₁ d/dt` (remainder of `M_v·T` mod `Sym²(V₂)` exactly `0`).
-  The same parity is why `Sym²(M)` and `Sym⁴(V₂)` *are* homomorphic over ℚ(t): `det Sym² = (det)⁴`.
+  The same parity (`det Sym² = (det)⁴`) removes the obstruction between `Sym²(M)` and `Sym⁴(V₂)`, whose
+  homomorphy over ℚ(t) was observed by J.-M. Maillard (private communication; not certified here).
 - **Modular parametrization, certified exactly** (`numerics/certify_modular.py`,
   `CERTIFICATE_modular.txt`): the level-30 eta quotient `u` satisfies the Ligozat conditions (⇒ modular
   function on `Γ₀(30)`); `t = u/(u²+7u+1)` matches the `V₂` MUM mirror map to 80 orders; and the Schwarzian

@@ -481,8 +481,9 @@ logarithmic derivative shifts by $3\,v'/v$, and the certificate exhibits an expl
 $f'/f$ equal to the result. The intertwiner is then found by
 \texttt{Homomorphisms(symmetric\_power(V2,2),\,mult($v$,M,$1/v$))} with
 $v=(1-4t)^{1/2}(1-5t)^{1/2}(1-9t)^{1/2}$, and is $T$. The same parity removes the obstruction one level up, and on both
-sides: $\det\mathrm{Sym}^2=(\det)^4$ makes $\mathrm{Sym}^2(M)$ unimodular because $\chi_v^4=1$, and
-$\mathrm{Sym}^4$ of a unimodular rank-two operator is unimodular as well ($\det\mathrm{Sym}^4=(\det)^{10}$).
+sides: $\det\mathrm{Sym}^2=(\det)^4$ trivializes the determinant of $\mathrm{Sym}^2(M)$ because $\chi_v^4=1$,
+and $\mathrm{Sym}^4$ of a rank-two operator with trivial determinant again has trivial determinant
+($\det\mathrm{Sym}^4=(\det)^{10}$).
 That is only the removal of an obstruction, not a construction; the homomorphism between
 $\mathrm{Sym}^2(M)$ and $\mathrm{Sym}^4(V_2)$ was found by J.-M.~Maillard (private communication, July 2026)
 and is not certified here, whereas $M$ and $\mathrm{Sym}^2(V_2)$ are provably not homomorphic. There is no tension with the rational order-two $P$ of the bridge identity
@@ -492,8 +493,9 @@ integer residues only, so there the obstruction is absent. That $P$ is an intert
 and not merely the single-solution statement $f_0^2=P(y_0)$, is itself an exact operator identity: the right
 remainder of $\mathrm{Sym}^2(V_2)\circ P$ on division by $M$ is zero, whereas the same $P$ against the
 projective normal form leaves a nonzero remainder. It is precisely the passage to the projective
-normal form that reintroduces the obstruction. The mathematical content of this footnote---the residues, the
-non-existence of the rational intertwiner, the trivialization of the character, the order-one $T$, and this
+normal form that reintroduces the obstruction. The computational content of this footnote---the residues, the
+determinant non-isomorphy (which yields the non-existence of the rational intertwiner given the two
+irreducibility inputs already cited), the trivialization of the character, the order-one $T$, and this
 last consistency---is certified in exact arithmetic, with negative controls, in
 \texttt{numerics/certify\_intertwiner.py}, which builds $M_v$ by expanding $(\rmd/\rmd t-v'/v)^i$ and so
 never leaves $\mathbb{Q}(t)$; the Maple invocation is quoted as a convenience and is not itself certified.}

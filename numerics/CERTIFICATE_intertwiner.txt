@@ -77,7 +77,9 @@ certify_intertwiner.py -- the determinant-character obstruction to a rational
   [PASS] res of the STORED Sym^2(V_2) character at t = 1/9 is -3/2, also a half-integer
   [PASS] so it does NOT agree with the unimodular case (which has residue 0 everywhere)
   [PASS] M and the STORED Sym^2(V_2) have ISOMORPHIC determinants: explicit rational witness   f = 1/(t**2*(t - 1)**4*(4*t - 1)*(5*t - 1)*(9*t - 1)*(101025*t**7 - 369600*t**6 + 45
-  [PASS] the stored order-three operator N really is a symmetric square (B0 == 4pq + 2q')
+  [PASS] the stored order-three operator N really is Sym^2(V_2): B0 == 4pq + 2q'
+  [PASS] ... and B1 == 2p^2 + p' + 4q
+  [PASS] ... and B2 == 3p
   [PASS] P is a genuine INTERTWINER: remainder of (N o P) mod M is exactly 0   order(P) = 2
   [PASS] NEGATIVE CONTROL: perturbing the top coefficient of P breaks it
   [PASS] NEGATIVE CONTROL: the same P against the PROJECTIVE Sym^2(V_2) does NOT intertwine
@@ -93,6 +95,8 @@ with Sym^2(V_2) in projective normal form.  It makes Hom(M, Sym^2(V_2)) = 0 over
 Q(t) in both directions, it is removed by the single conjugation M_v = v M v^{-1},
 and over M_v the intertwiner is the ORDER-ONE operator T = rho_0 + rho_1 d/dt.
 Being of order two, the character is invisible at the symmetric-square level,
-which is why Sym^2(M) and Sym^4(V_2) are homomorphic over Q(t) while M and
-Sym^2(V_2) are not.
+which is why the determinant obstruction is absent between Sym^2(M) and
+Sym^4(V_2) (their homomorphy was reported by J.-M. Maillard, private
+communication, and is NOT certified by this script) while M and Sym^2(V_2)
+are provably not homomorphic.
 ==============================================================================

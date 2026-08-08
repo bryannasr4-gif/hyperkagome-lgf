@@ -161,7 +161,8 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
   rational witness, and `P` is verified to be an intertwiner **at the operator level** — the right remainder
   of `Sym²(V₂)·P` by `M` is exactly `0`, while the same `P` against the projective normal form leaves a
   nonzero remainder — so the paper's rational bridge operator contradicts nothing.
-  `det Sym² = (det)⁴` explains why `Sym²(M)` and `Sym⁴(V₂)` *are* homomorphic over ℚ(t).
+  `det Sym² = (det)⁴` removes the obstruction at the symmetric-square level; the homomorphy of `Sym²(M)`
+  and `Sym⁴(V₂)` over ℚ(t) there was observed by J.-M. Maillard (private communication; not certified here).
 
 ## Independent verification — status
 - Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.
