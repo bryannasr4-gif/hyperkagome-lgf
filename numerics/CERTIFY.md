@@ -34,10 +34,33 @@ eigenring(L, [Dt, t]);            # cross-check: eigenring = scalars (dim 1) <=>
 # L is not a LITERAL symmetric square, but it is homomorphic to its adjoint (orthogonal Galois group):
 Homomorphisms(adjoint(L), L, [Dt, t]);   # expect a NONZERO order-2 intertwiner T
 S2 := symmetric_power(L, 2, [Dt, t]):  ratsols(S2, t);
-    # expect a NONZERO rational solution R = -(1/272)(15t^2+17t-8)^2/(t^2(t-1)^2(4t-1)(5t-1)(9t-1))
+    # expect a NONZERO rational solution, R = (15t^2+17t-8)^2/(t^2(t-1)^2(4t-1)(5t-1)(9t-1))
+    # up to the arbitrary overall constant ratsols happens to normalize to
     # (=> Galois group in O(3,C); confirms certify_orthogonal.py)
 formal_sol(L, [Dt, t], t = 0);         # expect a ln(t) term: the genuine logarithmic solution at t=0
 ```
+
+### The intertwiner with `Sym^2(V2)`: conjugate by the twist first
+
+Searching for it directly returns **nothing**, and that is forced, not a Maple limitation: the determinant
+character of `L` is the quadratic character of `v^2 = (1-4t)(1-5t)(1-9t)`, while `Sym^2(V2)` in projective
+normal form is unimodular, so the two are non-isomorphic (`numerics/certify_intertwiner.py`). Conjugating by
+`v` removes exactly that obstruction, and `v'/v` is rational so the conjugate stays in `Q(t)<Dt>`:
+
+```maple
+QV := (1/4)*(24300*t^8 - 58860*t^7 + 73437*t^6 - 44294*t^5 + 15111*t^4 - 3160*t^3
+      + 407*t^2 - 30*t + 1)/t^2/(t-1)^2/(4*t-1)^2/(5*t-1)^2/(9*t-1)^2:
+V2 := Dt^2 + QV:
+v  := (1-4*t)^(1/2)*(1-5*t)^(1/2)*(1-9*t)^(1/2):
+Homomorphisms(symmetric_power(V2, 2), L, [Dt, t]);              # [] -- empty, necessarily
+Homomorphisms(symmetric_power(V2, 2),
+              mult(v, L, 1/v, [Dt, t]), [Dt, t]);               # the ORDER-ONE T = rho0 + rho1*Dt
+```
+
+with `rho1 = (15t^2+17t-8)/(30 t (t-1))` and `rho0` as in Eq. (12) of the paper. The obstruction is a character
+of order two, so it cannot survive an even tensor construction: `det Sym^2 = (det)^4`, which is why
+`Homomorphisms(symmetric_power(V2,4), symmetric_power(L,2))` **is** nonempty without any conjugation.
+(Recipe due to J.-M. Maillard, private communication, July-August 2026.)
 
 Read-off: `DFactor` returns one operator ⇒ irreducible over ℚ(t) (and, with the exact enumeration over ℚ̄ plus
 the t=0 log already in `certify_factor.py`, over ℚ̄(t)). A `ln(t)` term at t=0 confirms the logarithm.
