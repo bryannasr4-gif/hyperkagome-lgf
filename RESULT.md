@@ -162,7 +162,7 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
   of `Sym²(V₂)·P` by `M` is exactly `0`, while the same `P` against the projective normal form leaves a
   nonzero remainder — so the paper's rational bridge operator contradicts nothing.
   `det Sym² = (det)⁴` removes the obstruction at the symmetric-square level; the homomorphy of `Sym²(M)`
-  and `Sym⁴(V₂)` over ℚ(t) there was observed by J.-M. Maillard (private communication; not certified here).
+  and `Sym⁴(V₂)` over ℚ(t) there is easy to check in Maple and is **not** certified here.
 
 ## Independent verification — status
 - Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.

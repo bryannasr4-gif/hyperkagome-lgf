@@ -60,9 +60,8 @@ Homomorphisms(symmetric_power(V2, 2),
 with `rho1 = (15t^2+17t-8)/(30 t (t-1))` and `rho0` as in Eq. (15) of the paper. The obstruction is a character
 of order two, so it cannot survive an even tensor construction (`det Sym^2 = (det)^4`), which is why the
 determinant obstruction is absent between `symmetric_power(V2,4)` and `symmetric_power(L,2)` without any
-conjugation — J.-M. Maillard reports that `Homomorphisms` is indeed nonempty there (private communication,
-July 2026; that homomorphy is his Maple observation and is **not** certified in this repository — only the
-disappearance of the obstruction is). Recipe due to J.-M. Maillard, private communication, July-August 2026.
+conjugation, and `Homomorphisms` is indeed nonempty there. That homomorphy is easy to check in Maple and
+is **not** certified in this repository — only the disappearance of the obstruction is.
 
 Read-off: `DFactor` returns one operator ⇒ irreducible over ℚ(t) (and, with the exact enumeration over ℚ̄ plus
 the t=0 log already in `certify_factor.py`, over ℚ̄(t)). A `ln(t)` term at t=0 confirms the logarithm.

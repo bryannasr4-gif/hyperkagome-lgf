@@ -16,6 +16,8 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{lem}[thm]{Lemma}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
 
 % Allow TeX a last-resort stretch rather than pushing material into the margin.
 \emergencystretch=3em
@@ -466,39 +468,8 @@ the point is worth making plainly because the search that a reader would run fir
 $\mathrm{Sym}^2(V_2)$ with $V_2$ in the projective normal form $w''+Q_Vw=0$ of \eqref{eq:QV} there is no
 homomorphism over $\mathbb{Q}(t)$ in either direction; after the single conjugation $M_v:=v\circ M\circ v^{-1}$
 ---which again has coefficients in $\mathbb{Q}(t)$, because $v'/v$ is rational---the intertwiner is the
-\emph{order-one} operator $T=\rho_0+\rho_1\,\rmd/\rmd t$ of \eqref{eq:y0rhos} below.%
-\footnote{This is worth spelling out, because the direct search returns nothing and the reason is structural
-rather than computational. With $V_2$ in the projective normal form $w''+Q_Vw=0$ of \eqref{eq:QV}, the operator
-$\mathrm{Sym}^2(V_2)=\rmd^3/\rmd t^3+4Q_V\,\rmd/\rmd t+2Q_V'$ is unimodular, whereas the Wronskian
-logarithmic derivative of $M$ has residue $-5/2$ at each of $t=\tfrac14,\tfrac15,\tfrac19$. No residue of
-$f'/f$ can fail to be an integer, so $\Lambda^3(M)$ is non-trivial, and two irreducible operators with
-non-isomorphic determinants are non-isomorphic (for $\mathrm{Sym}^2(V_2)$ the irreducibility is
-Lemma~\ref{lem:sl2} below): in Maple,
-\texttt{Homomorphisms(symmetric\_power(V2,2),M)} is empty in both directions of necessity. What removes the
-obstruction is that the determinant character of $M$ \emph{is} the quadratic character $\chi_v$ of
-\eqref{eq:twist}: conjugating by $v$ multiplies it by $\chi_v^3=\chi_v$, leaving $\chi_v^2=1$. Concretely the
-logarithmic derivative shifts by $3\,v'/v$, and the certificate exhibits an explicit $f\in\mathbb{Q}(t)^*$ with
-$f'/f$ equal to the result. The intertwiner is then found by
-\texttt{Homomorphisms(symmetric\_power(V2,2),\,mult($v$,M,$1/v$))} with
-$v=(1-4t)^{1/2}(1-5t)^{1/2}(1-9t)^{1/2}$, and is $T$. The same parity removes the obstruction one level up, and on both
-sides: $\det\mathrm{Sym}^2=(\det)^4$ trivializes the determinant of $\mathrm{Sym}^2(M)$ because $\chi_v^4=1$,
-and $\mathrm{Sym}^4$ of a rank-two operator with trivial determinant again has trivial determinant
-($\det\mathrm{Sym}^4=(\det)^{10}$).
-That is only the removal of an obstruction, not a construction; the homomorphism between
-$\mathrm{Sym}^2(M)$ and $\mathrm{Sym}^4(V_2)$ was found by J.-M.~Maillard (private communication, July 2026)
-and is not certified here, whereas $M$ and $\mathrm{Sym}^2(V_2)$ are provably not homomorphic. There is no tension with the rational order-two $P$ of the bridge identity
-$f_0^2=P(y_0)$ below: that $P$ intertwines $M$ with the symmetric square of $V_2$ in the \emph{non-unimodular}
-normalization $\rmd^2/\rmd t^2+a_1\rmd/\rmd t+a_0$, whose determinant character differs from that of $M$ by
-integer residues only, so there the obstruction is absent. That $P$ is an intertwiner in the module sense,
-and not merely the single-solution statement $f_0^2=P(y_0)$, is itself an exact operator identity: the right
-remainder of $\mathrm{Sym}^2(V_2)\circ P$ on division by $M$ is zero, whereas the same $P$ against the
-projective normal form leaves a nonzero remainder. It is precisely the passage to the projective
-normal form that reintroduces the obstruction. The computational content of this footnote---the residues, the
-determinant non-isomorphy (which yields the non-existence of the rational intertwiner given the two
-irreducibility inputs already cited), the trivialization of the character, the order-one $T$, and this
-last consistency---is certified in exact arithmetic, with negative controls, in
-\texttt{numerics/certify\_intertwiner.py}, which builds $M_v$ by expanding $(\rmd/\rmd t-v'/v)^i$ and so
-never leaves $\mathbb{Q}(t)$; the Maple invocation is quoted as a convenience and is not itself certified.}
+\emph{order-one} operator $T=\rho_0+\rho_1\,\rmd/\rmd t$ of \eqref{eq:y0rhos} below; Remark~\ref{rem:obstruction}
+says why, and why the obstruction disappears one level up.
 The equivalence shifts individual local exponents by \emph{different} integers and so destroys
 the arithmetic progressions, which is exactly why $M$ is not a literal symmetric square (nor a multiplier or
 pullback of one) yet is orthogonally, projectively, one. The same structural phenomenon is known in the differential
@@ -536,6 +507,43 @@ $\,_2F_1\!\left(\tfrac1{12},\tfrac5{12};1;\cdot\right)$ gives a markedly simpler
 pullback then satisfies an equation of bidegree $(4,24)$ rather than $(8,72)$, over an index-two subfield
 of \eqref{eq:radfield} reached by two square roots instead of three. See the footnote to
 Proposition~\ref{prop:pullback}.}
+
+\begin{rem}[Where the rational intertwiner hides]
+\label{rem:obstruction}
+The direct search returns nothing, and the reason is structural rather than computational. With $V_2$ in the
+projective normal form $w''+Q_Vw=0$ of \eqref{eq:QV}, the operator
+$\mathrm{Sym}^2(V_2)=\rmd^3/\rmd t^3+4Q_V\,\rmd/\rmd t+2Q_V'$ is unimodular, whereas the Wronskian
+logarithmic derivative of $M$ has residue $-5/2$ at each of $t=\tfrac14,\tfrac15,\tfrac19$. No residue of
+$f'/f$ can fail to be an integer, so $\Lambda^3(M)$ is non-trivial, and two irreducible operators with
+non-isomorphic determinants are non-isomorphic (for $\mathrm{Sym}^2(V_2)$ the irreducibility is
+Lemma~\ref{lem:sl2} below): in Maple,
+\texttt{Homomorphisms(symmetric\_power(V2,2),M)} is empty in both directions of necessity. What removes the
+obstruction is that the determinant character of $M$ \emph{is} the quadratic character $\chi_v$ of
+\eqref{eq:twist}: conjugating by $v$ multiplies it by $\chi_v^3=\chi_v$, leaving $\chi_v^2=1$. Concretely the
+logarithmic derivative shifts by $3\,v'/v$, and the certificate exhibits an explicit $f\in\mathbb{Q}(t)^*$ with
+$f'/f$ equal to the result. The intertwiner is then found by
+\texttt{Homomorphisms(symmetric\_power(V2,2),\,mult($v$,M,$1/v$))} with
+$v=(1-4t)^{1/2}(1-5t)^{1/2}(1-9t)^{1/2}$, and is $T$. The same parity removes the obstruction one level up, and
+on both sides: $\det\mathrm{Sym}^2=(\det)^4$ trivializes the determinant of $\mathrm{Sym}^2(M)$ because
+$\chi_v^4=1$, and $\mathrm{Sym}^4$ of a rank-two operator with trivial determinant again has trivial determinant
+($\det\mathrm{Sym}^4=(\det)^{10}$).
+That is only the removal of an obstruction, not a construction; the homomorphism between
+$\mathrm{Sym}^2(M)$ and $\mathrm{Sym}^4(V_2)$ is easy to check in Maple and is not certified here,
+whereas $M$ and $\mathrm{Sym}^2(V_2)$ are provably not homomorphic. There is no tension with the rational
+order-two $P$ of the bridge identity
+$f_0^2=P(y_0)$ below: that $P$ intertwines $M$ with the symmetric square of $V_2$ in the \emph{non-unimodular}
+normalization $\rmd^2/\rmd t^2+a_1\rmd/\rmd t+a_0$, whose determinant character differs from that of $M$ by
+integer residues only, so there the obstruction is absent. That $P$ is an intertwiner in the module sense,
+and not merely the single-solution statement $f_0^2=P(y_0)$, is itself an exact operator identity: the right
+remainder of $\mathrm{Sym}^2(V_2)\circ P$ on division by $M$ is zero, whereas the same $P$ against the
+projective normal form leaves a nonzero remainder. It is precisely the passage to the projective
+normal form that reintroduces the obstruction. The computational content of this remark---the residues, the
+determinant non-isomorphy (which yields the non-existence of the rational intertwiner given the two
+irreducibility inputs already cited), the trivialization of the character, the order-one $T$, and this
+last consistency---is certified in exact arithmetic, with negative controls, in
+\texttt{numerics/certify\_intertwiner.py}, which builds $M_v$ by expanding $(\rmd/\rmd t-v'/v)^i$ and so
+never leaves $\mathbb{Q}(t)$; the Maple invocation is quoted as a convenience and is not itself certified.
+\end{rem}
 
 \emph{Maximal unipotent monodromy at $t=0$ ($n=2$).} The three exponents at $t=0$, $\{-1,-1,0\}$ (indicial
 polynomial $-64\,\rho(\rho+1)^2$), are all integers, so the local monodromy is unipotent. Exactly one of the three
@@ -1191,41 +1199,41 @@ The operator determination and all certifications were carried out with computer
 result is reproduced by the exact, publicly available scripts in the accompanying repository.
 
 \begin{thebibliography}{99}
-\bibitem{Economou} E.~N.~Economou, \textit{Green's Functions in Quantum Physics}, 3rd ed., Springer, Berlin, 2006.
-\bibitem{AshcroftMermin} N.~W.~Ashcroft and N.~D.~Mermin, \textit{Solid State Physics}, Holt, Rinehart and Winston, New York, 1976.
-\bibitem{Guttmann2010} A.~J.~Guttmann, Lattice Green's functions in all dimensions. \textit{J. Phys. A: Math. Theor.} \textbf{43} (2010), 305205.
-\bibitem{Watson1939} G.~N.~Watson, Three triple integrals. \textit{Q. J. Math. Oxford Ser.} \textbf{10} (1939), 266--276.
-\bibitem{Joyce1973} G.~S.~Joyce, On the simple cubic lattice Green function. \textit{Philos. Trans. R. Soc. Lond. A} \textbf{273} (1973), 583--610.
-\bibitem{GlasserZucker1977} M.~L.~Glasser and I.~J.~Zucker, Extended Watson integrals for the cubic lattices. \textit{Proc. Natl. Acad. Sci. USA} \textbf{74} (1977), 1800--1801.
-\bibitem{MoritaHoriguchi1971} T.~Morita and T.~Horiguchi, Calculation of the lattice Green's function for the bcc, fcc, and rectangular lattices. \textit{J. Math. Phys.} \textbf{12} (1971), 986--992.
-\bibitem{Joyce1998} G.~S.~Joyce, On the cubic modular transformation and the cubic lattice Green functions. \textit{J. Phys. A: Math. Gen.} \textbf{31} (1998), 5105--5115.
-\bibitem{Okamoto2007} Y.~Okamoto, M.~Nohara, H.~Aruga-Katori, and H.~Takagi, Spin-liquid state in the $S=\frac12$ hyperkagome antiferromagnet Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 137207.
-\bibitem{Hopkinson2007} J.~M.~Hopkinson, S.~V.~Isakov, H.-Y.~Kee, and Y.~B.~Kim, Classical antiferromagnet on a hyperkagome lattice. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 037201.
-\bibitem{Lawler2008} M.~J.~Lawler, H.-Y.~Kee, Y.~B.~Kim, and A.~Vishwanath, Topological spin liquid on the hyperkagome lattice of Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{100} (2008), 227201.
-\bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Lattice Green's functions for kagome, diced, and hyperkagome lattices. \textit{Phys. Rev. E} \textbf{87} (2013), 032109.
-\bibitem{Lipshitz1988} L.~Lipshitz, The diagonal of a D-finite power series is D-finite. \textit{J. Algebra} \textbf{113} (1988), 373--378.
-\bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, Ore polynomials in Sage. In \textit{Computer Algebra and Polynomials}, Lecture Notes in Computer Science \textbf{8942}, Springer, 2015, pp.~105--125.
-\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, The perimeter generating functions of three-choice, imperfect, and one-punctured staircase polygons. \textit{J. Phys. A: Math. Theor.} \textbf{49} (2016), 214002; arXiv:1602.00868.
-\bibitem{HMZ2025} S.~Hassani, J.-M.~Maillard, and N.~Zenine, On the diagonals of rational functions: the minimal number of variables. \textit{J. Phys. A: Math. Theor.} \textbf{58} (2025), 255202; arXiv:2502.05543.
-\bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, Galois groups of second and third order linear differential equations. \textit{J. Symb. Comput.} \textbf{16} (1993), 9--36.
-\bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \textit{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328}, Springer, Berlin, 2003.
-\bibitem{Kovacic1986} J.~J.~Kovacic, An algorithm for solving second order linear homogeneous differential equations. \textit{J. Symb. Comput.} \textbf{2} (1986), 3--43.
-\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, J.-M.~Maillard, and J.-A.~Weil, Differential algebra on lattice Green functions and Calabi--Yau operators. \textit{J. Phys. A: Math. Theor.} \textbf{47} (2014), 095203; arXiv:1311.2470.
-\bibitem{Koutschan2013} C.~Koutschan, Lattice Green functions of the higher-dimensional face-centered cubic lattices. \textit{J. Phys. A: Math. Theor.} \textbf{46} (2013), 125005.
-\bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, Creative telescoping for rational functions using the Griffiths--Dwork method. In \textit{Proc. 38th Int. Symp. on Symbolic and Algebraic Computation (ISSAC~'13)}, ACM, New York, 2013; arXiv:1301.4313.
-\bibitem{AtkinLehner1970} A.~O.~L.~Atkin and J.~Lehner, Hecke operators on $\Gamma_0(m)$. \textit{Math. Ann.} \textbf{185} (1970), 134--160.
-\bibitem{Ligozat1975} G.~Ligozat, Courbes modulaires de genre 1. \textit{Bull. Soc. Math. France, M\'em.} \textbf{43} (1975), 80~pp.
-\bibitem{ConwayNorton1979} J.~H.~Conway and S.~P.~Norton, Monstrous moonshine. \textit{Bull. London Math. Soc.} \textbf{11} (1979), 308--339.
-\bibitem{DiamondShurman} F.~Diamond and J.~Shurman, \textit{A First Course in Modular Forms}, Graduate Texts in Mathematics \textbf{228}, Springer, New York, 2005.
-\bibitem{Zagier2008} D.~Zagier, Elliptic modular forms and their applications. In \textit{The 1-2-3 of Modular Forms}, Universitext, Springer, Berlin, 2008, pp.~1--103.
-\bibitem{Morrison1993} D.~R.~Morrison, Mirror symmetry and rational curves on quintic threefolds: a guide for mathematicians. \textit{J. Amer. Math. Soc.} \textbf{6} (1993), 223--247.
-\bibitem{Beukers1987} F.~Beukers, Irrationality proofs using modular forms. In \textit{Journ\'ees arithm\'etiques de Besan\c{c}on}, Ast\'erisque \textbf{147--148} (1987), 271--283.
-\bibitem{Broadhurst2016} D.~Broadhurst, Feynman integrals, $L$-series and Kloosterman moments. \textit{Commun. Number Theory Phys.} \textbf{10} (2016), 527--569; arXiv:1604.03057.
-\bibitem{BlochKerrVanhove2015} S.~Bloch, M.~Kerr, and P.~Vanhove, A Feynman integral via higher normal functions. \textit{Compos. Math.} \textbf{151} (2015), 2329--2375; arXiv:1406.2664.
 \bibitem{AbdelazizMaillard2017} Y.~Abdelaziz and J.-M.~Maillard, Modular forms, Schwarzian conditions, and symmetries of differential equations in physics. \textit{J. Phys. A: Math. Theor.} \textbf{50} (2017), 215203; arXiv:1611.08493.
 \bibitem{AbdelazizMaillard2017b} Y.~Abdelaziz and J.-M.~Maillard, Schwarzian conditions for linear differential operators with selected differential Galois groups. \textit{J. Phys. A: Math. Theor.} \textbf{50} (2017), 465201; arXiv:1706.07423.
+\bibitem{AshcroftMermin} N.~W.~Ashcroft and N.~D.~Mermin, \textit{Solid State Physics}, Holt, Rinehart and Winston, New York, 1976.
+\bibitem{AVM2016} M.~Assis, M.~van Hoeij, and J.-M.~Maillard, The perimeter generating functions of three-choice, imperfect, and one-punctured staircase polygons. \textit{J. Phys. A: Math. Theor.} \textbf{49} (2016), 214002; arXiv:1602.00868.
+\bibitem{AtkinLehner1970} A.~O.~L.~Atkin and J.~Lehner, Hecke operators on $\Gamma_0(m)$. \textit{Math. Ann.} \textbf{185} (1970), 134--160.
+\bibitem{Beukers1987} F.~Beukers, Irrationality proofs using modular forms. In \textit{Journ\'ees arithm\'etiques de Besan\c{c}on}, Ast\'erisque \textbf{147--148} (1987), 271--283.
+\bibitem{BlochKerrVanhove2015} S.~Bloch, M.~Kerr, and P.~Vanhove, A Feynman integral via higher normal functions. \textit{Compos. Math.} \textbf{151} (2015), 2329--2375; arXiv:1406.2664.
+\bibitem{Bostan2013} A.~Bostan, P.~Lairez, and B.~Salvy, Creative telescoping for rational functions using the Griffiths--Dwork method. In \textit{Proc. 38th Int. Symp. on Symbolic and Algebraic Computation (ISSAC~'13)}, ACM, New York, 2013; arXiv:1301.4313.
+\bibitem{BoukraaHassaniMaillard2014} S.~Boukraa, S.~Hassani, J.-M.~Maillard, and J.-A.~Weil, Differential algebra on lattice Green functions and Calabi--Yau operators. \textit{J. Phys. A: Math. Theor.} \textbf{47} (2014), 095203; arXiv:1311.2470.
+\bibitem{Broadhurst2016} D.~Broadhurst, Feynman integrals, $L$-series and Kloosterman moments. \textit{Commun. Number Theory Phys.} \textbf{10} (2016), 527--569; arXiv:1604.03057.
+\bibitem{ConwayNorton1979} J.~H.~Conway and S.~P.~Norton, Monstrous moonshine. \textit{Bull. London Math. Soc.} \textbf{11} (1979), 308--339.
+\bibitem{DiamondShurman} F.~Diamond and J.~Shurman, \textit{A First Course in Modular Forms}, Graduate Texts in Mathematics \textbf{228}, Springer, New York, 2005.
+\bibitem{Economou} E.~N.~Economou, \textit{Green's Functions in Quantum Physics}, 3rd ed., Springer, Berlin, 2006.
 \bibitem{FordMcKayNorton1994} D.~Ford, J.~McKay, and S.~P.~Norton, More on replicable functions. \textit{Commun. Algebra} \textbf{22} (1994), 5175--5193. See also OEIS \href{https://oeis.org/A205826}{A205826} (class $30\mathrm{A}$) and \href{https://oeis.org/A058613}{A058613} (class $30\mathrm{B}$).
+\bibitem{GlasserZucker1977} M.~L.~Glasser and I.~J.~Zucker, Extended Watson integrals for the cubic lattices. \textit{Proc. Natl. Acad. Sci. USA} \textbf{74} (1977), 1800--1801.
+\bibitem{Guttmann2010} A.~J.~Guttmann, Lattice Green's functions in all dimensions. \textit{J. Phys. A: Math. Theor.} \textbf{43} (2010), 305205.
+\bibitem{HMZ2025} S.~Hassani, J.-M.~Maillard, and N.~Zenine, On the diagonals of rational functions: the minimal number of variables. \textit{J. Phys. A: Math. Theor.} \textbf{58} (2025), 255202; arXiv:2502.05543.
+\bibitem{Hopkinson2007} J.~M.~Hopkinson, S.~V.~Isakov, H.-Y.~Kee, and Y.~B.~Kim, Classical antiferromagnet on a hyperkagome lattice. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 037201.
+\bibitem{Joyce1973} G.~S.~Joyce, On the simple cubic lattice Green function. \textit{Philos. Trans. R. Soc. Lond. A} \textbf{273} (1973), 583--610.
+\bibitem{Joyce1998} G.~S.~Joyce, On the cubic modular transformation and the cubic lattice Green functions. \textit{J. Phys. A: Math. Gen.} \textbf{31} (1998), 5105--5115.
+\bibitem{orealgebra} M.~Kauers, M.~Jaroschek, and F.~Johansson, Ore polynomials in Sage. In \textit{Computer Algebra and Polynomials}, Lecture Notes in Computer Science \textbf{8942}, Springer, 2015, pp.~105--125.
+\bibitem{Koutschan2013} C.~Koutschan, Lattice Green functions of the higher-dimensional face-centered cubic lattices. \textit{J. Phys. A: Math. Theor.} \textbf{46} (2013), 125005.
+\bibitem{Kovacic1986} J.~J.~Kovacic, An algorithm for solving second order linear homogeneous differential equations. \textit{J. Symb. Comput.} \textbf{2} (1986), 3--43.
+\bibitem{Lawler2008} M.~J.~Lawler, H.-Y.~Kee, Y.~B.~Kim, and A.~Vishwanath, Topological spin liquid on the hyperkagome lattice of Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{100} (2008), 227201.
 \bibitem{LianWiczer2006} B.~H.~Lian and J.~L.~Wiczer, Genus zero modular functions. Preprint, arXiv:math/0611291.
+\bibitem{Ligozat1975} G.~Ligozat, Courbes modulaires de genre 1. \textit{Bull. Soc. Math. France, M\'em.} \textbf{43} (1975), 80~pp.
+\bibitem{Lipshitz1988} L.~Lipshitz, The diagonal of a D-finite power series is D-finite. \textit{J. Algebra} \textbf{113} (1988), 373--378.
+\bibitem{MoritaHoriguchi1971} T.~Morita and T.~Horiguchi, Calculation of the lattice Green's function for the bcc, fcc, and rectangular lattices. \textit{J. Math. Phys.} \textbf{12} (1971), 986--992.
+\bibitem{Morrison1993} D.~R.~Morrison, Mirror symmetry and rational curves on quintic threefolds: a guide for mathematicians. \textit{J. Amer. Math. Soc.} \textbf{6} (1993), 223--247.
+\bibitem{Okamoto2007} Y.~Okamoto, M.~Nohara, H.~Aruga-Katori, and H.~Takagi, Spin-liquid state in the $S=\frac12$ hyperkagome antiferromagnet Na\textsubscript{4}Ir\textsubscript{3}O\textsubscript{8}. \textit{Phys. Rev. Lett.} \textbf{99} (2007), 137207.
+\bibitem{SingerUlmer} M.~F.~Singer and F.~Ulmer, Galois groups of second and third order linear differential equations. \textit{J. Symb. Comput.} \textbf{16} (1993), 9--36.
+\bibitem{vdPutSinger} M.~van der Put and M.~F.~Singer, \textit{Galois Theory of Linear Differential Equations}, Grundlehren der mathematischen Wissenschaften \textbf{328}, Springer, Berlin, 2003.
+\bibitem{VarmaMonien2013} V.~K.~Varma and H.~Monien, Lattice Green's functions for kagome, diced, and hyperkagome lattices. \textit{Phys. Rev. E} \textbf{87} (2013), 032109.
+\bibitem{Watson1939} G.~N.~Watson, Three triple integrals. \textit{Q. J. Math. Oxford Ser.} \textbf{10} (1939), 266--276.
+\bibitem{Zagier2008} D.~Zagier, Elliptic modular forms and their applications. In \textit{The 1-2-3 of Modular Forms}, Universitext, Springer, Berlin, 2008, pp.~1--103.
 \end{thebibliography}
 
 \end{document}

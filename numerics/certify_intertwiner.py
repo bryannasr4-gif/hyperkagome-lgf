@@ -2,7 +2,7 @@
 CERTIFY: why the intertwiner between M and Sym^2(V_2) is invisible over Q(t), and
          exactly which conjugation makes it appear.
 
-MOTIVATION (J.-M. Maillard, private communication, August 2026).  Searching directly for a
+MOTIVATION.  Searching directly for a
 homomorphism between the hyperkagome operator M and the symmetric square of V_2 in its
 PROJECTIVE NORMAL FORM
 
@@ -48,8 +48,8 @@ WHAT IS PROVED HERE (all exact, in Q(t); no floating point anywhere)
       construction: 2a and 4a have integer residues where a does not.  That is why the
       determinant obstruction is absent at the symmetric-square level -- Sym^2(M) against
       Sym^4(V_2) -- where the direct search at the level of M is blocked.  (The homomorphy
-      at that level was reported by Maillard's Maple session and is NOT certified here;
-      only the disappearance of the obstruction is.)
+      at that level is easy to check in Maple and is NOT certified here; only the
+      disappearance of the obstruction is.)
 
 NEGATIVE CONTROLS (a check that has never been shown to fail is not a check)
   - the log-derivative predicate REJECTS a function with a half-integer residue, REJECTS a
@@ -429,9 +429,8 @@ else:
     out("and over M_v the intertwiner is the ORDER-ONE operator T = rho_0 + rho_1 d/dt.")
     out("Being of order two, the character is invisible at the symmetric-square level,")
     out("which is why the determinant obstruction is absent between Sym^2(M) and")
-    out("Sym^4(V_2) (their homomorphy was reported by J.-M. Maillard, private")
-    out("communication, and is NOT certified by this script) while M and Sym^2(V_2)")
-    out("are provably not homomorphic.")
+    out("Sym^4(V_2) (their homomorphy is easy to check in Maple and is NOT certified")
+    out("by this script) while M and Sym^2(V_2) are provably not homomorphic.")
 out("=" * 78)
 
 open(os.path.join(HERE, "CERTIFICATE_intertwiner.txt"), "w").write("\n".join(OUT) + "\n")

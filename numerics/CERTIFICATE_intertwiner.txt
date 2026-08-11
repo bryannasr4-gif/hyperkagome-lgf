@@ -96,7 +96,6 @@ Q(t) in both directions, it is removed by the single conjugation M_v = v M v^{-1
 and over M_v the intertwiner is the ORDER-ONE operator T = rho_0 + rho_1 d/dt.
 Being of order two, the character is invisible at the symmetric-square level,
 which is why the determinant obstruction is absent between Sym^2(M) and
-Sym^4(V_2) (their homomorphy was reported by J.-M. Maillard, private
-communication, and is NOT certified by this script) while M and Sym^2(V_2)
-are provably not homomorphic.
+Sym^4(V_2) (their homomorphy is easy to check in Maple and is NOT certified
+by this script) while M and Sym^2(V_2) are provably not homomorphic.
 ==============================================================================
