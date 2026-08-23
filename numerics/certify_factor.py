@@ -276,8 +276,9 @@ def search_order1_right_factors(OP, sing_exps, p7poly, p7exps):
             u = sum(combo[i] / (t - keys[i]) for i in range(len(keys))) + rp7 * p7log
             br = _bracket(OP, u)
             ok = True
-            for tp in test_pts:                       # cheap numeric pre-screen ...
-                if abs(complex(sp.N(br.subs(t, tp), 20))) > 1e-9:
+            for tp in test_pts:                       # exact pre-screen at rational points ...
+                val = sp.cancel(br.subs(t, tp))       # (a candidate is discarded only on an
+                if val.is_number and val != 0:        #  exactly nonzero value, never a float)
                     ok = False; break
             if ok and sp.cancel(sp.together(br)) == 0: # ... then confirm EXACTLY over Q
                 found.append(sp.cancel(u))
@@ -379,8 +380,8 @@ Msc = sym2(Lell)
 e_sc = indicial_exponents(Msc, sp.Integer(0))
 print("  [positive control] Sym^2 of a {0,1/2}-operator has t=0 exps %s : %s"
       % ([str(x) for x in e_sc], "Sym^2-compatible (AP)" if sym2_test(e_sc) else "NOT Sym^2"))
-assert e_sc == [sp.Integer(0), sp.Rational(1, 2), sp.Integer(1)] and sym2_test(e_sc), \
-    "positive control failed -- the not-Sym^2 test would be vacuous"
+ctrl_ok = (e_sc == [sp.Integer(0), sp.Rational(1, 2), sp.Integer(1)]) and sym2_test(e_sc)
+assert ctrl_ok, "positive control failed -- the not-Sym^2 test would be vacuous"
 
 # ----------------------------------------------------------------------
 # CERTIFICATE
@@ -390,7 +391,7 @@ print("order-1 right factors of M over Q         :", len(f1), "(0 => none)")
 print("order-1 right factors of adjoint(M) over Q :", len(f2), "(0 => none, i.e. no order-2 factor of M)")
 print("genuine log at t=0 (M and adjoint(M))      :", log_M and log_A, "(=> not completely reducible)")
 print("not a symmetric square (some singular pt)  :", any_notsym2)
-print("positive control (Sym^2 -> AP) passes      : True")
+print("positive control (Sym^2 -> AP) passes      :", ctrl_ok)
 print("---------------------------------------------")
 if len(f1) == 0 and len(f2) == 0 and log_M and log_A:
     print("=> No order-1 or order-2 right factor of M over Q, and M is not completely reducible.")
@@ -403,8 +404,6 @@ if any_notsym2:
     print("=> M is irreducible and NOT a *literal* symmetric square (no arithmetic-progression")
     print("   exponent triple).  This does NOT exclude an elliptic closed form: Sym^2(M) has a")
     print("   rational solution => Galois group O(3,C), G^0 = SO(3,C), so M IS projectively a")
-    print("   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED.")
+    print("   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED,")
+    print("   and is proved modular at level 30 in certify_modular.py.")
     print("   (The old 'not-Sym^2 => no elliptic' claim is RETRACTED; see certify_orthogonal.py.)")
-
-if __name__ == "__main__":
-    pass

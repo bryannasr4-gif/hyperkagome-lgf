@@ -1,13 +1,13 @@
 # Creative-telescoping proof of the operator M — setup and status
 
-> **Status.** This is the one remaining item that could not be *completed* in the local environment:
-> a formal creative-telescoping (CT) derivation of M directly from the resolvent integral would upgrade the
-> operator from "conjectured + massively verified" to "proved." It requires a CT engine — `ore_algebra`
-> (SageMath), Koutschan's `HolonomicFunctions` (Mathematica), or Lairez's `period`/`ore_algebra` reduction —
-> **none of which can be installed on this Windows machine** (no WSL/Docker/conda, no Windows SageMath package,
-> no C compiler; confirmed). Building the degree-12 integrand symbolically also overwhelms plain `sympy`
-> (`det(I-tH)` for the 12×12 Bloch matrix timed out). Below is the exact, ready-to-run setup for a machine that
-> has one of these engines.
+> **Status.** A formal creative-telescoping (CT) derivation of M directly from the resolvent integral
+> would upgrade the operator from "conjectured and massively verified" to "proved", and it is the one
+> remaining open item. It requires a CT engine — `ore_algebra` (SageMath), Koutschan's
+> `HolonomicFunctions` (Mathematica), or Lairez's Griffiths–Dwork reduction — none of which is used
+> anywhere in this repository: every certification here deliberately depends on nothing beyond SymPy.
+> Building the degree-12 integrand symbolically is also beyond plain `sympy` (`det(I-tH)` for the
+> 12×12 Bloch matrix does not complete in reasonable time). Below is the exact, ready-to-run setup
+> for a machine that has one of these engines.
 >
 > **What IS already established (accepted standard in the lattice-statistics literature, e.g. Guttmann,
 > Zenine–Boukraa–Hassani–Maillard):** M annihilates the exact series over ℚ through t¹¹¹ — **112 relations

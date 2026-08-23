@@ -102,7 +102,7 @@ solution `R(t)`**, so:
 `M` is an order-3 Fuchsian period with six singular points (`t = 0, 1/9, 1/5, 1/4, 1, ∞`) plus an
 apparent-type degree-7 locus. At `t = 0` (⇔ `z = ∞`) the local monodromy is **maximally unipotent (MUM)**:
 exponents `{−1,−1,0}` (all integers), a single 3×3 Jordan block ⇒ maximal log power `n = 2`, and the Frobenius
-basis takes the canonical MUM normal form `{y0, y0·log t + f1, y0·log²t/2 + f1·log t + f2}` after an integer
+basis takes the canonical MUM normal form `{y0, y0·log t + f1, y0·log²t/2 + f1·log t + f2}` after a rational
 recombination (`numerics/verify_mum_normalform.py`). Note the exponents are
 `{−1,−1,0}`, not the `{0,0,0}` of the Calabi–Yau normalization. It is **not** a ₃F₂ (which would have only three
 singular points), and it is **not** of Calabi–Yau type (Zudilin: an order-3 CY operator would be a literal
@@ -173,8 +173,15 @@ python numerics/vm_crosscheck.py             # matches the Varma–Monien spectr
 
 All nineteen exit `0` on system Python.
 
-Each `certify_*` script validates its primitives on operators with known structure before the real
-run, and writes a plain-text certificate (`numerics/CERTIFICATE*.txt`).
+Each script validates its primitives on operators of known structure, with negative controls,
+before the certified computation. Five of them (`certify_bridge`, `certify_intertwiner`,
+`certify_lclm`, `certify_phi_obstruction`, `certify_pullback`) write their certificate file
+themselves; every other `numerics/CERTIFICATE*.txt` is the captured standard output of the
+script of the same name, e.g.
+
+```bash
+python numerics/certify_modular.py > numerics/CERTIFICATE_modular.txt
+```
 
 ## Layout
 
@@ -213,7 +220,7 @@ arithmetic with SymPy. Because the certification is by exact verification, it do
 ## License
 
 Code and data: MIT ([`LICENSE`](LICENSE)). The manuscript text and figures in `paper/` are © the
-authors, all rights reserved (pending journal submission).
+authors, all rights reserved.
 
 ## Citation
 

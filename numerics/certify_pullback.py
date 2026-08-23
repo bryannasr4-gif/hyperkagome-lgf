@@ -31,8 +31,8 @@ Statement certified (data in pullback_data.json; the paper's variable t is calle
       polynomial (content of its 657 integer coefficients = 1).  Corollaries: the splitting
       field of P_H is Q(t)(r1,r2,r3) = Q(X_0(30)); Gal(P_H) = (Z/2)^3 = W; the pullback is
       solvable in radicals; and r1 r2 r3 = (1-t) v, v^2 = (1-4t)(1-5t)(1-9t) the twist.
-  (5) For the base 2F1([1/8,3/8];[1];.): the bidegree-(4,24) polynomial OtherPH (van Hoeij
-      and Maillard, private communication) annihilates the explicit two-radical expression
+  (5) For the base 2F1([1/8,3/8];[1];.): the bidegree-(4,24) polynomial OtherPH
+      annihilates the explicit two-radical expression
       OtherH exactly (radicands (1-x)(1-5x) and (1-x)(1-4x)(1-9x) = r1^2 r3^2: an index-two
       subfield); its four conjugates are distinct (irreducible, minimal); and its analytic
       branch H = 256 t - 25600 t^2 + ... satisfies the Schwarz pullback identity
@@ -49,13 +49,11 @@ import json
 import math
 import os
 import sys
-import time
 from fractions import Fraction as F
 
 import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-T0 = time.time()
 LINES = []
 FAIL = []
 
@@ -282,11 +280,10 @@ N = 1201
 # Coefficient growth (radius of convergence in q): t(q) is singular at the W_30
 # elliptic point q = e^(-2 pi/sqrt(30)) ~ 0.3176, so |t_n| ~ 10^(0.50 n); H(q) is
 # singular at the zero of E4, |q_rho| = e^(-pi sqrt(3)) ~ 0.00433, so |H_n| ~
-# 10^(2.36 n) (cross-checked: 2271-digit coefficients at order 962 in the r4 run).
+# 10^(2.36 n) (cross-checked against the observed 2271-digit coefficient at order 962).
 W_t = 2560                                       # digit width for t-powers
 W_H = 10496                                      # digit width for H-powers
 W_F = 13312                                      # digit width for the final products
-t0 = time.time()
 num = kmul(kmul(euler_P(N, 1), euler_P(N, 6), N, W1), kmul(euler_P(N, 10), euler_P(N, 15), N, W1), N, W1)
 den = kmul(kmul(euler_P(N, 2), euler_P(N, 3), N, W1), kmul(euler_P(N, 5), euler_P(N, 30), N, W1), N, W1)
 U1 = ser_div_int(num, den, N)
@@ -304,10 +301,9 @@ E4N = [1] + [240 * sum(d ** 3 for d in range(1, n + 1) if n % d == 0) for n in r
 E4c3 = kmul(kmul(E4N, E4N, N, W1), E4N, N, W1)
 Hq = ser_div_int([0] + [1728 * c for c in P24N[:N - 1]], E4c3, N)
 chk("H(q) head 1728 q", Hq[0] == 0 and Hq[1] == 1728)
-out("      series built in %.1f s; evaluating P_H(H(q), t(q)) over Z ..." % (time.time() - t0))
+out("      series built; evaluating P_H(H(q), t(q)) over Z ...")
 dH, dx = D["PH"]["dH"], D["PH"]["dx"]
 A = [int(c) for c in D["PH"]["coeffs"]]
-t1 = time.time()
 tpow = [[1] + [0] * (N - 1)]
 for k in range(1, dx + 1):
     tpow.append(kmul(tpow[-1], tq, N, W_t))
@@ -326,7 +322,7 @@ for i in range(dH + 1):
                     row[m] += c * tk[m]
     prod = kmul(row, Hpow[i], N, W_F)
     total = [p + q for p, q in zip(total, prod)]
-out("      evaluation done in %.1f s" % (time.time() - t1))
+out("      evaluation done")
 chk("P_H(H(q), t(q)) == 0 through q^%d  (all %d orders exactly zero over Z)" % (N - 1, N),
     all(c == 0 for c in total))
 out("      a-priori bound: deg(H) = 72 (24 triple poles over j=0, since nu_3(30)=0 leaves no")
@@ -339,7 +335,6 @@ chk("NEGATIVE control: corrupting coefficient (i,k)=(0,1) by +1 is detected at q
 
 # ======================================================================
 out("\n--- Stage 2: the radical expression is an EXACT root of P_H --------------")
-t2 = time.time()
 HR = D["H_radical"]
 comp = {}
 for mstr, cl in HR["components"].items():
@@ -359,8 +354,7 @@ for i in range(dH + 1):
     term = {m: pmul(c, scal, W2) for m, c in Epow[i].items()}
     TOT = alg_add(TOT, term)
 chk("sum_i A_i(x) Num^i D^(8-i) == 0 in Q(x)[r1,r2,r3]  (all 8 components identically 0)",
-    len(TOT) == 0, "computed in %.1f s" % (time.time() - t2))
-t2b = time.time()
+    len(TOT) == 0, "exact integer arithmetic, no series")
 comp_bad = {m: list(c) for m, c in comp.items()}
 comp_bad[0] = padd(comp_bad.get(0, [0]), [1])
 Eb = [{0: [1]}]
@@ -372,7 +366,7 @@ for i in range(dH + 1):
     scal = pmul(Ai, Dpow[dH - i], W2)
     TOTb = alg_add(TOTb, {m: pmul(c, scal, W2) for m, c in Eb[i].items()})
 chk("NEGATIVE control: perturbing the radical expression by +1 gives a nonzero result",
-    len(TOTb) > 0, "computed in %.1f s" % (time.time() - t2b))
+    len(TOTb) > 0, "exact integer arithmetic, no series")
 
 # ======================================================================
 out("\n--- Stage 3: the multiquadratic algebra is a degree-8 field --------------")
@@ -601,8 +595,8 @@ chk("NEGATIVE control: perturbing the branch at t^6 breaks the Schwarz identity"
 # ======================================================================
 out("\n" + "=" * 78)
 ok = len(FAIL) == 0
-out("RESULT: %s  (%d checks failed)   total %.1f s"
-    % ("ALL PASS" if ok else "FAILURE", len(FAIL), time.time() - T0))
+out("RESULT: %s  (%d checks failed)"
+    % ("ALL PASS" if ok else "FAILURE", len(FAIL)))
 if not ok:
     for f in FAIL:
         out("  FAILED: " + f)
@@ -613,7 +607,7 @@ out("group (Z/2)^3, the Atkin-Lehner group of level 30; the product of the three
 out("radicands is ((1-t)v)^2, v the determinant-character twist.  The pullback is")
 out("solvable in radicals (explicit expression: M. van Hoeij, private communication,")
 out("July 2026).  For the 2F1([1/8,3/8];[1];.) base the minimal polynomial has")
-out("bidegree (4,24) on an index-two subfield (van Hoeij & Maillard).")
+out("bidegree (4,24) on an index-two subfield.")
 out("=" * 78)
 open(os.path.join(HERE, "CERTIFICATE_pullback.txt"), "w").write("\n".join(LINES) + "\n")
 print("wrote", os.path.join(HERE, "CERTIFICATE_pullback.txt"))

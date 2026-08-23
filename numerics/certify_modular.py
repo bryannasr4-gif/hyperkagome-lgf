@@ -210,7 +210,7 @@ print("        t(q) = " + " ".join("%+d q^%d" % (int(tq[i]), i) for i in range(1
 print()
 
 # ---------- [4] Schwarzian ----------
-print("Check 4: Schwarzian {tau,t_d} = 2 Q_V(t_d)  (q-series, %d orders)" % ORD)
+print("Check 4: Schwarzian {tau,t_d} = 2 Q_V(t_d)  (q-series, %d orders)" % (ORD - 2))
 def Dop(s, n):
     return [F(k) * s[k] for k in range(n)]
 Dt1 = Dop(t_d, n); Dt2 = Dop(Dt1, n); Dt3 = Dop(Dt2, n)

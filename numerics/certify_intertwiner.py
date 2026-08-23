@@ -2,9 +2,8 @@
 CERTIFY: why the intertwiner between M and Sym^2(V_2) is invisible over Q(t), and
          exactly which conjugation makes it appear.
 
-MOTIVATION.  Searching directly for a
-homomorphism between the hyperkagome operator M and the symmetric square of V_2 in its
-PROJECTIVE NORMAL FORM
+MOTIVATION.  A direct search for a homomorphism between the hyperkagome operator M and
+the symmetric square of V_2 in its PROJECTIVE NORMAL FORM
 
         V_2 : w'' + Q_V w = 0,       Ntilde := Sym^2(V_2) = D^3 + 4 Q_V D + 2 Q_V',
 
@@ -51,7 +50,7 @@ WHAT IS PROVED HERE (all exact, in Q(t); no floating point anywhere)
       at that level is easy to check in Maple and is NOT certified here; only the
       disappearance of the obstruction is.)
 
-NEGATIVE CONTROLS (a check that has never been shown to fail is not a check)
+NEGATIVE CONTROLS (each predicate below is exhibited FAILING on a perturbed input)
   - the log-derivative predicate REJECTS a function with a half-integer residue, REJECTS a
     function with a double pole, and REJECTS one carrying a polynomial part;
   - right division REJECTS a non-factor;

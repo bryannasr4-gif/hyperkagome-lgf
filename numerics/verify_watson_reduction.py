@@ -1,5 +1,5 @@
 """
-Fable's Watson-integral reduction of the hyperkagome/K4 LGF -- exact verification.
+Watson-integral reduction of the hyperkagome (K4) LGF -- exact verification.
 
 Chain:
  (1) D(t,kappa) := det(I4 - t * S_prim^2)  ==  (1 - 6t + (3-Lam)t^2)^2 - t^3 * Xi^2,
@@ -10,7 +10,7 @@ Chain:
  (3) Hence D = D+ * D-,  D+- = (1-6t+3t^2) - 2t^2*Sum cos2th_i -+ 8 t^{3/2} Prod cos th_i,
      and D-(theta) = D+(theta + (pi,pi,pi)):  CT log D- = CT log D+.
  (4) Phi(t) = (1/6) CT[4 - t d/dt log D] = 2/3 - (t/3) * d/dt CT_theta log D+.
-     Series check against nu.json through m = 7.
+     Series check against nu.json through m = 8.
 ==> the hyperkagome LGF is the LGF of the bcc lattice with 1st (weight t^{3/2}) and
     2nd (sc, weight t^2) neighbours at spectral parameter 1-6t+3t^2: a generalized
     Watson integral (Joyce class).
@@ -114,18 +114,8 @@ for n in range(1, H//3 + 2):
 half_ok = all(CTlog.get(p, F(0)) == 0 for p in range(1, H, 2))
 print("(3) all half-integer t-powers of CT log D+ vanish:", "PASS" if half_ok else "FAIL")
 # CT log D+ as t-series  = log g + collected even h-powers
-loggser = [F(0)]                                   # log(1-6t+3t^2) = -sum (6t-3t^2)^n/n
-for m in range(1, MMAX+1):
-    loggser.append(F(0))
+# log g = sum_n -(1/n) (6t - 3t^2)^n
 w = [F(0), F(6), F(-3)]
-wn = [F(1)]
-for n in range(1, MMAX+1):
-    wn = [sum(wn[j]*w[m-j] for j in range(len(wn)) if 0 <= m-j < len(w))
-          for m in range(MMAX+1)]
-    for m, c in enumerate(wn):
-        if m <= MMAX:
-            loggser[m] -= F(1, n)*c if False else -F(1, n)*c*(-1)  # log(1-x): -x^n/n with x=6t-3t^2
-# fix: log g = sum_n -(1/n) (6t-3t^2)^n  -> recompute cleanly
 loggser = [F(0)]*(MMAX+1)
 wn = [F(1)]
 for n in range(1, MMAX+1):

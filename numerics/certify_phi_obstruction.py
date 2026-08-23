@@ -40,6 +40,7 @@ THIS CERTIFICATE PROVES, in that setting:
                  inconsistent, exactly over Q.
     ==>  Phi is NOT in  Q(t) + v^{-1} span_{Q(t)}{W, W', W''};
          since that module contains every chi-twisted meromorphic quasimodular
+         (chi = the quadratic determinant character carried by the twist v)
          form of weight two and depth <= 2 WITH COEFFICIENTS IN Q(t), Phi --
          unlike its derivative -- is not such a form.  The one remaining
          transcendental in Phi is the Eichler-type integral of the weight-four
@@ -54,14 +55,15 @@ THIS CERTIFICATE PROVES, in that setting:
 
     INVARIANCE.  Delta is only a coset representative: it rescales with the
     choice of v-model and shifts by Ntilde_v(S2) under a change of slice, so its
-    pole locations carry no structural meaning (a Moebius change of hauptmodul
-    sends the numerator 13t-1 to 10s-1).  The invariant statement is that the
+    pole locations carry no structural meaning (a Moebius change of the coordinate
+    moves the numerator 13t-1 to a different linear form).  The invariant statement is that the
     class [2 Delta] in Q(t)/Ntilde_v(Q(t)) is nonzero, which is what the rank
     computation below actually establishes.
 
 Physically:  (E-1) G_disp(E) = Phi(t), t = (E-1)^{-2}, so the modular closed form
 of y0 determines  d/dE [ (E-1) G_disp(E) ] = -4 y0(t) / (E-1)^3  exactly, while
-(E-1) G_disp itself is provably outside the weight-two quasimodular module.
+(E-1) G_disp itself is provably outside the weight-two quasimodular module displayed
+above (rational coefficients, this v-parity; see SCOPE).
 
 Method notes.  Every primitive is validated on controls with known outcomes
 before the real run, and every check is paired with a falsification (a perturbed
@@ -422,7 +424,7 @@ for c in COEF:
     assert dend == 1
     CH.append(sp.Poly(sp.expand(numd), t))
 GH = sp.Poly(sp.expand(sp.cancel(Acl * gs)), t)
-check("denominators cleared; leading coefficient = %s" % sp.factor(Acl), True)
+check("denominators cleared; leading coefficient = %s" % sp.factor(Acl), Acl != 0)
 
 
 def ordp(poly, p):

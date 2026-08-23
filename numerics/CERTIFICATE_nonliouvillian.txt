@@ -1,6 +1,7 @@
 validating count_logfree_solutions on known operators...
   t^3 D^3  exps=['0', '1', '2']  log-free dim=3  (expect 3, no log)
   theta^3  exps=['0', '0', '0']  log-free dim=1  (expect 1, logs present)
+  theta^2(theta-1)  exps=['0', '0', '1']  log-free dim=2  (expect 2, one log)
   [validate] log-detection PASS
 
 M at t=0 : exponents=['-1', '-1', '0']  emin=-1
@@ -21,5 +22,6 @@ M at t=0 : number of log-free (Laurent) local solutions = 1  (order is 3)
    NOTE: this excludes ALGEBRAIC and ELEMENTARY forms only.  It does NOT exclude an
    elliptic form -- the earlier 'not-Sym^2 => no elliptic / SL3-type' claim is RETRACTED:
    M is orthogonally/projectively a symmetric square, so an elliptic/modular closed form
-   is EXPECTED (see certify_orthogonal.py / CERTIFICATE_orthogonal.txt).
+   is EXPECTED (certify_orthogonal.py) -- and is proved modular at level 30 by
+   certify_modular.py.
    (Conditional on M being the minimal annihilator of the LGF; see the module docstring.)

@@ -30,7 +30,7 @@ Argument (all pieces exact):
       is semisimple (some power is diagonal), so its Jordan form is diagonal => NO logarithm.
   Hence: if M has a genuine LOGARITHMIC local solution, G is neither finite nor imprimitive,
   so G acts irreducibly and non-solvably => M is NON-LIOUVILLIAN (no algebraic/elementary
-  solutions).  [The not-Sym^2 fact separately excludes the elliptic/K case.]
+  solutions).
 
 This script PROVES a logarithm exists at t=0 by counting log-free (formal Laurent-series)
 local solutions: an order-3 operator has 3 log-free solutions iff the point is "apparent"
@@ -108,8 +108,12 @@ op_log = [sp.Integer(0), t, 3*t**2, t**3]
 d_log, e_log, _ = count_logfree_solutions(op_log, sp.Integer(0))
 print("  theta^3  exps=%s  log-free dim=%d  (expect 1, logs present)" % (e_log, d_log))
 assert d_log == 1, "validation failed (log case)"
-# a middle case: theta^2*(theta-1)= exponents {0,0,1}: solutions 1, log, and t => 2 log-free
-op_mid = None
+# middle case: theta^2*(theta-1) = t^3 D^3 + 2 t^2 D^2, exponents {0,0,1}:
+# solutions 1, log t, t  =>  exactly 2 log-free
+op_mid = [sp.Integer(0), sp.Integer(0), 2*t**2, t**3]
+d_mid, e_mid, _ = count_logfree_solutions(op_mid, sp.Integer(0))
+print("  theta^2(theta-1)  exps=%s  log-free dim=%d  (expect 2, one log)" % (e_mid, d_mid))
+assert d_mid == 2, "validation failed (mixed case)"
 print("  [validate] log-detection PASS\n")
 
 # ---------- run on M ----------
@@ -138,5 +142,6 @@ if haslog:
     print("   NOTE: this excludes ALGEBRAIC and ELEMENTARY forms only.  It does NOT exclude an")
     print("   elliptic form -- the earlier 'not-Sym^2 => no elliptic / SL3-type' claim is RETRACTED:")
     print("   M is orthogonally/projectively a symmetric square, so an elliptic/modular closed form")
-    print("   is EXPECTED (see certify_orthogonal.py / CERTIFICATE_orthogonal.txt).")
+    print("   is EXPECTED (certify_orthogonal.py) -- and is proved modular at level 30 by")
+    print("   certify_modular.py.")
     print("   (Conditional on M being the minimal annihilator of the LGF; see the module docstring.)")

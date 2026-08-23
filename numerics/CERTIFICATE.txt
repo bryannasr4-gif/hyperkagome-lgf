@@ -45,5 +45,6 @@ positive control (Sym^2 -> AP) passes      : True
 => M is irreducible and NOT a *literal* symmetric square (no arithmetic-progression
    exponent triple).  This does NOT exclude an elliptic closed form: Sym^2(M) has a
    rational solution => Galois group O(3,C), G^0 = SO(3,C), so M IS projectively a
-   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED.
+   symmetric square via an order-2 intertwiner => an elliptic/modular form is EXPECTED,
+   and is proved modular at level 30 in certify_modular.py.
    (The old 'not-Sym^2 => no elliptic' claim is RETRACTED; see certify_orthogonal.py.)

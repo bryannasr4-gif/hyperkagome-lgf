@@ -375,7 +375,7 @@ thW = theta(W, n)                                          # q dW/dq
 rhs = [smul(A0_ser, smul(W, W, n), n)[i] + smul(A1_ser, thW, n)[i] for i in range(n)]
 bad5 = next((i for i in range(ORD) if lhs[i] != rhs[i]), None)
 check("B*(y0 o t)*v*W - (A0*W^2 + A1*(q dW/dq)) first nonzero order = %s" % bad5, bad5 is None)
-FREE = 32     # B,A0,A1,A2 ansatz: 4 polynomials of degree 7 -> 4*8 = 32 free coefficients
+FREE = 23     # ansatz B (deg 7), A0 (deg 6), A1 (deg 7): 8 + 7 + 8 = 23 free coefficients
 print("        margin = %d orders checked - %d free coefficients = %d  (overdetermined => identity)"
       % (ORD, FREE, ORD - FREE))
 print()

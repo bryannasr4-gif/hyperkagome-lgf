@@ -18,8 +18,8 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > Schwarzian identity `{τ,t} = 2·Q_V(t)` holds exactly. So the hyperkagome LGF is **modular at level
 > `30 = 2·3·5`** — apparently the first lattice Green's function realised at a modular level with three
 > distinct prime factors. Proven exactly (Ligozat + Atkin–Lehner + a pole-degree bound turning an 80-order
-> series match into an identity) in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`; cross-vendor
-> audited. This resolves the closed-form existence Varma & Monien conjectured. The weight-2 period
+> series match into an identity) in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`.
+> This resolves the closed-form existence Varma & Monien conjectured. The weight-2 period
 > `y₀ = Φ'/2` itself is exhibited in explicit closed form below — a depth-one quasimodular form on `Γ₀(30)⁺`
 > twisted by the determinant character, **proven not** to be an eta quotient or (modular form)×(algebraic
 > function) at any weight.
@@ -140,7 +140,7 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
 - Operator obtained by differential approximants (ore_algebra `guess`); **certified here in pure Python**.
 - **Exact annihilation over Q of Φ'(t) through t^111: 112 relations vs 57 free coefficients, margin 55,
   0 residuals** (`numerics/strengthen_certification.py`, `numerics/verify.py`).
-- Independent from-scratch rebuild of the lattice, moments (to m₂₄₀), and operator: bit-identical.
+- Independent from-scratch rebuild of the lattice, moments (to m₂₃₀), and operator: bit-identical.
 - Independent Bloch-Hamiltonian diagonalization reproduces the exact integer moments (a method disjoint
   from closed-walk enumeration).
 - Not-*literal*-Sym² verdict from exact Frobenius exponents; SC positive control validates the test is
@@ -165,7 +165,7 @@ open item. (The orthogonality certificates themselves are exact, given M.) This 
   and `Sym⁴(V₂)` over ℚ(t) there is easy to check in Maple and is **not** certified here.
 
 ## Independent verification — status
-- Lattice, moments (bit-identical to m₂₄₀), and operator independently reconstructed: AGREE.
+- Lattice, moments (bit-identical to m₂₃₀), and operator independently reconstructed: AGREE.
 - Irreducibility (over Q by complete exact enumeration; over Q̄ by Galois descent) and not-*literal*-Sym²:
   reproduced. The operator was reconstructed a second time independently, and the two reconstructions agree;
   the Sym²/adjoint homomorphism is certified here in exact arithmetic. An independent Maple `DFactor`

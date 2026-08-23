@@ -1,15 +1,17 @@
 """
 CERTIFY: the differential Galois group of the hyperkagome operator M is ORTHOGONAL.
 
-This certificate CORRECTS and REPLACES the paper's earlier negative claim ("M is not a
-symmetric square in any equivalent sense => no closed form in complete elliptic integrals;
-SL3-type Galois group").  Although M is irreducible and is NOT a *literal* symmetric square, the symmetric
+This certificate CORRECTS and REPLACES an earlier negative claim of this repository ("M is
+not a symmetric square in any equivalent sense => no closed form in complete elliptic
+integrals; SL3-type Galois group"); the accompanying manuscript states only the corrected
+form.  Although M is irreducible and is NOT a *literal* symmetric square, the symmetric
 square Sym^2(M) has a RATIONAL solution, so the solution space of M carries a monodromy-
 invariant nondegenerate quadratic form and the differential Galois group G is contained in the
 orthogonal group O(3,C).  Equivalently M is homomorphic to its adjoint by an order-2 intertwiner.
 Hence M IS projectively equivalent to the symmetric square of a second-order operator, and an
 elliptic/2F1 closed form is EXPECTED rather than excluded (the explicit second-order operator
-lives on the genus-one curve u^2 = (1-4t)(1-5t)(1-9t)).
+lives on the genus-one curve u^2 = (1-4t)(1-5t)(1-9t)); it has since been proved modular at
+level 30 -- see certify_modular.py.
 
   ---------------------------------------------------------------------------------------------
   SCOPE.  The three facts this script certifies -- (i) Homomorphisms(adjoint(M),M) != 0
@@ -585,10 +587,12 @@ if allpass:
     print("   G = O(3,C), with identity component G^0 = SO(3,C) ~= PSL(2,C).  Hence M IS")
     print("   projectively equivalent to the symmetric square of a second-order operator")
     print("   (defined over Q(t,u), u^2 = (1-4t)(1-5t)(1-9t)), even though M is NOT a LITERAL")
-    print("   symmetric square.  The paper's 'excludes every gauge/pullback-equivalent of a")
-    print("   symmetric square' and 'SL3-type Galois group / no elliptic closed form' claims")
-    print("   are REFUTED: an elliptic/2F1 closed form is EXPECTED, via a 2nd-order operator on")
-    print("   that genus-one curve.  Non-Liouvillian (no algebraic/elementary form) still holds,")
+    print("   symmetric square.  This REFUTES the earlier claims of this repository that the")
+    print("   exponent test excludes every gauge/pullback-equivalent of a symmetric square and")
+    print("   that the Galois group is of SL3 type with no elliptic closed form: such a form is")
+    print("   EXPECTED, via a 2nd-order operator on that genus-one curve, and is proved modular")
+    print("   at level 30 in certify_modular.py.")
+    print("   Non-Liouvillian (no algebraic/elementary form) still holds,")
     print("   now because G^0 = SO(3,C) is simple hence non-solvable.")
     print("   [Facts (i)-(iii) are established above in exact arithmetic.]")
 else:

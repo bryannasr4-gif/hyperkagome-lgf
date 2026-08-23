@@ -28,7 +28,7 @@ WHAT IS PROVED HERE (all in exact rational arithmetic; no floats, no SageMath):
       and V2 simultaneously, and it is what connects the modular Secs. VI-VII to the
       lattice.
 
-VALIDATION FIRST (per the project's verify-before-run rule): every series primitive used
+VALIDATION FIRST: every series primitive used
 below is exercised on operators of known structure before the real run --
   * the symmetric-square criterion is checked to ACCEPT a manufactured Sym^2 and to
     REJECT a nearby non-symmetric-square,

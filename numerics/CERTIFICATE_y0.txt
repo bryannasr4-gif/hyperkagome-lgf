@@ -20,7 +20,7 @@ Check 4: v^2 = (1-4t)(1-5t)(1-9t) composed with t(q); v(0) = +1
 Check 5: MAIN IDENTITY  B*(y0 o t)*v*W = A0*W^2 + A1*(q dW/dq)  to 120 orders
   [PASS] y0(t(q)) head = [1,10,47,148,407,1254]
   [PASS] B*(y0 o t)*v*W - (A0*W^2 + A1*(q dW/dq)) first nonzero order = None
-        margin = 120 orders checked - 32 free coefficients = 88  (overdetermined => identity)
+        margin = 120 orders checked - 23 free coefficients = 97  (overdetermined => identity)
 
 Check 6: Ore operator identity  M_v . T = X . Ntilde  (exact rational functions)
   rho1 = (15*t**2 + 17*t - 8)/(30*t**2 - 30*t)

@@ -1,7 +1,7 @@
 """
-STRENGTHENING #1 (achievable parts): maximally strengthen the certification of the
-operator M, short of a formal creative-telescoping proof (which needs ore_algebra /
-HolonomicFunctions / Lairez 'periods' -- see CT_SETUP.md).
+Strengthen the certification of the operator M as far as it can be taken short of a
+formal creative-telescoping proof (which needs ore_algebra, HolonomicFunctions or
+Lairez's period implementation -- see CT_SETUP.md).
 
 (A) Exact overdetermination margin: M annihilates the nu-series exactly over Q to the
     maximum available order; report (#relations verified) vs (#free coefficients of M).
