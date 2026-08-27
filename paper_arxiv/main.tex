@@ -1,13 +1,16 @@
-%%  Communications in Number Theory and Physics (International Press).
-%%  Class files ipart.cls and ipart-layout-main.sty are the official CNTP
-%%  author package (LPPL), redistributed here so the source compiles as-is.
-\documentclass[cntp]{ipart}
+%%  arXiv preprint source.  Generated from paper/main.tex by paper_arxiv/make_arxiv.py:
+%%  the preamble and title block below are the only difference; from the first sectioning
+%%  command onward the source is byte-identical to the journal source.  Regenerate with
+%%  "python make_arxiv.py"; verify with "python make_arxiv.py --check".
+\documentclass[11pt]{article}
 
-\RequirePackage{graphicx}
-\RequirePackage{bm}
-\RequirePackage{hyperref}
-
-\startlocaldefs
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{hyperref}
 
 \newcommand{\rmd}{\mathrm{d}}
 \newcommand{\Tr}{\mathrm{Tr}}
@@ -22,37 +25,22 @@
 % Allow TeX a last-resort stretch rather than pushing material into the margin.
 \emergencystretch=3em
 
-\endlocaldefs
+\title{Lattice Green's function of the hyperkagome lattice: modular uniformization at level~30
+from an orthogonal differential Galois group}
 
-%%  Filled in by the editor at production; placeholders keep the running
-%%  head well formed in the submitted manuscript.
-\pubyear{2026}
-\volume{0}
-\issue{0}
-\firstpage{1}
-\lastpage{1}
+\author{%
+Bryan Nasr\thanks{Independent researcher.\ \texttt{bryannasr4@gmail.com}}
+\and
+Jean-Marie Maillard\thanks{LPTMC, UMR 7600 CNRS, Sorbonne Universit\'e, Tour 23, 5\`eme
+\'etage, case 121, 4 Place Jussieu, 75252 Paris Cedex 05, France.\
+\texttt{jean-marie.maillard@sorbonne-universite.fr}}%
+}
+
+\date{}
 
 \begin{document}
 
-\begin{frontmatter}
-
-\title[Lattice Green's function of the hyperkagome lattice]{Lattice Green's function of the
-hyperkagome lattice: modular uniformization at level~30 from an orthogonal differential
-Galois group}
-
-\begin{aug}
-\author{\fnms{Bryan} \snm{Nasr}\ead[label=e1]{bryannasr4@gmail.com}}
-\address{Independent researcher\\
-         \printead{e1}}
-\and
-\author{\fnms{Jean-Marie} \snm{Maillard}%
-        \ead[label=e2]{jean-marie.maillard@sorbonne-universite.fr}}
-\address{LPTMC, UMR 7600 CNRS, Sorbonne Universit\'e\\
-         Tour 23, 5\`eme \'etage, case 121\\
-         4 Place Jussieu, 75252 Paris Cedex 05\\
-         France\\
-         \printead{e2}}
-\end{aug}
+\maketitle
 
 \begin{abstract}
 The lattice Green's functions of the cubic lattices are classical: each is a symmetric square of a
@@ -76,23 +64,13 @@ is obtained explicitly: a depth-one quasimodular form which we prove is not a mo
 an algebraic function at any weight.
 \end{abstract}
 
-\begin{keyword}[class=MSC]
-\kwdgroup[type=primary]{\kwd{34M15}\kwd{11F03}}
-\kwdgroup[type=secondary]{\kwd{82B20}\kwd{12H05}\kwd{11F11}\kwd{11F20}}
-\end{keyword}
+\noindent\textbf{2020 Mathematics Subject Classification.}
+34M15, 11F03 (Primary); 82B20, 12H05, 11F11, 11F20 (Secondary).
 
-\begin{keyword}
-\kwd{Lattice Green's function}
-\kwd{Hyperkagome lattice}
-\kwd{Picard--Fuchs operator}
-\kwd{Differential Galois theory}
-\kwd{Symmetric square}
-\kwd{Modular curve}
-\kwd{Fricke group}
-\kwd{Quasimodular form}
-\end{keyword}
-
-\end{frontmatter}
+\medskip
+\noindent\textbf{Keywords.}
+Lattice Green's function; hyperkagome lattice; Picard--Fuchs operator; differential Galois
+theory; symmetric square; modular curve; Fricke group; quasimodular form.
 
 \section{Introduction}
 The lattice Green's function (LGF)

@@ -23,6 +23,19 @@ exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 > `y₀ = Φ'/2` itself is exhibited in explicit closed form below — a depth-one quasimodular form on `Γ₀(30)⁺`
 > twisted by the determinant character, **proven not** to be an eta quotient or (modular form)×(algebraic
 > function) at any weight.
+>
+> **Prior art, and what is new (August 2026).** That uniformizing equation is itself not new: it is the
+> row `Γ₀(30)⁺` of the table of genus-zero groups in **B. H. Lian and S.-T. Yau**, *Mirror maps,
+> modular relations and hypergeometric series I* (arXiv:hep-th/9507151), where it arises as the
+> Picard–Fuchs operator of a degenerating family of algebraic K3 surfaces, and its Schwarzian potential
+> is the tabulated Conway–Norton class `30B` of Lian–Wiczer (arXiv:math/0611291). **What is new here is
+> the identification of a lattice Green's function with that operator, together with the proof**: the
+> Schwarzian identity is established by an a priori pole-degree bound rather than by a series match, and
+> therefore also proves the tabulated entries, which are exhibited rather than bounded. Both
+> identifications are verified in exact rational arithmetic in
+> [`numerics/certify_tabulated.py`](numerics/certify_tabulated.py) → `CERTIFICATE_tabulated.txt`. The
+> comparison needs the quadratic-differential Jacobian: a Schwarzian `Q` is not a function, and a naive
+> substitution differs from the tabulated entry by exactly `(1+4z)⁴`.
 
 ## Main result
 The local lattice Green's function G(z) of the 3D hyperkagome lattice (Na₄Ir₃O₈), after removing the
@@ -62,6 +75,10 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   points of `u↦u+1/u`; `t=1/4,1,∞ ↔` roots of `u²+3u+1, u²+6u+1, u²+7u+1`) and the cusp to `t=0`. The twist
   curve `v²=(1−4t)(1−5t)(1−9t)` is `X(Γ₀(30)+2,3,6)`. ⇒ **hyperkagome LGF modular at level 30 = 2·3·5**.
   Proven exactly in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt` (all checks PASS).
+  The same uniformizing equation is tabulated as the row `Γ₀(30)⁺` of Lian–Yau (arXiv:hep-th/9507151)
+  and as Conway–Norton class `30B` of Lian–Wiczer; `numerics/certify_tabulated.py` verifies both
+  identifications exactly, Jacobian included. What is new here is the lattice-side identification and
+  the pole-degree bound that makes the match a proof.
 - **The weight-2 period `y₀ = Φ'/2` — explicit closed form.** `y₀ = [ρ₀(t)·W + ρ₁(t)·W'] / v` with
   `v = √((1−4t)(1−5t)(1−9t))`, `W = q·dt/dq`, `ρ₁ = (15t²+17t−8)/(30t(t−1))` and explicit rational `ρ₀`: a
   **weight-two, depth-one quasimodular** form on `Γ₀(30)⁺` twisted by the determinant character. The `W'` term

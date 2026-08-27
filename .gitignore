@@ -13,17 +13,17 @@ Thumbs.db
 # Logs
 *.log
 
-# LaTeX build artifacts
-paper/*.aux
-paper/*.out
-paper/*.toc
-paper/*.synctex.gz
-paper/*.fls
-paper/*.fdb_latexmk
-paper/*.bbl
-paper/*.blg
-paper/*.nav
-paper/*.snm
+# LaTeX build artifacts (paper/ = journal build, paper_arxiv/ = preprint build)
+paper*/*.aux
+paper*/*.out
+paper*/*.toc
+paper*/*.synctex.gz
+paper*/*.fls
+paper*/*.fdb_latexmk
+paper*/*.bbl
+paper*/*.blg
+paper*/*.nav
+paper*/*.snm
 
 # Private — outreach drafts and working notes, NOT for publication
 OUTREACH.md

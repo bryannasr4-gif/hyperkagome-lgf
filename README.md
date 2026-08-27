@@ -21,6 +21,19 @@ data it was built from, and self-contained scripts that reproduce every certific
 > hyperkagome LGF is **modular at level `30 = 2·3·5`** — apparently the first lattice Green's function at a
 > modular level with three distinct prime factors. Proven exactly in
 > [`numerics/certify_modular.py`](numerics/certify_modular.py) → `CERTIFICATE_modular.txt`.
+>
+> **Prior art, and what is new (August 2026).** That uniformizing equation is itself not new: it is the
+> row `Γ₀(30)⁺` of the table of genus-zero groups in **B. H. Lian and S.-T. Yau**, *Mirror maps,
+> modular relations and hypergeometric series I* (arXiv:hep-th/9507151), where it arises as the
+> Picard–Fuchs operator of a degenerating family of algebraic K3 surfaces, and its Schwarzian potential
+> is the tabulated Conway–Norton class `30B` of Lian–Wiczer (arXiv:math/0611291). **What is new here is
+> the identification of a lattice Green's function with that operator, together with the proof**: the
+> Schwarzian identity is established by an a priori pole-degree bound rather than by a series match, and
+> therefore also proves the tabulated entries, which are exhibited rather than bounded. Both
+> identifications are verified in exact rational arithmetic in
+> [`numerics/certify_tabulated.py`](numerics/certify_tabulated.py) → `CERTIFICATE_tabulated.txt`. The
+> comparison needs the quadratic-differential Jacobian: a Schwarzian `Q` is not a function, and a naive
+> substitution differs from the tabulated entry by exactly `(1+4z)⁴`.
 
 ## Result
 
@@ -55,6 +68,10 @@ solution `R(t)`**, so:
   the arithmetic lattice `Γ₀(30)⁺` (covolume `3π`, signature `(0;2,2,2,2,2;1 cusp)`); the five order-2
   points map to `t ∈ {1/9,1/5,1/4,1,∞}` and the cusp to `t=0`. ⇒ **hyperkagome LGF modular at level
   `30 = 2·3·5`**. Proven exactly in `numerics/certify_modular.py` → `CERTIFICATE_modular.txt`.
+  The same uniformizing equation is tabulated as the row `Γ₀(30)⁺` of Lian–Yau (arXiv:hep-th/9507151)
+  and as Conway–Norton class `30B` of Lian–Wiczer; `numerics/certify_tabulated.py` verifies both
+  identifications exactly, Jacobian included. What is new here is the lattice-side identification and
+  the pole-degree bound that makes the match a proof.
 - **The weight-2 period `y₀ = Φ'/2` in explicit closed form.** `y₀ = [ρ₀(t)·W + ρ₁(t)·W'] / √((1−4t)(1−5t)(1−9t))`
   with `W = q·dt/dq` and explicit rational `ρ₀, ρ₁` — a **weight-two, depth-one quasimodular** form on `Γ₀(30)⁺`
   twisted by the determinant character. The derivative term is **provably essential**: `y₀` is *not* a
@@ -155,6 +172,7 @@ python numerics/certify_lclm.py              # L4 = M d/dt is the UNIQUE factori
 python numerics/certify_orthogonal.py        # Sym^2(M) rational solution => G = O(3,C); intertwiner; n=2; det char
 python numerics/certify_intertwiner.py       # det character is the ONLY obstruction to a rational M <-> Sym^2(V2)
 python numerics/certify_modular.py           # V2 uniformizes X(Gamma_0(30)+): t=u/(u^2+7u+1) generates the field; Schwarzian
+python numerics/certify_tabulated.py         # that uniformizing equation IS the tabulated Gamma_0(30)+ / class-30B entry
 python numerics/certify_nonliouvillian.py    # genuine log at t=0 => non-Liouvillian (no algebraic/elementary form)
 python numerics/certify_p7_apparent.py       # p7 is an APPARENT locus (all 3 local solutions log-free)
 python numerics/certify_bridge.py            # explicit V2 + conic point; bridge f0^2 = P(y0), V2(f0)=0 to t^107
@@ -171,7 +189,7 @@ python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
 ```
 
-All nineteen exit `0` on system Python.
+All twenty exit `0` on system Python.
 
 Each script validates its primitives on operators of known structure, with negative controls,
 before the certified computation. Five of them (`certify_bridge`, `certify_intertwiner`,
@@ -186,7 +204,10 @@ python numerics/certify_modular.py > numerics/CERTIFICATE_modular.txt
 ## Layout
 
 ```
-paper/           main.tex, main.pdf, figs/         — the manuscript
+paper/           main.tex, main.pdf, figs/         — the manuscript (journal class)
+paper_arxiv/     main.tex, main.pdf, make_arxiv.py — the same paper on the plain article class;
+                                                     make_arxiv.py --check asserts the two bodies are
+                                                     byte-identical
 numerics/
   lattice.pkl                                       — hyperkagome unit cell (12 sites, directed NN bonds)
   moments230.json, nu.json                          — exact integer moments m0..m230; symmetry-reduced nu
@@ -199,10 +220,13 @@ numerics/
   verify.py, certify_factor.py, certify_lclm.py, certify_orthogonal.py, certify_intertwiner.py,
   certify_modular.py,
   certify_nonliouvillian.py, certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
-  certify_phi_obstruction.py, certify_pullback.py, verify_mum_normalform.py, verify_watson_reduction.py,
+  certify_phi_obstruction.py, certify_pullback.py, certify_tabulated.py, verify_mum_normalform.py,
+  verify_watson_reduction.py,
   strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (19, all exit 0)
+                                                     — reproduction / certification scripts (20, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
+                                                        certify_tabulated.py: the same equation as the entry
+                                                        tabulated by Lian–Yau and by Lian–Wiczer;
                                                         certify_bridge.py: explicit V2 + the bridge identity)
   extend_moments.py                                  — closed-walk moment generator (provenance)
   CERTIFICATE*.txt                                   — generated certificates
