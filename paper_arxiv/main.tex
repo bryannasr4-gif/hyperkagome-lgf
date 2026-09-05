@@ -156,6 +156,49 @@ Among the ordered quarter-depletions of the pyrochlore lattice, the chiral hyper
 reproducing this sequence (hexagon-containing depletions already differ at $m_6=264\neq260$); this selection is
 checked separately and is not needed for what follows.
 
+\emph{(iv) From the raw moments to $t$: a pullback of degree two.} Features \emph{(i)} and \emph{(ii)} are what
+carry the raw moments into the variable used from Section~\ref{sec:pf} onward, and the passage is worth writing
+out, because it is a pullback of degree two and not a change of variable. Set $x=1/z$ and let
+$S(x)=\sum_{n\ge0}m_nx^n=z\,G(z)$ be the generating function of the moments themselves. Then
+\begin{equation}
+S(x)=\frac{1/3}{1+2x}+\frac{1}{1-x}\,\Phi\!\left(\frac{x^{2}}{(1-x)^{2}}\right),
+\qquad \Phi(t)=\sum_{m\ge0}\nu_m t^m,
+\label{eq:momentbridge}
+\end{equation}
+an identity verified coefficient by coefficient in exact rational arithmetic for $x^{0}$ through $x^{230}$, the
+full extent of the tabulated moments (\texttt{numerics/verify\_moment\_bridge.py}). The first term is the
+flat-band pole of \emph{(i)}; the factor $(1-x)^{-1}=z/\zeta$ is the gauge implied by $\zeta G_{\rm disp}$ being
+even in $\zeta$; and
+\begin{equation}
+t=\frac{x^{2}}{(1-x)^{2}}=\frac{1}{(z-1)^{2}}
+\label{eq:tofx}
+\end{equation}
+is the degree-two invariant of the involution $x\mapsto x/(2x-1)$, which is the reflection $E\mapsto2-E$ of
+\emph{(ii)} read in $x$. The passage to $t$ is therefore a \emph{quadratic pullback}, not a substitution, and
+every singular point of the operator $M$ of Section~\ref{sec:pf} accordingly has two preimages in the energy
+variable, one on either side of $E=1$:
+{\small\setlength{\arraycolsep}{3pt}%
+\begin{equation}
+\begin{array}{c|cccccc}
+\text{locus in }t & 9t-1 & 5t-1 & 4t-1 & t-1 & t=0 & t=\infty\\\hline
+\text{preimage in }x & (4x-1)(2x+1) & 4x^{2}+2x-1 & (3x-1)(x+1) & 2x-1,\ x=\infty & x=0 & x=1\\
+\text{energies} & E=4,\,-2 & E=1\pm\sqrt5 & E=3,\,-1 & E=2,\,0 & E=\infty & E=1
+\end{array}
+\label{eq:branches}
+\end{equation}}%
+the last two being double points, and the degree-seven locus pulling back to
+$-(1-x)^{14}p_7\!\left(x^{2}/(1-x)^{2}\right)$. The pairing is not the one the constants suggest: it is $9t-1$,
+and not $4t-1$, that carries the factor $4x-1$. One consequence is worth recording for a reader who starts, as
+is natural, from the integer moments themselves. A minimal annihilator guessed directly from the $m_n$ in the
+variable $x$ is not the $L_4$ of Section~\ref{sec:pf} but an operator of order \emph{five}: the least common
+left multiple of an order-one operator carrying the flat-band pole with the order-four pullback of $L_4$, which
+in turn factors as $\mathcal{N}_3\cdot\left(\rmd/\rmd x+1/(x-1)\right)$, where $\mathcal{N}_3$ is $M$ pulled
+back along \eqref{eq:tofx} and regauged. That order-one right factor is the trivial factor $\rmd/\rmd t$ of
+$L_4$ wearing the gauge of \eqref{eq:momentbridge}, and its solution $1/(1-x)$ is the constant solution in that
+gauge---not an independent spectral feature at $E=1$. Note finally that pulling back a product is not the same
+as multiplying the pullbacks: the Jacobian of \eqref{eq:tofx} intervenes, exactly as it does for $Q_V$ under the
+Schwarzian in Section~\ref{sec:modular}.
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/dos.pdf}

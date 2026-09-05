@@ -5,6 +5,12 @@ modular uniformization at level 30 from an orthogonal differential Galois group"
 and Jean-Marie Maillard** ([`paper/main.pdf`](paper/main.pdf)). It contains the exact operator, the
 data it was built from, and self-contained scripts that reproduce every certification.
 
+**Preprint:** [arXiv:2608.28141](https://arxiv.org/abs/2608.28141)
+(`math-ph`, cross-listed `cond-mat.stat-mech` and `math.NT`),
+[doi:10.48550/arXiv.2608.28141](https://doi.org/10.48550/arXiv.2608.28141). The code in this
+repository is MIT-licensed; the preprint is distributed under the arXiv.org perpetual
+non-exclusive licence.
+
 > **Correction notice (July 2026).** An earlier version of this work claimed that `M`, being irreducible
 > and not a symmetric square, has *no closed form in complete elliptic integrals* and an "SL₃-type"
 > differential Galois group. **That claim was wrong and has been retracted.** `Sym²(M)` has a rational
@@ -51,6 +57,23 @@ moments factors as `L₄ = M·d/dt`, and that is its **unique** factorization: `
 `LCLM(N, d/dt)` for any order-3 `N`, so the constant solution is not a direct summand and `M` is the
 intrinsic object (`numerics/certify_lclm.py`, two independent proofs). **`Sym²(M)` has a rational
 solution `R(t)`**, so:
+
+> **What that clause does, explicitly.** "Removing the flat-band pole and using the reflection symmetry"
+> is a short phrase for a construction, so here it is. With `x = 1/z` and `S(x) = Σₙ mₙ xⁿ = z·G(z)` the
+> generating function of the moments themselves,
+>
+> ```
+> S(x) = (1/3)/(1 + 2x) + Φ(x²/(1−x)²)/(1 − x),        Φ(t) = Σₘ νₘ tᵐ,
+> ```
+>
+> exactly, checked coefficient by coefficient in exact rational arithmetic for `x⁰ … x²³⁰`. The first term
+> is the flat-band pole; the gauge `1/(1−x) = ζ/x` is the Jacobian of writing `ζ·G_disp`; and
+> **`t = x²/(1−x)² = 1/(z−1)²` is the degree-two invariant of the involution `x ↦ x/(2x−1)`, which is
+> `E ↦ 2−E`**. So the passage to `t` is a **quadratic pullback, not a substitution**: every singular point
+> of `M` has two preimages in the energy variable (`9t−1 → (4x−1)(2x+1)`, i.e. `E = 4` and `E = −2`;
+> `5t−1 → 4x²+2x−1`; `4t−1 → (3x−1)(x+1)`; `t−1 → 2x−1`), and an annihilator guessed directly from the raw
+> `mₙ` in the variable `x` has order **five**, not four. See
+> [`numerics/verify_moment_bridge.py`](numerics/verify_moment_bridge.py) → `CERTIFICATE_moment_bridge.txt`.
 
 - **Orthogonal Galois group.** The solution space of `M` carries a monodromy-invariant, nondegenerate,
   symmetric bilinear form; the differential Galois group is `G = O(3,ℂ)`, identity component
@@ -187,9 +210,10 @@ python numerics/strengthen_certification.py  # overdetermination margin + indepe
 python numerics/verify_specialvalues.py      # Re G(1) = 1/9 by symmetric BZ quadrature
 python numerics/verify_vanhove_log.py        # log-divergent van Hove point t=1 (E=0,2) vs smooth controls
 python numerics/vm_crosscheck.py             # matches the Varma–Monien spectrum & 1/(t_VM+1) pole
+python numerics/verify_moment_bridge.py      # raw moments m_n <-> Phi: S(x) display, quadratic pullback t=x^2/(1-x)^2
 ```
 
-All twenty exit `0` on system Python.
+All twenty-one exit `0` on system Python.
 
 Each script validates its primitives on operators of known structure, with negative controls,
 before the certified computation. Five of them (`certify_bridge`, `certify_intertwiner`,
@@ -222,8 +246,9 @@ numerics/
   certify_nonliouvillian.py, certify_p7_apparent.py, certify_bridge.py, certify_y0.py, certify_y0_lemma.py,
   certify_phi_obstruction.py, certify_pullback.py, certify_tabulated.py, verify_mum_normalform.py,
   verify_watson_reduction.py,
-  strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py
-                                                     — reproduction / certification scripts (20, all exit 0)
+  strengthen_certification.py, verify_specialvalues.py, verify_vanhove_log.py, vm_crosscheck.py,
+  verify_moment_bridge.py
+                                                     — reproduction / certification scripts (21, all exit 0)
                                                        (certify_modular.py: level-30 uniformization;
                                                         certify_tabulated.py: the same equation as the entry
                                                         tabulated by Lian–Yau and by Lian–Wiczer;

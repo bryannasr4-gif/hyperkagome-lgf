@@ -1,0 +1,107 @@
+==============================================================================
+verify_moment_bridge.py -- raw moment series in x  <->  operator M in t
+==============================================================================
+
+[0] VALIDATION OF THE PRIMITIVES ON OPERATORS OF KNOWN STRUCTURE
+  (0a) D . x  ==  x D + 1                                              PASS
+  (0b) pullback of D_t^2 under t=x^3-2x kills 1 and phi(x)             PASS
+  (0b) NEGATIVE CONTROL: the same operator does NOT kill x^2           PASS
+  (0c) gauged pullback kills m and m*phi                               PASS
+  (0c) NEGATIVE CONTROL: it does NOT kill phi alone                    PASS
+  (0d) right division recovers the quotient exactly                    PASS
+  (0d) NEGATIVE CONTROL: a non-multiple leaves a nonzero remainder     PASS
+
+[1] THE DATA (read from the repository at run time)
+    moments230.json : 231 integers, m0..m10 = [1, 0, 4, 4, 28, 60, 260, 756, 2828, 9292, 33384]
+    nu.json         : 116 rationals, nu0..nu4 = ['2/3', '2', '10', '58', '362']
+    M_coeffs.json   : order 3, degrees [12, 13, 14, 15]
+  (1a) M has order three and degree fifteen                            PASS
+
+[2] THE MOMENT DECOMPOSITION   S(x) = (1/3)/(1+2x) + Phi(t(x))/(1-x)
+  (2a) S(x) reproduced EXACTLY from Phi for x^0..x^230 (231/231)       PASS
+  (2b) NEGATIVE CONTROL: flat-band weight 1/2 instead of 1/3 fails     PASS
+  (2c) NEGATIVE CONTROL: t = x^2/(1+x)^2 fails                         PASS
+  (2d) NEGATIVE CONTROL: omitting the gauge 1/(1-x) fails              PASS
+
+[3] THE SYMMETRY-REDUCED SERIES nu REBUILT FROM THE RAW MOMENTS
+  (3a) nu_m = int rho_disp (E-1)^{2m} matches nu.json for m=0..115     PASS
+  (3b) ALL odd central moments vanish, p = 1,3,...,229 (the E -> 2-E symmetry) PASS   first nonzero: none
+  (3c) NEGATIVE CONTROL: without removing the flat band, odd moments do NOT vanish PASS
+
+[4] t = x^2/(1-x)^2 IS THE INVARIANT OF THE INVOLUTION E -> 2-E
+  (4a) x -> x/(2x-1) is an involution                                  PASS
+  (4b) it is the reflection E -> 2-E                                   PASS
+  (4c) t = x^2/(1-x)^2 is sigma-invariant                              PASS
+  (4d) the map has degree two                                          PASS
+    branch dictionary (t <- the two E-preimages):
+      t = 1/9  <-  x in [-1/2, 1/4]                    E = 4 (band edge) and E = -2 (flat band)
+      t = 1/5  <-  x in [-1/4 + sqrt(5)/4, -sqrt(5)/4 - 1/4]   E = 1 +- sqrt5
+      t = 1/4  <-  x in [-1, 1/3]                      E = 3 and E = -1
+      t = 1    <-  x in [1/2]                          E = 2 and E = 0 (principal van Hove)
+      t = 0    <-  x in [0]                            E = infinity (double)
+
+[5] PULLING M BACK:  NN3 = P(M) . [(1-x)^4/(2x)]
+    our NN3 : order 3, coefficient degrees [25, 26, 27, 28]
+    our N4  : order 4, coefficient degrees [24, 25, 26, 27, 28]
+  (5a) N4 is EXACTLY right-divisible by NN1 = Dx + 1/(x-1)             PASS
+  (5b) N4 / NN1 == P(M).[(1-x)^4/(2x)]  (canonical forms agree)        PASS
+
+[6] WHY NN1 APPEARS: it is the gauged trivial right factor d/dt of L4
+  (6a) pullback+gauge of d/dt is a rational multiple of NN1            PASS
+  (6b) so the solution 1/(1-x) of NN1 is the gauged CONSTANT, not a delta at E=1 PASS
+  (6c) NEGATIVE CONTROL: S(x) needs no independent 1/(1-x) term (check 2a already closed the books) PASS
+
+[7] COMPARISON WITH MAILLARD'S PRINTED NN3 (order three, degree 28)
+  (7a) OUR pulled-back NN3 == MAILLARD'S NN3, coefficient by coefficient PASS
+  (7b) NEGATIVE CONTROL: perturbing one coefficient breaks the match   PASS
+  (7c) Maillard's degree-14 factor == -(1-x)^14 p_7(x^2/(1-x)^2)       PASS
+  (7d) each singular factor of M pulls back to the printed factor of NN3 PASS
+
+[8] SERIES CHECK OF THE OPERATORS AGAINST THE RAW MOMENTS
+  (8a) Maillard's NN3.NN1 annihilates Phi(t(x))/(1-x) through x^199    PASS
+  (8b) NEGATIVE CONTROL: NN3 alone does NOT annihilate it              PASS
+  (8c) N1 annihilates 1/((2x+1)(x-1))                                  PASS
+  (8d) 1/((2x+1)(x-1)) = -(2/3)/(2x+1) - (1/3)/(1-x): so modulo the NN1 solution 1/(1-x)
+       it is the flat-band pole -- the order-one factor carries no extra physics PASS
+
+[9] CLOSING MAILLARD'S LOOP: the order-five LCLM annihilates the RAW series
+  (9a) v = (NN3.NN1)[1/((2x+1)(x-1))] is a nonzero RATIONAL function   PASS
+  (9b) LCLM(N1, NN3.NN1) annihilates S(x) = sum m_n x^n through x^159  PASS
+  (9c) NEGATIVE CONTROL: NN3.NN1 alone does NOT annihilate S(x) (his own observation, reproduced) PASS
+  (9d) 1/(1+2x) = -(3/2)u - (1/2)/(1-x): Maple's N1 is the flat-band pole modulo
+       the gauged constant, i.e. a basis choice, not extra physics PASS
+
+[10] WHY NN3 IS HOMOMORPHIC TO ITS ADJOINT (his observation, explained)
+    predicted invariant of NN3:  R_NN3(x) = R(x^2/(1-x)^2) * 4x^2/(1-x)^8
+  (10a) x0 = 1/10 is an ordinary point of NN3                          PASS
+  (10a') the local solver really solves NN3 (residual of y_1 vanishes) PASS
+  (10a'') NEGATIVE CONTROL: a perturbed series is not a solution       PASS
+  (10b) R_NN3 = sum c_ij y_i y_j with CONSTANT c_ij: 40 relations vs 6 unknowns, margin 34 PASS
+  (10c) NEGATIVE CONTROL: R_NN3*(1+x) is NOT such a quadratic invariant PASS
+    => Sym^2(NN3) has a rational solution, so NN3 preserves a nondegenerate symmetric
+       form and is homomorphic to its adjoint -- exactly what he observed.  It is
+       inherited from M: pullback and gauge send R(t) to R(phi(x))/f(x)^2.
+
+==============================================================================
+ALL CHECKS PASS.
+
+SUMMARY OF THE BRIDGE
+
+  x = 1/E,  zeta = E-1,  t = zeta^-2 = x^2/(1-x)^2 .
+
+  S(x) = sum m_n x^n = (1/3)/(1+2x)  +  Phi(t(x))/(1-x)
+
+  * (1/3)/(1+2x) is the flat band at E = -2, weight (12-8)/12 = 1/3.  It is the
+    piece removed by d_n = m_n - (1/3)(-2)^n.
+  * t = x^2/(1-x)^2 is the degree-two invariant of the involution x -> x/(2x-1),
+    which is the reflection E -> 2-E.  So the reduction is a QUADRATIC PULLBACK,
+    which is why one order-three operator in t produces an order-three operator
+    of twice the degree in x, with each singular point of M splitting into its
+    two E-preimages.
+  * the gauge 1/(1-x) is zeta/x = the Jacobian of writing zeta*G_disp instead
+    of G_disp.  Its constant carries the solution 1/(1-x): that is NN1, the
+    pullback of the trivial right factor d/dt of L4 = M.d/dt.  There is NO
+    Dirac mass at E = 1.
+
+  NN3 = (rational multiple of)  P(M) . [(1-x)^4/(2x)],  P = pullback along t(x).
+

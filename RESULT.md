@@ -3,6 +3,9 @@
 **Addresses Varma–Monien, Phys. Rev. E 87, 032109 (2013)** ("we have currently found no way to
 exactly solve the Eq. 16"; arXiv:1211.5666, submitted 2012).
 
+**Preprint:** [arXiv:2608.28141](https://arxiv.org/abs/2608.28141) (`math-ph`; cross-listed
+`cond-mat.stat-mech`, `math.NT`), doi:10.48550/arXiv.2608.28141.
+
 > **Correction (July 2026).** The earlier headline — *not-a-symmetric-square ⇒ no elliptic closed form;
 > SL₃-type Galois group* — is **retracted**. `Sym²(M)` has a rational solution, so `M`'s differential
 > Galois group is **orthogonal** (`O(3,ℂ)`, `G° = SO(3,ℂ) ≅ PSL(2,ℂ)`) and `M` **is** projectively a
@@ -127,6 +130,12 @@ Picard–Fuchs operator M of degree 15** (the minimal operator L=M·d/dt has ord
   *bipartite* premedial net Γ (8 vertices, 12 edges per cell); bipartite ⇒ adjacency spectrum symmetric
   about 0 ⇒ dispersive DOS symmetric about E=1 (line-graph shift d−2=1). Verified by a
   translation-consistent 2-colouring on finite blocks and by all odd central moments vanishing.
+- **The passage from raw moments to `t` is a quadratic pullback, not a substitution.** With `x = 1/z`
+  and `S(x) = Σₙ mₙ xⁿ = z·G(z)`, exactly `S(x) = (1/3)/(1+2x) + Φ(x²/(1−x)²)/(1−x)`, checked
+  coefficient by coefficient for `x⁰…x²³⁰`; `t = x²/(1−x)² = 1/(z−1)²` is the degree-two invariant of
+  the involution `x ↦ x/(2x−1)` (that is, `E ↦ 2−E`), so each singular point of `M` has two energy
+  preimages and an annihilator guessed from the raw `mₙ` in `x` has order **five**, not four
+  (`numerics/verify_moment_bridge.py` → `CERTIFICATE_moment_bridge.txt`).
 
 **Conditional-on-M note.** The structure theorem (irreducible; orthogonal Galois group; non-Liouvillian)
 is a rigorous consequence *of M*, but M is established to the guess-and-verify standard (annihilation to
